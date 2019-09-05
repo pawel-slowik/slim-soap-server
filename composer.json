@@ -1,0 +1,11 @@
+{
+    "require": {
+        "slim/slim": "3",
+        "slim/twig-view": "^2.5",
+        "zendframework/zend-code": "^3.3",
+        "zendframework/zend-soap": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {"": "./src/"}
+    }
+}

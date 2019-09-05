@@ -1,0 +1,21 @@
+<h1>{{ name }}</h1>
+
+<p>
+    {{ description }}
+</p>
+
+{% for method in doc.methods %}
+
+    <h2>{{ method.name }}</h2>
+
+    <pre>
+    {{ method.docblock }}
+    </pre>
+
+    <pre>
+    {{ method.prototype }}
+    </pre>
+
+{% endfor %}
+
+<a href="{{ path_for('home') }}">back</a>
