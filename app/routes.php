@@ -5,6 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 use Slim\App;
+use Application\RuntimeException;
 
 return function (App $app) {
     // list of services
@@ -32,11 +33,14 @@ return function (App $app) {
         // TODO: move to a controller class
         function (Request $request, Response $response, array $args) {
             $servicePath = $args['path'];
-            // TODO: handle invalid $path with a 404
-            // TODO: handle SoapFault here?
-            $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
+            try {
+                $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
+            } catch (RuntimeException $ex) {
+                return ($this->notFoundHandler)($request, $response);
+            }
             $wsdlPath = $this->router->pathFor('wsdl', ['path' => $servicePath]);
             $wsdlUri = $service->urlForPath($request->getUri(), $wsdlPath);
+            // TODO: handle SoapFault here?
             $soapResponse = $service->handleSoapMessage($wsdlUri, (string)$request->getBody());
             $response->getBody()->write($soapResponse);
             return $response->withHeader('Content-Type', 'application/soap+xml');
@@ -49,8 +53,11 @@ return function (App $app) {
         // TODO: move to a controller class
         function (Request $request, Response $response, array $args) {
             $servicePath = $args['path'];
-            // TODO: handle invalid $path with a 404
-            $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
+            try {
+                $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
+            } catch (RuntimeException $ex) {
+                return ($this->notFoundHandler)($request, $response);
+            }
             $endpointPath = $this->router->pathFor('endpoint', ['path' => $servicePath]);
             $endpointUri = $service->urlForPath($request->getUri(), $endpointPath);
             $wsdl = $service->createWsdlDocument($endpointUri);
@@ -66,8 +73,11 @@ return function (App $app) {
         // TODO: move to a controller class
         function (Request $request, Response $response, array $args) {
             $servicePath = $args['path'];
-            // TODO: handle invalid $path with a 404
-            $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
+            try {
+                $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
+            } catch (RuntimeException $ex) {
+                return ($this->notFoundHandler)($request, $response);
+            }
             $templateData = [
                 'name' => $service->getName(),
                 'doc' => $this->documentationGenerator->createDocumentation(
