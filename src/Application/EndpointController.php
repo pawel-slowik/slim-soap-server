@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 use Application\SoapServiceRegistry;
 use Slim\Router;
+use Slim\Exception\NotFoundException;
 
 class EndpointController
 {
@@ -29,7 +30,7 @@ class EndpointController
         try {
             $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
         } catch (RuntimeException $ex) {
-            return ($this->notFoundHandler)($request, $response);
+            throw new NotFoundException($request, $response);
         }
         $wsdlPath = $this->router->pathFor('wsdl', ['path' => $servicePath]);
         $wsdlUri = $service->urlForPath($request->getUri(), $wsdlPath);
