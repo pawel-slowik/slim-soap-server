@@ -40,28 +40,28 @@ return function (App $app) {
         return $reg;
     };
 
-    $container[HomeController::class] = function($container) {
+    $container[HomeController::class] = function ($container) {
         return new HomeController(
             $container->get("soapServiceRegistry"),
             $container->get("view")
         );
     };
 
-    $container[WsdlController::class] = function($container) {
+    $container[WsdlController::class] = function ($container) {
         return new WsdlController(
             $container->get("soapServiceRegistry"),
             $container->get("router")
         );
     };
 
-    $container[EndpointController::class] = function($container) {
+    $container[EndpointController::class] = function ($container) {
         return new EndpointController(
             $container->get("soapServiceRegistry"),
             $container->get("router")
         );
     };
 
-    $container[DocumentationController::class] = function($container) {
+    $container[DocumentationController::class] = function ($container) {
         return new DocumentationController(
             $container->get("soapServiceRegistry"),
             $container->get("documentationGenerator"),

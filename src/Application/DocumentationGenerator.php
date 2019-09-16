@@ -28,5 +28,4 @@ class DocumentationGenerator
         }
         return $doc;
     }
-
 }

@@ -3,4 +3,6 @@ declare(strict_types=1);
 
 namespace Application;
 
-class RuntimeException extends \RuntimeException { };
+class RuntimeException extends \RuntimeException
+{
+}

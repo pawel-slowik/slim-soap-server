@@ -28,7 +28,8 @@ class DocumentationController
         $this->view = $view;
     }
 
-    public function __invoke(Request $request, Response $response, array $args) {
+    public function __invoke(Request $request, Response $response, array $args)
+    {
         $servicePath = $args['path'];
         try {
             $service = $this->soapServiceRegistry->getServiceForPath($servicePath);

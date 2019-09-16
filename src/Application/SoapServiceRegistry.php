@@ -37,5 +37,4 @@ class SoapServiceRegistry
     {
         return array_key_exists($path, $this->services);
     }
-
 }

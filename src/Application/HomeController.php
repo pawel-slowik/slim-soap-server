@@ -23,7 +23,8 @@ class HomeController
         $this->view = $view;
     }
 
-    public function __invoke(Request $request, Response $response, array $args) {
+    public function __invoke(Request $request, Response $response, array $args)
+    {
         $services = [];
         foreach ($this->soapServiceRegistry->listPaths() as $path) {
             $service = $this->soapServiceRegistry->getServiceForPath($path);

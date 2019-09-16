@@ -60,5 +60,4 @@ class SoapService
         $uri = $baseUri->withPath($path)->withQuery('')->withFragment('');
         return (string)$uri;
     }
-
 }
