@@ -4,6 +4,10 @@ declare(strict_types=1);
 use Application\SoapService;
 use Application\SoapServiceRegistry;
 use Application\DocumentationGenerator;
+use Application\HomeController;
+use Application\WsdlController;
+use Application\EndpointController;
+use Application\DocumentationController;
 
 use Slim\App;
 
@@ -34,5 +38,34 @@ return function (App $app) {
         $reg = new SoapServiceRegistry();
         $reg->addService("hello", new SoapService(new Hello()));
         return $reg;
+    };
+
+    $container[HomeController::class] = function($container) {
+        return new HomeController(
+            $container->get("soapServiceRegistry"),
+            $container->get("view")
+        );
+    };
+
+    $container[WsdlController::class] = function($container) {
+        return new WsdlController(
+            $container->get("soapServiceRegistry"),
+            $container->get("router")
+        );
+    };
+
+    $container[EndpointController::class] = function($container) {
+        return new EndpointController(
+            $container->get("soapServiceRegistry"),
+            $container->get("router")
+        );
+    };
+
+    $container[DocumentationController::class] = function($container) {
+        return new DocumentationController(
+            $container->get("soapServiceRegistry"),
+            $container->get("documentationGenerator"),
+            $container->get("view")
+        );
     };
 };
