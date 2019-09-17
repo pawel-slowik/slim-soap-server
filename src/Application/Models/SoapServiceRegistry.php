@@ -16,7 +16,7 @@ class SoapServiceRegistry
         $this->services[$path] = $service;
     }
 
-    public function getServiceForPath(string $path): object
+    public function getServiceForPath(string $path): SoapService
     {
         if (!$this->pathIsRegistered($path)) {
             throw new SoapServiceNotFoundException($path);
