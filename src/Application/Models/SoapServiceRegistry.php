@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Application;
+namespace Application\Models;
+
+use Application\RuntimeException;
 
 class SoapServiceRegistry
 {

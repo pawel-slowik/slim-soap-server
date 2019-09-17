@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Application;
+namespace Application\Models;
 
 use Zend\Code\Reflection\ClassReflection;
 use Zend\Code\Reflection\MethodReflection;

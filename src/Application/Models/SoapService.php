@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Application;
+namespace Application\Models;
 
 use Psr\Http\Message\UriInterface;
 

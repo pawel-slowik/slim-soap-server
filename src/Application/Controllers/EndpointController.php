@@ -6,7 +6,7 @@ namespace Application\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-use Application\SoapServiceRegistry;
+use Application\Models\SoapServiceRegistry;
 use Application\RuntimeException;
 use Slim\Router;
 use Slim\Exception\NotFoundException;

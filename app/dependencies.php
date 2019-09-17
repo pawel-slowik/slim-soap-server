@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Application\SoapService;
-use Application\SoapServiceRegistry;
-use Application\DocumentationGenerator;
+use Application\Models\SoapService;
+use Application\Models\SoapServiceRegistry;
+use Application\Models\DocumentationGenerator;
 use Application\Controllers\HomeController;
 use Application\Controllers\WsdlController;
 use Application\Controllers\EndpointController;
