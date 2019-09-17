@@ -1,27 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Application;
+namespace Application\Controllers;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 use Application\SoapServiceRegistry;
-use Slim\Router;
+use Application\DocumentationGenerator;
+use Application\RuntimeException;
+use Slim\Views\Twig as View;
 use Slim\Exception\NotFoundException;
 
-class EndpointController
+class DocumentationController
 {
     protected $soapServiceRegistry;
 
-    protected $router;
+    protected $documentationGenerator;
+
+    protected $view;
 
     public function __construct(
         SoapServiceRegistry $soapServiceRegistry,
-        Router $router
+        DocumentationGenerator $documentationGenerator,
+        View $view
     ) {
         $this->soapServiceRegistry = $soapServiceRegistry;
-        $this->router = $router;
+        $this->documentationGenerator = $documentationGenerator;
+        $this->view = $view;
     }
 
     public function __invoke(Request $request, Response $response, array $args)
@@ -32,11 +38,12 @@ class EndpointController
         } catch (RuntimeException $ex) {
             throw new NotFoundException($request, $response);
         }
-        $wsdlPath = $this->router->pathFor('wsdl', ['path' => $servicePath]);
-        $wsdlUri = $service->urlForPath($request->getUri(), $wsdlPath);
-        // TODO: handle SoapFault here?
-        $soapResponse = $service->handleSoapMessage($wsdlUri, (string)$request->getBody());
-        $response->getBody()->write($soapResponse);
-        return $response->withHeader('Content-Type', 'application/soap+xml');
+        $templateData = [
+            'name' => $service->getName(),
+            'doc' => $this->documentationGenerator->createDocumentation(
+                $service->getImplementation()
+            ),
+        ];
+        return $this->view->render($response, 'doc.html', $templateData);
     }
 }

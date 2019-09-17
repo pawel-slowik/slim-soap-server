@@ -2,10 +2,10 @@
 declare(strict_types=1);
 
 use Slim\App;
-use Application\HomeController;
-use Application\WsdlController;
-use Application\EndpointController;
-use Application\DocumentationController;
+use Application\Controllers\HomeController;
+use Application\Controllers\WsdlController;
+use Application\Controllers\EndpointController;
+use Application\Controllers\DocumentationController;
 
 return function (App $app) {
     // list of services

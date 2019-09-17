@@ -4,10 +4,10 @@ declare(strict_types=1);
 use Application\SoapService;
 use Application\SoapServiceRegistry;
 use Application\DocumentationGenerator;
-use Application\HomeController;
-use Application\WsdlController;
-use Application\EndpointController;
-use Application\DocumentationController;
+use Application\Controllers\HomeController;
+use Application\Controllers\WsdlController;
+use Application\Controllers\EndpointController;
+use Application\Controllers\DocumentationController;
 
 use Slim\App;
 
