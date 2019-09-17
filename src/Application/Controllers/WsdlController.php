@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 use Application\Models\SoapServiceRegistry;
-use Application\RuntimeException;
+use Application\Models\SoapServiceNotFoundException;
 use Slim\Router;
 use Slim\Exception\NotFoundException;
 
@@ -28,7 +28,7 @@ class WsdlController
         $servicePath = $args['path'];
         try {
             $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        } catch (RuntimeException $ex) {
+        } catch (SoapServiceNotFoundException $ex) {
             throw new NotFoundException($request, $response);
         }
         $endpointPath = $this->router->pathFor('endpoint', ['path' => $servicePath]);

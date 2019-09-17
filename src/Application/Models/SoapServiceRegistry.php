@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Application\Models;
 
-use Application\RuntimeException;
-
 class SoapServiceRegistry
 {
 
@@ -13,9 +11,7 @@ class SoapServiceRegistry
     public function addService(string $path, SoapService $service)
     {
         if ($this->pathIsRegistered($path)) {
-            throw new RuntimeException(
-                "can't register another SOAP service with the same path: $path"
-            );
+            throw new SoapServiceRegistrationFailedException($path);
         }
         $this->services[$path] = $service;
     }
@@ -23,9 +19,7 @@ class SoapServiceRegistry
     public function getServiceForPath(string $path): object
     {
         if (!$this->pathIsRegistered($path)) {
-            throw new RuntimeException(
-                "no SOAP service registered for path: $path"
-            );
+            throw new SoapServiceNotFoundException($path);
         }
         return $this->services[$path];
     }

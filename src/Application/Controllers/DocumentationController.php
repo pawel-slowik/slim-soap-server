@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 use Application\Models\SoapServiceRegistry;
 use Application\Models\DocumentationGenerator;
-use Application\RuntimeException;
+use Application\Models\SoapServiceNotFoundException;
 use Slim\Views\Twig as View;
 use Slim\Exception\NotFoundException;
 
@@ -35,7 +35,7 @@ class DocumentationController
         $servicePath = $args['path'];
         try {
             $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        } catch (RuntimeException $ex) {
+        } catch (SoapServiceNotFoundException $ex) {
             throw new NotFoundException($request, $response);
         }
         $templateData = [
