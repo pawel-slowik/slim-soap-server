@@ -6,7 +6,6 @@ namespace Application;
 use Psr\Http\Message\UriInterface;
 
 use Zend\Code\Reflection\ClassReflection;
-use Zend\Code\Reflection\MethodReflection;
 use Zend\Soap\AutoDiscover;
 use Zend\Soap\Server as SoapServer;
 
