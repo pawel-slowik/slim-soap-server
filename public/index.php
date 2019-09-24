@@ -3,10 +3,10 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $app = new \Slim\App;
 
-$dependencies = require __DIR__ . "/../app/dependencies.php";
+$dependencies = require __DIR__ . "/../src/dependencies.php";
 $dependencies($app);
 
-$routes = require __DIR__ . "/../app/routes.php";
+$routes = require __DIR__ . "/../src/routes.php";
 $routes($app);
 
 $app->run();
