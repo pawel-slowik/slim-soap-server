@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Application\Models;
 
-use Psr\Http\Message\UriInterface;
-
 use Zend\Code\Reflection\ClassReflection;
 use Zend\Soap\AutoDiscover;
 use Zend\Soap\Server as SoapServer;
@@ -52,11 +50,5 @@ class SoapService
         $autodiscover->setUri($endpointUri);
         $wsdl = $autodiscover->generate();
         return $wsdl->toDomDocument();
-    }
-
-    public function urlForPath(UriInterface $baseUri, string $path): string
-    {
-        $uri = $baseUri->withPath($path)->withQuery('')->withFragment('');
-        return (string)$uri;
     }
 }

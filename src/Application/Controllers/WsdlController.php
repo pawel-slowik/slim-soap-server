@@ -6,6 +6,7 @@ namespace Application\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
+use Application\Controllers\PathController;
 use Application\Models\SoapServiceRegistry;
 use Application\Models\SoapServiceNotFoundException;
 use Slim\Router;
@@ -13,6 +14,8 @@ use Slim\Exception\NotFoundException;
 
 class WsdlController
 {
+    use PathController;
+
     protected $soapServiceRegistry;
 
     protected $router;
@@ -32,7 +35,7 @@ class WsdlController
             throw new NotFoundException($request, $response);
         }
         $endpointPath = $this->router->pathFor('endpoint', ['path' => $servicePath]);
-        $endpointUri = $service->urlForPath($request->getUri(), $endpointPath);
+        $endpointUri = $this->urlForPath($request->getUri(), $endpointPath);
         $wsdl = $service->createWsdlDocument($endpointUri);
         $encoding = $wsdl->encoding;
         $response->getBody()->write($wsdl->saveXML());
