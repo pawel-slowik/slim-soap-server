@@ -39,6 +39,6 @@ class WsdlController
         $wsdl = $service->createWsdlDocument($endpointUri);
         $encoding = $wsdl->encoding;
         $response->getBody()->write($wsdl->saveXML());
-        return $response->withHeader('Content-Type', "text/xml; charset=$encoding");
+        return $response->withHeader('Content-Type', "text/xml; charset={$encoding}");
     }
 }

@@ -20,6 +20,6 @@ class Hello
      */
     public function greet(string $subject): string
     {
-        return "Hello, $subject!";
+        return "Hello, {$subject}!";
     }
 }
