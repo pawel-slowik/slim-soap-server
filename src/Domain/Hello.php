@@ -9,7 +9,6 @@ namespace Domain;
  */
 class Hello
 {
-
     /**
      * Short method description.
      *

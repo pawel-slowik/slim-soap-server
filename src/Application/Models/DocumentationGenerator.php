@@ -9,7 +9,6 @@ use Zend\Code\Reflection\MethodReflection;
 
 class DocumentationGenerator
 {
-
     // TODO: generate documentation for datatypes
 
     public function createDocumentation(object $subject): array

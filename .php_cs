@@ -27,8 +27,7 @@ return \PhpCsFixer\Config::create()
         'backtick_to_shell_exec' => true,
         'binary_operator_spaces' => true, // @Symfony
         'blank_line_after_opening_tag' => true, // @Symfony
-        'blank_line_before_return' => true,
-        'blank_line_before_statement' => ['statements' => ['break', 'continue', 'declare', 'return', 'throw']], // @Symfony
+        'blank_line_before_statement' => ['statements' => ['break', 'continue', 'declare', 'throw']], // @Symfony
         'cast_spaces' => true, // @Symfony
         'class_attributes_separation' => ['elements' => ['const', 'method']], // @Symfony
         'combine_consecutive_issets' => true,

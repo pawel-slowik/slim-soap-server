@@ -6,7 +6,6 @@ namespace Application\Models;
 
 class SoapServiceRegistry
 {
-
     protected $services = [];
 
     public function addService(string $path, SoapService $service)

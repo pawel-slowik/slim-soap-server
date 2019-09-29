@@ -10,7 +10,6 @@ use Zend\Soap\Server as SoapServer;
 
 class SoapService
 {
-
     protected $implementation;
 
     public function __construct(object $implementation)
