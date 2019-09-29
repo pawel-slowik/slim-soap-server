@@ -14,7 +14,7 @@ use Slim\App;
 
 use Domain\Hello;
 
-return function (App $app) {
+return function (App $app): void {
     // TODO: improve DI, autowiring maybe?
 
     $container = $app->getContainer();

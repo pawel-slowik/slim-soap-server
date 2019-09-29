@@ -8,7 +8,7 @@ use Application\Controllers\WsdlController;
 use Application\Controllers\EndpointController;
 use Application\Controllers\DocumentationController;
 
-return function (App $app) {
+return function (App $app): void {
     // list of services
     $app->get('/', HomeController::class)->setName('home');
 
