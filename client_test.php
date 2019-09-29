@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+
 $client = new SoapClient("http://localhost:8080/hello/wsdl");
 
 $functions = $client->__getFunctions();

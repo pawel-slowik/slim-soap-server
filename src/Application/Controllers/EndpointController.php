@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Application\Controllers;
@@ -39,7 +40,7 @@ class EndpointController
         $wsdlPath = $this->router->pathFor('wsdl', ['path' => $servicePath]);
         $wsdlUri = $this->urlForPath($request->getUri(), $wsdlPath);
         // TODO: handle SoapFault here?
-        $soapResponse = $service->handleSoapMessage($wsdlUri, (string)$request->getBody());
+        $soapResponse = $service->handleSoapMessage($wsdlUri, (string) $request->getBody());
         $response->getBody()->write($soapResponse);
         return $response->withHeader('Content-Type', 'application/soap+xml');
     }
