@@ -7,10 +7,10 @@ namespace Application\Models;
 use Zend\Code\Reflection\ClassReflection;
 use Zend\Code\Reflection\MethodReflection;
 
+// TODO: generate documentation for datatypes
+
 class DocumentationGenerator
 {
-    // TODO: generate documentation for datatypes
-
     public function createDocumentation(object $subject): array
     {
         $reflectedClass = new ClassReflection($subject);

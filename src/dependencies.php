@@ -31,10 +31,12 @@ return function (App $app): void {
         return $view;
     };
 
+    // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
     $container["documentationGenerator"] = function ($container) {
         return new DocumentationGenerator();
     };
 
+    // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
     $container["soapServiceRegistry"] = function ($container) {
         $reg = new SoapServiceRegistry();
         $reg->addService("hello", new SoapService(new Hello()));

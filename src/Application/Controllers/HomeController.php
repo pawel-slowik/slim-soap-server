@@ -24,6 +24,7 @@ class HomeController
         $this->view = $view;
     }
 
+    // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
     public function __invoke(Request $request, Response $response, array $args)
     {
         $services = [];
