@@ -34,9 +34,10 @@ class SoapService
         return $reflectedDocBlock->getShortDescription();
     }
 
-    public function handleSoapMessage(string $wsdlUri, string $message): string
+    public function handleSoapMessage(string $wsdlUri, string $endpointUri, string $message): string
     {
-        $server = new SoapServer($wsdlUri);
+        $server = new SoapServer($this->createWsdlDataUri($endpointUri));
+        $server->setUri($wsdlUri);
         $server->setReturnResponse(true);
         $server->setObject($this->implementation);
         return $server->handle($message);
@@ -50,5 +51,13 @@ class SoapService
         $autodiscover->setUri($endpointUri);
         $wsdl = $autodiscover->generate();
         return $wsdl->toDomDocument();
+    }
+
+    protected function createWsdlDataUri(string $endpointUri): string
+    {
+        $wsdlDocument = $this->createWsdlDocument($endpointUri);
+        $wsdlXml = $wsdlDocument->saveXML();
+        $wsdlDataUri = "data://text/plain;base64," . base64_encode($wsdlXml);
+        return $wsdlDataUri;
     }
 }
