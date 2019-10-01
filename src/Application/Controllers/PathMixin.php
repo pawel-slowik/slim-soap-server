@@ -6,7 +6,7 @@ namespace Application\Controllers;
 
 use Psr\Http\Message\UriInterface;
 
-trait PathController
+trait PathMixin
 {
     protected static function urlForPath(UriInterface $baseUri, string $path): string
     {

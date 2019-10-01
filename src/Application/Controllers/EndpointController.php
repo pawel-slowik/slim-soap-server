@@ -14,7 +14,7 @@ use Slim\Exception\NotFoundException;
 
 class EndpointController
 {
-    use PathController;
+    use PathMixin;
 
     protected $soapServiceRegistry;
 

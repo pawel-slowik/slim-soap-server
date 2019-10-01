@@ -14,7 +14,7 @@ use Slim\Exception\NotFoundException;
 
 class WsdlController
 {
-    use PathController;
+    use PathMixin;
 
     protected $soapServiceRegistry;
 
