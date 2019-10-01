@@ -45,6 +45,7 @@ class DocumentationController
                 $service->getImplementation()
             ),
         ];
-        return $this->view->render($response, 'doc.html', $templateData);
+        return $this->view->render($response, 'doc.html', $templateData)->
+            withHeader("Content-Type", "text/html; charset=UTF-8");
     }
 }

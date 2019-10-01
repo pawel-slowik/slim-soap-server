@@ -37,6 +37,7 @@ class HomeController
             ];
         }
         $templateData = ["services" => $services];
-        return $this->view->render($response, "home.html", $templateData);
+        return $this->view->render($response, "home.html", $templateData)->
+            withHeader("Content-Type", "text/html; charset=UTF-8");
     }
 }
