@@ -1,20 +1,50 @@
-<h1>{{ name }}</h1>
+<h1>{{ service.name }}</h1>
 
 <p>
-    {{ description }}
+    {{ service.shortDescription }}
 </p>
 
-{% for method in doc.methods %}
+<p>
+    {{ service.longDescription }}
+</p>
+
+{% for method in service.methods %}
 
     <h2>{{ method.name }}</h2>
 
-    <pre>
-    {{ method.docblock }}
-    </pre>
+    <p class="short_description">{{ method.shortDescription }}</p>
 
-    <pre>
-    {{ method.prototype }}
-    </pre>
+    <p class="long_description">{{ method.longDescription }}</p>
+
+    <h3>parameters</h3>
+
+    <ul class="parameters">
+
+        {% for parameter in method.parameters %}
+
+        <li>
+            <h4>{{ parameter.name }}</h4>
+
+            <ul class="parameter_properties">
+                <li>type: {{ parameter.type }}</li>
+                <li>description: {{ parameter.description }}</li>
+                <li>{% if parameter.isOptional %} optional {% else %} required {% endif %}</li>
+                <li>{% if not parameter.isNullable %} not {% endif %} nullable</li>
+                <li>default value: {% if parameter.defaultValue is null %} <em>none</em> {% else %} {{ parameter.defaultValue }} {% endif %}</li>
+            </ul>
+
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+    <h3>returns</h3>
+
+    <ul class="return_type_properties">
+        <li>type: {{ method.returnType }}</li>
+        <li>description: {{ method.returnDescription }}</li>
+    </ul>
 
 {% endfor %}
 

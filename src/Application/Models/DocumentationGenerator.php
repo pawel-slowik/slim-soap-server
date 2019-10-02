@@ -5,27 +5,11 @@ declare(strict_types=1);
 namespace Application\Models;
 
 use Zend\Code\Reflection\ClassReflection;
-use Zend\Code\Reflection\MethodReflection;
-
-// TODO: generate documentation for datatypes
 
 class DocumentationGenerator
 {
-    public function createDocumentation(object $subject): array
+    public function createDocumentation(string $name, object $subject): DocumentedService
     {
-        $reflectedClass = new ClassReflection($subject);
-        $reflectedMethods = $reflectedClass->getMethods(\ReflectionMethod::IS_PUBLIC);
-        $doc = [
-            'methods' => [],
-        ];
-        // TODO: use simple objects with public properties instead of arrays
-        foreach ($reflectedMethods as $method) {
-            $doc['methods'][] = [
-                'name' => $method->getShortName(),
-                'docblock' => $method->getDocComment(),
-                'prototype' => $method->getPrototype(MethodReflection::PROTOTYPE_AS_STRING),
-            ];
-        }
-        return $doc;
+        return new DocumentedService($name, new ClassReflection($subject));
     }
 }
