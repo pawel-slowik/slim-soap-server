@@ -25,8 +25,13 @@ class DocumentedMethod
     {
         $docBlock = $method->getDocBlock();
         $this->name = $method->getShortName();
-        $this->shortDescription = $docBlock->getShortDescription();
-        $this->longDescription = $docBlock->getLongDescription();
+        if ($docBlock) {
+            $this->shortDescription = $docBlock->getShortDescription();
+            $this->longDescription = $docBlock->getLongDescription();
+        } else {
+            $this->shortDescription = null;
+            $this->longDescription = null;
+        }
         $this->returnType = $method->getReturnType();
         $this->returnDescription = $this->getReturnDescription($method);
         $parameters = $method->getParameters();
