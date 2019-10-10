@@ -8,8 +8,11 @@ use Zend\Code\Reflection\ClassReflection;
 
 class DocumentationGenerator
 {
-    public function createDocumentation(string $name, object $subject): DocumentedService
+    public function createDocumentation(SoapService $service): DocumentedService
     {
-        return new DocumentedService($name, new ClassReflection($subject));
+        return new DocumentedService(
+            $service->getName(),
+            new ClassReflection($service->getImplementation())
+        );
     }
 }

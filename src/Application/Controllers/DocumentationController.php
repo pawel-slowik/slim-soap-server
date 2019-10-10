@@ -39,10 +39,7 @@ class DocumentationController
         } catch (SoapServiceNotFoundException $ex) {
             throw new NotFoundException($request, $response);
         }
-        $documentedService = $this->documentationGenerator->createDocumentation(
-            $service->getName(),
-            $service->getImplementation(),
-        );
+        $documentedService = $this->documentationGenerator->createDocumentation($service);
         $templateData = ["service" => $documentedService];
         return $this->view->render($response, 'doc.html', $templateData)->
             withHeader("Content-Type", "text/html; charset=UTF-8");
