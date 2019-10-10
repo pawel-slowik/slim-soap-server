@@ -27,10 +27,13 @@ class SoapService
         return $this->implementation;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         $reflectedClass = new ClassReflection($this->implementation);
         $reflectedDocBlock = $reflectedClass->getDocBlock();
+        if (!$reflectedDocBlock) {
+            return null;
+        }
         return $reflectedDocBlock->getShortDescription();
     }
 
