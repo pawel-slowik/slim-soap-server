@@ -11,6 +11,8 @@ use Zend\Code\Reflection\ClassReflection;
 use Application\Models\DocumentedService;
 use Application\Models\DocumentedMethod;
 
+use Test\Hello;
+
 class DocumentedServiceTest extends TestCase
 {
     protected $service;

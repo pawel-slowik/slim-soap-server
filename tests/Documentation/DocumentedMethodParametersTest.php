@@ -7,6 +7,8 @@ namespace Test\Documentation;
 use Application\Models\DocumentedMethod;
 use Application\Models\DocumentedParameter;
 
+use Test\Hello;
+
 class DocumentedMethodParametersTest extends DocumentedTestBase
 {
     protected $methodWithTwoParameters;

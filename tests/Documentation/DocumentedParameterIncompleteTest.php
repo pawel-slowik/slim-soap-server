@@ -6,6 +6,8 @@ namespace Test\Documentation;
 
 use Application\Models\DocumentedParameter;
 
+use Test\Hello;
+
 class DocumentedParameterIncompleteTest extends DocumentedTestBase
 {
     protected $noDocBlockParameter;

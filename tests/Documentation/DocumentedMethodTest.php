@@ -6,6 +6,8 @@ namespace Test\Documentation;
 
 use Application\Models\DocumentedMethod;
 
+use Test\Hello;
+
 class DocumentedMethodTest extends DocumentedTestBase
 {
     protected $method;

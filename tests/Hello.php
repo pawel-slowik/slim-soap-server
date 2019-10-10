@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test;
 
 /**
  * Example service.

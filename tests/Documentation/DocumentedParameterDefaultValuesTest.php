@@ -6,6 +6,8 @@ namespace Test\Documentation;
 
 use Application\Models\DocumentedParameter;
 
+use Test\Hello;
+
 class DocumentedParameterDefaultValuesTest extends DocumentedTestBase
 {
     protected $parameterWithDefaultValue;

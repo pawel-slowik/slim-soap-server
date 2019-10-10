@@ -10,6 +10,8 @@ use Application\Models\SoapService;
 use Application\Models\DocumentationGenerator;
 use Application\Models\DocumentedService;
 
+use Test\Hello;
+
 /**
  * @covers \Application\Models\DocumentationGenerator
  */
