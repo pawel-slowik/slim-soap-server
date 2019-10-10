@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test;
+namespace Test\Documentation;
 
 use Application\Models\DocumentedMethod;
 use Application\Models\DocumentedParameter;
