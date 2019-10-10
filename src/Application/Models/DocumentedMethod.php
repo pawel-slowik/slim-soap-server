@@ -11,8 +11,6 @@ class DocumentedMethod
 {
     public $name;
 
-    public $class;
-
     public $shortDescription;
 
     public $longDescription;
@@ -27,7 +25,6 @@ class DocumentedMethod
     {
         $docBlock = $method->getDocBlock();
         $this->name = $method->getShortName();
-        $this->class = $method->class;
         $this->shortDescription = $docBlock->getShortDescription();
         $this->longDescription = $docBlock->getLongDescription();
         $this->returnType = $method->getReturnType();
