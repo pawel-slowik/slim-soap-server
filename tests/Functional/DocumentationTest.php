@@ -29,4 +29,10 @@ class DocumentationTest extends BaseTestCase
         $response = $this->runApp("POST", "/hello/doc");
         $this->assertSame(405, $response->getStatusCode());
     }
+
+    public function testInvalid(): void
+    {
+        $response = $this->runApp("GET", "/there-is-no-such-service/doc");
+        $this->assertSame(404, $response->getStatusCode());
+    }
 }
