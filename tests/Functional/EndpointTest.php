@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
+/**
+ * @covers \Application\Controllers\EndpointController
+ */
 class EndpointTest extends BaseTestCase
 {
     protected $message;

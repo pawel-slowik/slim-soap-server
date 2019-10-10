@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
+/**
+ * @covers \Application\Controllers\HomeController
+ */
 class HomeTest extends BaseTestCase
 {
     public function testStatus(): void
