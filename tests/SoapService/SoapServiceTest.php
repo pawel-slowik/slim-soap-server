@@ -75,7 +75,7 @@ class SoapServiceTest extends TestCase
     }
 
     /**
-     * @runInSeparateProcess - see Test\Functional::testStatus
+     * @runInSeparateProcess - see Test\Functional\EndpointTest::testStatus
      */
     public function testHandleReturnsString(): void
     {
@@ -89,7 +89,7 @@ class SoapServiceTest extends TestCase
     }
 
     /**
-     * @runInSeparateProcess - see Test\Functional::testStatus
+     * @runInSeparateProcess - see Test\Functional\EndpointTest::testStatus
      */
     public function testHandleReturnsValid(): void
     {
