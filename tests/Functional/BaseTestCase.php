@@ -39,7 +39,11 @@ abstract class BaseTestCase extends TestCase
 
     protected function loadTestFile(string $filename): string
     {
-        return file_get_contents(__DIR__ . "/../data/" . $filename);
+        $contents = file_get_contents(__DIR__ . "/../data/" . $filename);
+        if ($contents === false) {
+            throw new \LogicException();
+        }
+        return $contents;
     }
 
     protected function stringToStream(string $content): Stream
