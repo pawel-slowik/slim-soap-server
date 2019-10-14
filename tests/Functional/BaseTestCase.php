@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
+use Psr\Http\Message\ResponseInterface;
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -13,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
 {
-    protected function runApp(string $requestMethod, string $requestUri, ?string $requestBody = null): Response
+    protected function runApp(string $requestMethod, string $requestUri, ?string $requestBody = null): ResponseInterface
     {
         $environment = Environment::mock(
             [
