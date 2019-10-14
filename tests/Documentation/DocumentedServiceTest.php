@@ -17,9 +17,12 @@ class DocumentedServiceTest extends TestCase
 {
     protected $service;
 
+    protected $emptyService;
+
     protected function setUp(): void
     {
         $this->service = new ClassReflection(Hello::class);
+        $this->emptyService = new ClassReflection(\stdClass::class);
     }
 
     public function testName(): void
@@ -50,5 +53,17 @@ class DocumentedServiceTest extends TestCase
     {
         $documentedService = new DocumentedService("test", $this->service);
         $this->assertContainsOnlyInstancesOf(DocumentedMethod::class, $documentedService->methods);
+    }
+
+    public function testMissingShortDescription(): void
+    {
+        $documentedService = new DocumentedService("empty test", $this->emptyService);
+        $this->assertNull($documentedService->shortDescription);
+    }
+
+    public function testMissingLongDescription(): void
+    {
+        $documentedService = new DocumentedService("empty test", $this->emptyService);
+        $this->assertNull($documentedService->longDescription);
     }
 }

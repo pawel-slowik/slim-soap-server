@@ -22,8 +22,13 @@ class DocumentedService
         $docBlock = $class->getDocBlock();
         $serviceDescription = $class->getDocComment();
         $reflectedMethods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
-        $this->shortDescription = $docBlock->getShortDescription();
-        $this->longDescription = $docBlock->getLongDescription();
+        if ($docBlock) {
+            $this->shortDescription = $docBlock->getShortDescription();
+            $this->longDescription = $docBlock->getLongDescription();
+        } else {
+            $this->shortDescription = null;
+            $this->longDescription = null;
+        }
         $this->methods = array_map(
             function ($m) {
                 return new DocumentedMethod($m);
