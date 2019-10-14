@@ -49,7 +49,11 @@ abstract class BaseTestCase extends TestCase
 
     protected function stringToStream(string $content): Stream
     {
-        $stream = new Stream(fopen("php://temp", "r+"));
+        $fp = fopen("php://temp", "r+");
+        if ($fp === false) {
+            throw new \RuntimeException();
+        }
+        $stream = new Stream($fp);
         $stream->write($content);
         return $stream;
     }
