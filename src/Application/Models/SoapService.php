@@ -46,7 +46,7 @@ class SoapService
         return $server->handle($message);
     }
 
-    public function createWsdlDocument(string $endpointUri): object
+    public function createWsdlDocument(string $endpointUri): \DOMDocument
     {
         $autodiscover = new AutoDiscover();
         $autodiscover->setClass(get_class($this->implementation));
