@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Application\Models\SoapService;
-use Application\Models\SoapServiceRegistry;
-use Application\Models\DocumentationGenerator;
-use Application\Controllers\HomeController;
-use Application\Controllers\WsdlController;
-use Application\Controllers\EndpointController;
-use Application\Controllers\DocumentationController;
+use AutoSoapServer\Models\SoapService;
+use AutoSoapServer\Models\SoapServiceRegistry;
+use AutoSoapServer\Models\DocumentationGenerator;
+use AutoSoapServer\Controllers\HomeController;
+use AutoSoapServer\Controllers\WsdlController;
+use AutoSoapServer\Controllers\EndpointController;
+use AutoSoapServer\Controllers\DocumentationController;
 
 use Slim\App;
 

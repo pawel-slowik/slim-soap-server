@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use Slim\App;
-use Application\Controllers\HomeController;
-use Application\Controllers\WsdlController;
-use Application\Controllers\EndpointController;
-use Application\Controllers\DocumentationController;
+use AutoSoapServer\Controllers\HomeController;
+use AutoSoapServer\Controllers\WsdlController;
+use AutoSoapServer\Controllers\EndpointController;
+use AutoSoapServer\Controllers\DocumentationController;
 
 return function (App $app): void {
     // list of services

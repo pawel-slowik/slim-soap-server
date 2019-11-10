@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test\Functional;
 
 /**
- * @covers \Application\Controllers\HomeController
+ * @covers \AutoSoapServer\Controllers\HomeController
  */
 class HomeTest extends BaseTestCase
 {

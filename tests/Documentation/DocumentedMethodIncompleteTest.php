@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Test\Documentation;
 
-use Application\Models\DocumentedMethod;
+use AutoSoapServer\Models\DocumentedMethod;
 
 use Test\Hello;
 

@@ -6,13 +6,13 @@ namespace Test\SoapService;
 
 use PHPUnit\Framework\TestCase;
 
-use Application\Models\SoapService;
-use Application\Models\SoapServiceRegistry;
-use Application\Models\SoapServiceRegistrationFailedException;
-use Application\Models\SoapServiceNotFoundException;
+use AutoSoapServer\Models\SoapService;
+use AutoSoapServer\Models\SoapServiceRegistry;
+use AutoSoapServer\Models\SoapServiceRegistrationFailedException;
+use AutoSoapServer\Models\SoapServiceNotFoundException;
 
 /**
- * @covers \Application\Models\SoapServiceRegistry
+ * @covers \AutoSoapServer\Models\SoapServiceRegistry
  */
 class SoapServiceRegistryTest extends TestCase
 {

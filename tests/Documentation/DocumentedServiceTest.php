@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 use Zend\Code\Reflection\ClassReflection;
 
-use Application\Models\DocumentedService;
-use Application\Models\DocumentedMethod;
+use AutoSoapServer\Models\DocumentedService;
+use AutoSoapServer\Models\DocumentedMethod;
 
 use Test\Hello;
 

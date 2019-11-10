@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Models;
+namespace AutoSoapServer\Models;
 
 use Zend\Code\Reflection\MethodReflection;
 use Zend\Code\Reflection\DocBlockReflection;

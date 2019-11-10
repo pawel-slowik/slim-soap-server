@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Application\Controllers;
+namespace AutoSoapServer\Controllers;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-use Application\Models\SoapServiceRegistry;
-use Application\Models\DocumentationGenerator;
-use Application\Models\SoapServiceNotFoundException;
+use AutoSoapServer\Models\SoapServiceRegistry;
+use AutoSoapServer\Models\DocumentationGenerator;
+use AutoSoapServer\Models\SoapServiceNotFoundException;
 use Slim\Views\Twig as View;
 use Slim\Exception\NotFoundException;
 

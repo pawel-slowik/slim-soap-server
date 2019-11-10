@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test\Functional;
 
 /**
- * @covers \Application\Controllers\WsdlController
+ * @covers \AutoSoapServer\Controllers\WsdlController
  */
 class WsdlTest extends BaseTestCase
 {
