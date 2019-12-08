@@ -12,6 +12,7 @@ use Test\Hello;
 
 /**
  * @covers \AutoSoapServer\Models\SoapService
+ * @covers \AutoSoapServer\Models\ComplexTypeStrategySpy
  */
 class SoapServiceTest extends TestCase
 {

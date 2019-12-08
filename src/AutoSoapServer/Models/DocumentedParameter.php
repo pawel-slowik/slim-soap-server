@@ -24,7 +24,7 @@ class DocumentedParameter
     public function __construct(ParameterReflection $parameter)
     {
         $this->name = $parameter->name;
-        $this->type = $parameter->detectType();
+        $this->type = $parameter->getType();
         $this->description = $this->getDescription($parameter);
         $this->defaultValue = $this->getDefaultValue($parameter);
         $this->isNullable = $parameter->allowsNull();

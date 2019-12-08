@@ -8,6 +8,8 @@
     {{ service.longDescription }}
 </p>
 
+<h1>Methods</h1>
+
 {% for method in service.methods %}
 
     <h2>{{ method.name }}</h2>
@@ -47,5 +49,38 @@
     </ul>
 
 {% endfor %}
+
+{% if service.types %}
+
+<h1>Types</h1>
+
+{% for type in service.types %}
+
+    <h2>{{ type.name }}</h2>
+
+    <p class="description">{{ type.description }}</p>
+
+    <h3>properties</h3>
+
+    <ul class="properties">
+
+        {% for property in type.properties %}
+
+        <li>
+            <h4>{{ property.name }}</h4>
+
+            <ul class="property_properties">
+                <li>type: {{ property.types|join(" | ") }}</li>
+                <li>description: {{ property.description }}</li>
+            </ul>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endfor %}
+
+{% endif %}
 
 <a href="{{ path_for('home') }}">back</a>

@@ -26,7 +26,7 @@ class DocumentedParameterTest extends DocumentedTestBase
     public function testType(): void
     {
         $documentedParameter = new DocumentedParameter($this->parameter);
-        $this->assertSame("string", $documentedParameter->type);
+        $this->assertSame("string", (string) $documentedParameter->type);
     }
 
     public function testDefaultValue(): void

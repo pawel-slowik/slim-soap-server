@@ -10,6 +10,7 @@ use Zend\Code\Reflection\ClassReflection;
 
 use AutoSoapServer\Models\DocumentedService;
 use AutoSoapServer\Models\DocumentedMethod;
+use AutoSoapServer\Models\DocumentedType;
 
 use Test\Hello;
 
@@ -65,5 +66,17 @@ class DocumentedServiceTest extends TestCase
     {
         $documentedService = new DocumentedService("empty test", $this->emptyService);
         $this->assertNull($documentedService->longDescription);
+    }
+
+    public function testNumberOfTypes(): void
+    {
+        $documentedService = new DocumentedService("complex", $this->service);
+        $this->assertGreaterThan(0, count($documentedService->types));
+    }
+
+    public function testTypeOfTypes(): void
+    {
+        $documentedService = new DocumentedService("complex", $this->service);
+        $this->assertContainsOnlyInstancesOf(DocumentedType::class, $documentedService->types);
     }
 }

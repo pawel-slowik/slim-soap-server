@@ -13,6 +13,7 @@ use AutoSoapServer\Controllers\DocumentationController;
 use Slim\App;
 
 use Domain\Hello;
+use Domain\ExampleServiceWithComplexTypes;
 
 return function (App $app): void {
     // TODO: improve DI, autowiring maybe?
@@ -40,6 +41,7 @@ return function (App $app): void {
     $container["soapServiceRegistry"] = function ($container) {
         $reg = new SoapServiceRegistry();
         $reg->addService("hello", new SoapService(new Hello()));
+        $reg->addService("complex", new SoapService(new ExampleServiceWithComplexTypes()));
         return $reg;
     };
 

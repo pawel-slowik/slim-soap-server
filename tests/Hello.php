@@ -84,4 +84,18 @@ class Hello
     {
         return "Hello, {$foo} and {$bar}!";
     }
+
+    /**
+     * Short method description.
+     *
+     * Long method description.
+     *
+     * @param \Test\Type $foo object parameter description
+     *
+     * @return string return value description
+     */
+    public function methodWithComplexInputType(Type $foo): string
+    {
+        return $foo->bar;
+    }
 }

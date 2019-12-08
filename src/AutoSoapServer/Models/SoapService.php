@@ -7,6 +7,7 @@ namespace AutoSoapServer\Models;
 use Zend\Code\Reflection\ClassReflection;
 use Zend\Soap\AutoDiscover;
 use Zend\Soap\Server as SoapServer;
+use Zend\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
 
 class SoapService
 {
@@ -39,28 +40,36 @@ class SoapService
 
     public function handleSoapMessage(string $wsdlUri, string $endpointUri, string $message): string
     {
-        $server = new SoapServer($this->createWsdlDataUri($endpointUri));
+        [$wsdl, $classMap] = $this->autodiscover($endpointUri);
+        $wsdlDocument = $wsdl->toDomDocument();
+        $wsdlDataUri = $this->createDataUri($wsdlDocument);
+        $server = new SoapServer($wsdlDataUri);
         $server->setUri($wsdlUri);
         $server->setReturnResponse(true);
         $server->setObject($this->implementation);
+        $server->setClassmap($classMap);
         return $server->handle($message);
     }
 
     public function createWsdlDocument(string $endpointUri): \DOMDocument
     {
-        $autodiscover = new AutoDiscover();
+        [$wsdl, ] = $this->autodiscover($endpointUri);
+        return $wsdl->toDomDocument();
+    }
+
+    private function autodiscover(string $endpointUri): array
+    {
+        $spy = new ComplexTypeStrategySpy(new DefaultComplexType());
+        $autodiscover = new AutoDiscover($spy);
         $autodiscover->setClass(get_class($this->implementation));
         $autodiscover->setServiceName($this->getName());
         $autodiscover->setUri($endpointUri);
         $wsdl = $autodiscover->generate();
-        return $wsdl->toDomDocument();
+        return [$wsdl, $spy->getClassMap()];
     }
 
-    protected function createWsdlDataUri(string $endpointUri): string
+    private static function createDataUri(\DOMDocument $document): string
     {
-        $wsdlDocument = $this->createWsdlDocument($endpointUri);
-        $wsdlXml = $wsdlDocument->saveXML();
-        $wsdlDataUri = "data://text/plain;base64," . base64_encode($wsdlXml);
-        return $wsdlDataUri;
+        return "data://text/plain;base64," . base64_encode($document->saveXML());
     }
 }
