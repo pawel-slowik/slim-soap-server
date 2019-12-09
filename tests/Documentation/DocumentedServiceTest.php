@@ -8,9 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 use Zend\Code\Reflection\ClassReflection;
 
-use AutoSoapServer\Models\DocumentedService;
-use AutoSoapServer\Models\DocumentedMethod;
-use AutoSoapServer\Models\DocumentedType;
+use AutoSoapServer\Documentation\DocumentedService;
+use AutoSoapServer\Documentation\DocumentedMethod;
+use AutoSoapServer\Documentation\DocumentedType;
 
 use Test\Hello;
 

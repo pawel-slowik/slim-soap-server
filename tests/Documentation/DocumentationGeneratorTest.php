@@ -6,14 +6,14 @@ namespace Test\Documentation;
 
 use PHPUnit\Framework\TestCase;
 
+use AutoSoapServer\Documentation\DocumentationGenerator;
+use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Models\SoapService;
-use AutoSoapServer\Models\DocumentationGenerator;
-use AutoSoapServer\Models\DocumentedService;
 
 use Test\Hello;
 
 /**
- * @covers \AutoSoapServer\Models\DocumentationGenerator
+ * @covers \AutoSoapServer\Documentation\DocumentationGenerator
  */
 class DocumentationGeneratorTest extends TestCase
 {

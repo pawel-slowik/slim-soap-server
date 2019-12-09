@@ -7,8 +7,8 @@ namespace AutoSoapServer\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
+use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\Models\SoapServiceRegistry;
-use AutoSoapServer\Models\DocumentationGenerator;
 use AutoSoapServer\Models\SoapServiceNotFoundException;
 use Slim\Views\Twig as View;
 use Slim\Exception\NotFoundException;

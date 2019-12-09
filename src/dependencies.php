@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use AutoSoapServer\Models\SoapService;
 use AutoSoapServer\Models\SoapServiceRegistry;
-use AutoSoapServer\Models\DocumentationGenerator;
+use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\Controllers\HomeController;
 use AutoSoapServer\Controllers\WsdlController;
 use AutoSoapServer\Controllers\EndpointController;

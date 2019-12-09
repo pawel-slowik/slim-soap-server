@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AutoSoapServer\Models;
+namespace AutoSoapServer\Documentation;
 
 use Zend\Code\Reflection\ParameterReflection;
 use Zend\Code\Reflection\DocBlockReflection;
