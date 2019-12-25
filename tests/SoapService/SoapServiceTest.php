@@ -11,8 +11,8 @@ use AutoSoapServer\Models\SoapService;
 use Test\Hello;
 
 /**
- * @covers \AutoSoapServer\Models\SoapService
  * @covers \AutoSoapServer\Models\ComplexTypeStrategySpy
+ * @covers \AutoSoapServer\Models\SoapService
  */
 class SoapServiceTest extends TestCase
 {
