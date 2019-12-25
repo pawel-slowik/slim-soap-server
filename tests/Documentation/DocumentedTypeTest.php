@@ -11,35 +11,47 @@ use Test\Hello;
 
 class DocumentedTypeTest extends DocumentedTestBase
 {
-    protected $type;
+    protected $documentedType;
 
     protected function setUp(): void
     {
-        $parameter = $this->getReflectedParameter(Hello::class, "methodWithComplexInputType", "foo");
-        $this->type = $parameter->getType();
+        $parameter = $this->getReflectedParameter(
+            Hello::class,
+            "methodWithComplexInputType",
+            "foo"
+        );
+        $this->documentedType = new DocumentedType($parameter->getType());
     }
 
     public function testName(): void
     {
-        $documentedType = new DocumentedType($this->type);
-        $this->assertSame("Test\\Type", $documentedType->name);
+        $this->assertSame(
+            "Test\\Type",
+            $this->documentedType->name
+        );
     }
 
     public function testDescription(): void
     {
-        $documentedType = new DocumentedType($this->type);
-        $this->assertSame("This class is used for type reflection testing.", $documentedType->description);
+        $this->assertSame(
+            "This class is used for type reflection testing.",
+            $this->documentedType->description
+        );
     }
 
     public function testNumberOfProperties(): void
     {
-        $documentedType = new DocumentedType($this->type);
-        $this->assertCount(3, $documentedType->properties);
+        $this->assertCount(
+            3,
+            $this->documentedType->properties
+        );
     }
 
     public function testTypeOfProperties(): void
     {
-        $documentedType = new DocumentedType($this->type);
-        $this->assertContainsOnlyInstancesOf(DocumentedProperty::class, $documentedType->properties);
+        $this->assertContainsOnlyInstancesOf(
+            DocumentedProperty::class,
+            $this->documentedType->properties
+        );
     }
 }

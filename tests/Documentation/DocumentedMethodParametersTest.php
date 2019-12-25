@@ -11,32 +11,43 @@ use Test\Hello;
 
 class DocumentedMethodParametersTest extends DocumentedTestBase
 {
-    protected $methodWithTwoParameters;
+    protected $documentedMethodWithTwoParameters;
 
     protected function setUp(): void
     {
-        $this->methodWithTwoParameters = $this->getReflectedMethod(
-            Hello::class,
-            "methodWithTwoParameters"
+        $this->documentedMethodWithTwoParameters = new DocumentedMethod(
+            $this->getReflectedMethod(
+                Hello::class,
+                "methodWithTwoParameters"
+            )
         );
     }
 
     public function testNumberOfParameters(): void
     {
-        $documentedMethod = new DocumentedMethod($this->methodWithTwoParameters);
-        $this->assertCount(2, $documentedMethod->parameters);
+        $this->assertCount(
+            2,
+            $this->documentedMethodWithTwoParameters->parameters
+        );
     }
 
     public function testTypeOfParameters(): void
     {
-        $documentedMethod = new DocumentedMethod($this->methodWithTwoParameters);
-        $this->assertContainsOnlyInstancesOf(DocumentedParameter::class, $documentedMethod->parameters);
+        $this->assertContainsOnlyInstancesOf(
+            DocumentedParameter::class,
+            $this->documentedMethodWithTwoParameters->parameters
+        );
     }
 
     public function testOrderOfParameters(): void
     {
-        $documentedMethod = new DocumentedMethod($this->methodWithTwoParameters);
-        $this->assertSame("foo", $documentedMethod->parameters[0]->name);
-        $this->assertSame("bar", $documentedMethod->parameters[1]->name);
+        $this->assertSame(
+            "foo",
+            $this->documentedMethodWithTwoParameters->parameters[0]->name
+        );
+        $this->assertSame(
+            "bar",
+            $this->documentedMethodWithTwoParameters->parameters[1]->name
+        );
     }
 }

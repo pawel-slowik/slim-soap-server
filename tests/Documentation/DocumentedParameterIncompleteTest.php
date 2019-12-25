@@ -10,39 +10,40 @@ use Test\Hello;
 
 class DocumentedParameterIncompleteTest extends DocumentedTestBase
 {
-    protected $noDocBlockParameter;
+    protected $documentedNoDocBlockParameter;
 
-    protected $incompleteDocBlockParameter;
+    protected $documentedIncompleteDocBlockParameter;
 
     protected function setUp(): void
     {
-        $this->noDocBlockParameter = $this->getReflectedParameter(
-            Hello::class,
-            "greetNoDocBlock",
-            "subject"
+        $this->documentedNoDocBlockParameter = new DocumentedParameter(
+            $this->getReflectedParameter(
+                Hello::class,
+                "greetNoDocBlock",
+                "subject"
+            )
         );
-        $this->incompleteDocBlockParameter = $this->getReflectedParameter(
-            Hello::class,
-            "greetIncompleteDocBlock",
-            "subject"
+        $this->documentedIncompleteDocBlockParameter = new DocumentedParameter(
+            $this->getReflectedParameter(
+                Hello::class,
+                "greetIncompleteDocBlock",
+                "subject"
+            )
         );
     }
 
     public function testNoDocBlockNoDescription(): void
     {
-        $documentedParameter = new DocumentedParameter($this->noDocBlockParameter);
-        $this->assertNull($documentedParameter->description);
+        $this->assertNull($this->documentedNoDocBlockParameter->description);
     }
 
     public function testNoDocBlockNoDefaultValue(): void
     {
-        $documentedParameter = new DocumentedParameter($this->noDocBlockParameter);
-        $this->assertNull($documentedParameter->defaultValue);
+        $this->assertNull($this->documentedNoDocBlockParameter->defaultValue);
     }
 
     public function testIncompleteDocBlockNoDescription(): void
     {
-        $documentedParameter = new DocumentedParameter($this->incompleteDocBlockParameter);
-        $this->assertNull($documentedParameter->description);
+        $this->assertNull($this->documentedIncompleteDocBlockParameter->description);
     }
 }

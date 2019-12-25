@@ -10,40 +10,52 @@ use Test\Hello;
 
 class DocumentedMethodTest extends DocumentedTestBase
 {
-    protected $method;
+    protected $documentedMethod;
 
     protected function setUp(): void
     {
-        $this->method = $this->getReflectedMethod(Hello::class, "greet");
+        $this->documentedMethod = new DocumentedMethod(
+            $this->getReflectedMethod(Hello::class, "greet")
+        );
     }
 
     public function testName(): void
     {
-        $documentedMethod = new DocumentedMethod($this->method);
-        $this->assertSame("greet", $documentedMethod->name);
+        $this->assertSame(
+            "greet",
+            $this->documentedMethod->name
+        );
     }
 
     public function testShortDescription(): void
     {
-        $documentedMethod = new DocumentedMethod($this->method);
-        $this->assertSame("Short method description.", $documentedMethod->shortDescription);
+        $this->assertSame(
+            "Short method description.",
+            $this->documentedMethod->shortDescription
+        );
     }
 
     public function testLongDescription(): void
     {
-        $documentedMethod = new DocumentedMethod($this->method);
-        $this->assertSame("Long method description.", $documentedMethod->longDescription);
+        $this->assertSame(
+            "Long method description.",
+            $this->documentedMethod->longDescription
+        );
     }
 
     public function testReturnType(): void
     {
-        $documentedMethod = new DocumentedMethod($this->method);
-        $this->assertSame("string", (string) $documentedMethod->returnType);
+        $this->assertSame(
+            "string",
+            (string) $this->documentedMethod->returnType
+        );
     }
 
     public function testReturnDescription(): void
     {
-        $documentedMethod = new DocumentedMethod($this->method);
-        $this->assertSame("return value description", $documentedMethod->returnDescription);
+        $this->assertSame(
+            "return value description",
+            $this->documentedMethod->returnDescription
+        );
     }
 }

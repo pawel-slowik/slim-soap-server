@@ -10,33 +10,41 @@ use Test\Hello;
 
 class DocumentedParameterDefaultValuesTest extends DocumentedTestBase
 {
-    protected $parameterWithDefaultValue;
+    protected $documentedParameterWithDefaultValue;
 
-    protected $parameterWithDefaultConstantValue;
+    protected $documentedParameterWithDefaultConstantValue;
 
     protected function setUp(): void
     {
-        $this->parameterWithDefaultValue = $this->getReflectedParameter(
-            Hello::class,
-            "greetWithDefaultValue",
-            "subject"
+        $this->documentedParameterWithDefaultValue = new DocumentedParameter(
+            $this->getReflectedParameter(
+                Hello::class,
+                "greetWithDefaultValue",
+                "subject"
+            )
         );
-        $this->parameterWithDefaultConstantValue = $this->getReflectedParameter(
-            Hello::class,
-            "greetWithDefaultConstantValue",
-            "subject"
+        $this->documentedParameterWithDefaultConstantValue = new DocumentedParameter(
+            $this->getReflectedParameter(
+                Hello::class,
+                "greetWithDefaultConstantValue",
+                "subject"
+            )
         );
     }
 
     public function testWithDefaultValue(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameterWithDefaultValue);
-        $this->assertSame("'world'", $documentedParameter->defaultValue);
+        $this->assertSame(
+            "'world'",
+            $this->documentedParameterWithDefaultValue->defaultValue
+        );
     }
 
     public function testWithDefaultConstantValue(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameterWithDefaultConstantValue);
-        $this->assertSame("self::FOO", $documentedParameter->defaultValue);
+        $this->assertSame(
+            "self::FOO",
+            $this->documentedParameterWithDefaultConstantValue->defaultValue
+        );
     }
 }

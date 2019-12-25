@@ -16,67 +16,85 @@ use Test\Hello;
 
 class DocumentedServiceTest extends TestCase
 {
-    protected $service;
+    protected $documentedService;
 
-    protected $emptyService;
+    protected $documentedEmptyService;
 
     protected function setUp(): void
     {
-        $this->service = new ClassReflection(Hello::class);
-        $this->emptyService = new ClassReflection(\stdClass::class);
+        $this->documentedService = new DocumentedService(
+            "test",
+            new ClassReflection(Hello::class)
+        );
+        $this->documentedEmptyService = new DocumentedService(
+            "empty test",
+            new ClassReflection(\stdClass::class)
+        );
     }
 
     public function testName(): void
     {
-        $documentedService = new DocumentedService("test", $this->service);
-        $this->assertSame("test", $documentedService->name);
+        $this->assertSame(
+            "test",
+            $this->documentedService->name
+        );
     }
 
     public function testShortDescription(): void
     {
-        $documentedService = new DocumentedService("test", $this->service);
-        $this->assertSame("Example service.", $documentedService->shortDescription);
+        $this->assertSame(
+            "Example service.",
+            $this->documentedService->shortDescription
+        );
     }
 
     public function testLongDescription(): void
     {
-        $documentedService = new DocumentedService("test", $this->service);
-        $this->assertSame("This class is used for reflection testing.", $documentedService->longDescription);
+        $this->assertSame(
+            "This class is used for reflection testing.",
+            $this->documentedService->longDescription
+        );
     }
 
     public function testNumberOfMethods(): void
     {
-        $documentedService = new DocumentedService("test", $this->service);
-        $this->assertGreaterThan(0, count($documentedService->methods));
+        $this->assertGreaterThan(
+            0,
+            count($this->documentedService->methods)
+        );
     }
 
     public function testTypeOfMethods(): void
     {
-        $documentedService = new DocumentedService("test", $this->service);
-        $this->assertContainsOnlyInstancesOf(DocumentedMethod::class, $documentedService->methods);
+        $this->assertContainsOnlyInstancesOf(
+            DocumentedMethod::class,
+            $this->documentedService->methods
+        );
     }
 
     public function testMissingShortDescription(): void
     {
-        $documentedService = new DocumentedService("empty test", $this->emptyService);
-        $this->assertNull($documentedService->shortDescription);
+        $this->assertNull($this->documentedEmptyService->shortDescription);
     }
 
     public function testMissingLongDescription(): void
     {
-        $documentedService = new DocumentedService("empty test", $this->emptyService);
-        $this->assertNull($documentedService->longDescription);
+        $this->assertNull($this->documentedEmptyService->longDescription);
     }
 
     public function testNumberOfTypes(): void
     {
-        $documentedService = new DocumentedService("complex", $this->service);
-        $this->assertGreaterThan(0, count($documentedService->types));
+        $this->assertGreaterThan(
+            0,
+            count($this->documentedService->types)
+        );
     }
 
     public function testTypeOfTypes(): void
     {
-        $documentedService = new DocumentedService("complex", $this->service);
-        $this->assertContainsOnlyInstancesOf(DocumentedType::class, $documentedService->types);
+        $this->assertContainsOnlyInstancesOf(
+            DocumentedType::class,
+            $this->documentedService->types
+        );
     }
 }

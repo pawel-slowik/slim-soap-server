@@ -10,46 +10,51 @@ use Test\Hello;
 
 class DocumentedParameterTest extends DocumentedTestBase
 {
-    protected $parameter;
+    protected $documentedParameter;
 
     protected function setUp(): void
     {
-        $this->parameter = $this->getReflectedParameter(Hello::class, "greet", "subject");
+        $this->documentedParameter = new DocumentedParameter(
+            $this->getReflectedParameter(Hello::class, "greet", "subject")
+        );
     }
 
     public function testName(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameter);
-        $this->assertSame("subject", $documentedParameter->name);
+        $this->assertSame(
+            "subject",
+            $this->documentedParameter->name
+        );
     }
 
     public function testType(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameter);
-        $this->assertSame("string", (string) $documentedParameter->type);
+        $this->assertSame(
+            "string",
+            (string) $this->documentedParameter->type
+        );
     }
 
     public function testDefaultValue(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameter);
-        $this->assertNull($documentedParameter->defaultValue);
+        $this->assertNull($this->documentedParameter->defaultValue);
     }
 
     public function testDescription(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameter);
-        $this->assertSame("parameter description", $documentedParameter->description);
+        $this->assertSame(
+            "parameter description",
+            $this->documentedParameter->description
+        );
     }
 
     public function testIsNullable(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameter);
-        $this->assertFalse($documentedParameter->isNullable);
+        $this->assertFalse($this->documentedParameter->isNullable);
     }
 
     public function testIsOptional(): void
     {
-        $documentedParameter = new DocumentedParameter($this->parameter);
-        $this->assertFalse($documentedParameter->isOptional);
+        $this->assertFalse($this->documentedParameter->isOptional);
     }
 }

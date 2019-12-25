@@ -21,17 +21,26 @@ class DocumentedPropertyTest extends DocumentedTestBase
 
     public function testName(): void
     {
-        $this->assertSame("bar", $this->documentedType->properties[0]->name);
+        $this->assertSame(
+            "bar",
+            $this->documentedType->properties[0]->name
+        );
     }
 
     public function testDescription(): void
     {
-        $this->assertSame("bar property description", $this->documentedType->properties[0]->description);
+        $this->assertSame(
+            "bar property description",
+            $this->documentedType->properties[0]->description
+        );
     }
 
     public function testTypes(): void
     {
-        $this->assertSame(["string"], $this->documentedType->properties[0]->types);
+        $this->assertSame(
+            ["string"],
+            $this->documentedType->properties[0]->types
+        );
     }
 
     public function testMissingDescription(): void
