@@ -27,9 +27,9 @@ class DocumentedServiceMethodsTest extends TestCase
 
     public function testNumberOfMethods(): void
     {
-        $this->assertGreaterThan(
-            0,
-            count($this->documentedService->methods)
+        $this->assertCount(
+            7,
+            $this->documentedService->methods
         );
     }
 
