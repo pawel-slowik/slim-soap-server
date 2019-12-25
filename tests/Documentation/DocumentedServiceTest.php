@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 use Zend\Code\Reflection\ClassReflection;
 
 use AutoSoapServer\Documentation\DocumentedService;
-use AutoSoapServer\Documentation\DocumentedMethod;
-use AutoSoapServer\Documentation\DocumentedType;
 
 use Test\Hello;
 
@@ -56,22 +54,6 @@ class DocumentedServiceTest extends TestCase
         );
     }
 
-    public function testNumberOfMethods(): void
-    {
-        $this->assertGreaterThan(
-            0,
-            count($this->documentedService->methods)
-        );
-    }
-
-    public function testTypeOfMethods(): void
-    {
-        $this->assertContainsOnlyInstancesOf(
-            DocumentedMethod::class,
-            $this->documentedService->methods
-        );
-    }
-
     public function testMissingShortDescription(): void
     {
         $this->assertNull($this->documentedEmptyService->shortDescription);
@@ -80,21 +62,5 @@ class DocumentedServiceTest extends TestCase
     public function testMissingLongDescription(): void
     {
         $this->assertNull($this->documentedEmptyService->longDescription);
-    }
-
-    public function testNumberOfTypes(): void
-    {
-        $this->assertGreaterThan(
-            0,
-            count($this->documentedService->types)
-        );
-    }
-
-    public function testTypeOfTypes(): void
-    {
-        $this->assertContainsOnlyInstancesOf(
-            DocumentedType::class,
-            $this->documentedService->types
-        );
     }
 }
