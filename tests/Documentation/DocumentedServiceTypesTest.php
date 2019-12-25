@@ -27,9 +27,9 @@ class DocumentedServiceTypesTest extends TestCase
 
     public function testNumberOfTypes(): void
     {
-        $this->assertGreaterThan(
-            0,
-            count($this->documentedService->types)
+        $this->assertCount(
+            1,
+            $this->documentedService->types
         );
     }
 
