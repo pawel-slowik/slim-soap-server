@@ -6,6 +6,7 @@ namespace AutoSoapServer\Documentation;
 
 use Zend\Code\Reflection\ParameterReflection;
 use Zend\Code\Reflection\DocBlockReflection;
+use Zend\Code\Reflection\DocBlock\Tag\ParamTag;
 
 class DocumentedParameter
 {
@@ -47,6 +48,7 @@ class DocumentedParameter
         if (!array_key_exists($parameter->getPosition(), $parameterTags)) {
             return null;
         }
+        /** @var ParamTag $parameterTag */
         $parameterTag = $parameterTags[$parameter->getPosition()];
         return $parameterTag->getDescription();
     }

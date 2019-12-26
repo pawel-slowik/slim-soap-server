@@ -6,6 +6,7 @@ namespace AutoSoapServer\Documentation;
 
 use Zend\Code\Reflection\MethodReflection;
 use Zend\Code\Reflection\DocBlockReflection;
+use Zend\Code\Reflection\DocBlock\Tag\ReturnTag;
 
 class DocumentedMethod
 {
@@ -63,6 +64,7 @@ class DocumentedMethod
         if (!$returnTags) {
             return null;
         }
+        /** @var ReturnTag $returnTag */
         $returnTag = $returnTags[0];
         return $returnTag->getDescription();
     }

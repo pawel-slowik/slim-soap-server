@@ -43,7 +43,9 @@ class DocumentedProperty
         if ($docBlock) {
             foreach ($docBlock->getTags() as $tag) {
                 if ($tag->getName() === "var") {
-                    return $tag;
+                    /** @var VarTag $varTag */
+                    $varTag = $tag;
+                    return $varTag;
                 }
             }
         }
