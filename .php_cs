@@ -127,7 +127,6 @@ return \PhpCsFixer\Config::create()
         'phpdoc_trim' => true, // @Symfony
         'phpdoc_trim_consecutive_blank_line_separation' => true,
         'phpdoc_types' => true, // @Symfony
-        'phpdoc_types_order' => true, // @Symfony
         'phpdoc_var_without_name' => true, // @Symfony
         'protected_to_private' => true,
         'psr0' => true,
