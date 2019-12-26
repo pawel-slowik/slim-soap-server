@@ -28,7 +28,6 @@ class DocumentedService
     {
         $this->name = $name;
         $docBlock = $class->getDocBlock();
-        $serviceDescription = $class->getDocComment();
         $reflectedMethods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
         if ($docBlock) {
             $this->shortDescription = $docBlock->getShortDescription();
