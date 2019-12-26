@@ -9,10 +9,13 @@ use Zend\Code\Reflection\DocBlock\Tag\VarTag;
 
 class DocumentedProperty
 {
+    /** @var string */
     public $name;
 
+    /** @var string|null */
     public $description;
 
+    /** @var string[]|null */
     public $types;
 
     public function __construct(PropertyReflection $property)

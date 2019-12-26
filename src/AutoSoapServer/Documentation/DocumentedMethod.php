@@ -9,16 +9,22 @@ use Zend\Code\Reflection\DocBlockReflection;
 
 class DocumentedMethod
 {
+    /** @var string */
     public $name;
 
+    /** @var string|null */
     public $shortDescription;
 
+    /** @var string|null */
     public $longDescription;
 
+    /** @var DocumentedParameter[] */
     public $parameters;
 
+    /** @var \ReflectionType|null */
     public $returnType;
 
+    /** @var string|null */
     public $returnDescription;
 
     public function __construct(MethodReflection $method)

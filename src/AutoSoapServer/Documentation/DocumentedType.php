@@ -8,10 +8,13 @@ use Zend\Code\Reflection\ClassReflection;
 
 class DocumentedType
 {
+    /** @var string */
     public $name;
 
+    /** @var string|null */
     public $description;
 
+    /** @var DocumentedProperty[] */
     public $properties;
 
     public function __construct(\ReflectionNamedType $type)

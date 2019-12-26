@@ -9,14 +9,19 @@ use Zend\Code\Reflection\MethodReflection;
 
 class DocumentedService
 {
+    /** @var string */
     public $name;
 
+    /** @var string|null */
     public $shortDescription;
 
+    /** @var string|null */
     public $longDescription;
 
+    /** @var DocumentedMethod[] */
     public $methods;
 
+    /** @var DocumentedType[] */
     public $types;
 
     public function __construct(string $name, ClassReflection $class)

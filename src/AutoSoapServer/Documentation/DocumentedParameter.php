@@ -9,16 +9,22 @@ use Zend\Code\Reflection\DocBlockReflection;
 
 class DocumentedParameter
 {
+    /** @var string */
     public $name;
 
+    /** @var \ReflectionType|null */
     public $type;
 
+    /** @var string|null */
     public $defaultValue;
 
+    /** @var string|null */
     public $description;
 
+    /** @var bool */
     public $isNullable;
 
+    /** @var bool */
     public $isOptional;
 
     public function __construct(ParameterReflection $parameter)
