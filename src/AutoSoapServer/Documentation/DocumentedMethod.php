@@ -22,7 +22,7 @@ class DocumentedMethod
     /** @var DocumentedParameter[] */
     public $parameters;
 
-    /** @var \ReflectionType|null */
+    /** @var string|null */
     public $returnType;
 
     /** @var string|null */
@@ -39,7 +39,8 @@ class DocumentedMethod
             $this->shortDescription = null;
             $this->longDescription = null;
         }
-        $this->returnType = $method->getReturnType();
+        $returnType = $method->getReturnType();
+        $this->returnType = ($returnType instanceof \ReflectionNamedType) ? $returnType->getName() : null;
         $this->returnDescription = $this->getReturnDescription($method);
         $parameters = $method->getParameters();
         usort(
