@@ -13,7 +13,7 @@ class DocumentedParameter
     /** @var string */
     public $name;
 
-    /** @var \ReflectionType|null */
+    /** @var string|null */
     public $type;
 
     /** @var string|null */
@@ -31,7 +31,8 @@ class DocumentedParameter
     public function __construct(ParameterReflection $parameter)
     {
         $this->name = $parameter->name;
-        $this->type = $parameter->getType();
+        $type = $parameter->getType();
+        $this->type = ($type instanceof \ReflectionNamedType) ? $type->getName() : null;
         $this->description = $this->getDescription($parameter);
         $this->defaultValue = $this->getDefaultValue($parameter);
         $this->isNullable = $parameter->allowsNull();
