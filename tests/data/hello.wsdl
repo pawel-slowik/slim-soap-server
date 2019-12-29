@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://localhost/hello" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Domain\Hello" targetNamespace="http://localhost/hello">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://localhost/hello" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ExampleServices\Hello" targetNamespace="http://localhost/hello">
   <types>
     <xsd:schema targetNamespace="http://localhost/hello"/>
   </types>
-  <portType name="Domain\HelloPort">
+  <portType name="ExampleServices\HelloPort">
     <operation name="greet">
       <documentation>Long method description.</documentation>
       <input message="tns:greetIn"/>
       <output message="tns:greetOut"/>
     </operation>
   </portType>
-  <binding name="Domain\HelloBinding" type="tns:Domain\HelloPort">
+  <binding name="ExampleServices\HelloBinding" type="tns:ExampleServices\HelloPort">
     <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
     <operation name="greet">
       <soap:operation soapAction="http://localhost/hello#greet"/>
@@ -22,8 +22,8 @@
       </output>
     </operation>
   </binding>
-  <service name="Domain\HelloService">
-    <port binding="tns:Domain\HelloBinding" name="Domain\HelloPort">
+  <service name="ExampleServices\HelloService">
+    <port binding="tns:ExampleServices\HelloBinding" name="ExampleServices\HelloPort">
       <soap:address location="http://localhost/hello"/>
     </port>
   </service>

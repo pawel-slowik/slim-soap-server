@@ -12,8 +12,8 @@ use AutoSoapServer\Controllers\DocumentationController;
 
 use Slim\App;
 
-use Domain\Hello;
-use Domain\ExampleServiceWithComplexTypes;
+use ExampleServices\Hello;
+use ExampleServices\ExampleServiceWithComplexTypes;
 
 return function (App $app): void {
     // TODO: improve DI, autowiring maybe?

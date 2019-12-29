@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain;
+namespace ExampleServices;
 
 /**
  * Example complex output type.
@@ -20,7 +20,7 @@ class ComplexOutputType
     public $xuz;
 
     /**
-     * @var \Domain\AnotherComplexType another property description
+     * @var \ExampleServices\AnotherComplexType another property description
      */
     public $another;
 }

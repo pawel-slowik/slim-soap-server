@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain;
+namespace ExampleServices;
 
 /**
  * Example service with complex types.
@@ -15,9 +15,9 @@ class ExampleServiceWithComplexTypes
      * Long description of a method with a complex parameter and a complex
      * return type.
      *
-     * @param \Domain\ComplexInputType $input complex parameter description
+     * @param \ExampleServices\ComplexInputType $input complex parameter description
      *
-     * @return \Domain\ComplexOutputType complex return value description
+     * @return \ExampleServices\ComplexOutputType complex return value description
      */
     public function doStuff(ComplexInputType $input): ComplexOutputType
     {
