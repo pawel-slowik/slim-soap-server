@@ -9,9 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
-use AutoSoapServer\SoapService\SoapServiceNotFoundException;
 use Slim\Views\Twig as View;
-use Slim\Exception\NotFoundException;
 
 class DocumentationController
 {
@@ -31,14 +29,11 @@ class DocumentationController
         $this->view = $view;
     }
 
+    // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
     public function __invoke(Request $request, Response $response, array $args)
     {
         $servicePath = $args['path'];
-        try {
-            $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        } catch (SoapServiceNotFoundException $ex) {
-            throw new NotFoundException($request, $response);
-        }
+        $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
         $documentedService = $this->documentationGenerator->createDocumentation($service);
         $templateData = ["service" => $documentedService];
         return $this->view->render($response, 'doc.html', $templateData)->
