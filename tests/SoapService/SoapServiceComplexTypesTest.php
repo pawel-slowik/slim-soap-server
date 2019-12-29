@@ -6,12 +6,12 @@ namespace Test\SoapService;
 
 use PHPUnit\Framework\TestCase;
 
-use AutoSoapServer\Models\SoapService;
+use AutoSoapServer\SoapService\SoapService;
 
 use Test\Hello;
 
 /**
- * @covers \AutoSoapServer\Models\SoapService
+ * @covers \AutoSoapServer\SoapService\SoapService
  */
 class SoapServiceComplexTypesTest extends TestCase
 {

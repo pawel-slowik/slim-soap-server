@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AutoSoapServer\Documentation;
 
 use Zend\Code\Reflection\ClassReflection;
-use AutoSoapServer\Models\SoapService;
+use AutoSoapServer\SoapService\SoapService;
 
 class DocumentationGenerator
 {

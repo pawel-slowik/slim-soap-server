@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AutoSoapServer\Models;
+namespace AutoSoapServer\SoapService;
 
 use Zend\Soap\Wsdl;
 use Zend\Soap\Wsdl\ComplexTypeStrategy\ComplexTypeStrategyInterface;

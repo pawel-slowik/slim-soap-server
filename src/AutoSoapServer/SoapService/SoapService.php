@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AutoSoapServer\Models;
+namespace AutoSoapServer\SoapService;
 
 use Zend\Code\Reflection\ClassReflection;
 use Zend\Soap\AutoDiscover;

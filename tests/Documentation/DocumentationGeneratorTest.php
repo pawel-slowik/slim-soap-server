@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\Documentation\DocumentedService;
-use AutoSoapServer\Models\SoapService;
+use AutoSoapServer\SoapService\SoapService;
 
 use Test\Hello;
 

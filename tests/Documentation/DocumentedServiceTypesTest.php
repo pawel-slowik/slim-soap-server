@@ -10,7 +10,7 @@ use Zend\Code\Reflection\ClassReflection;
 
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedType;
-use AutoSoapServer\Models\SoapService;
+use AutoSoapServer\SoapService\SoapService;
 
 use Test\Hello;
 

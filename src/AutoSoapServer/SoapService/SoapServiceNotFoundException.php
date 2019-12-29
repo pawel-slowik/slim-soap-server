@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AutoSoapServer\Models;
+namespace AutoSoapServer\SoapService;
 
 class SoapServiceNotFoundException extends \RuntimeException
 {
