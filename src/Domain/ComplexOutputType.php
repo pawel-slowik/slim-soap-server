@@ -18,4 +18,9 @@ class ComplexOutputType
      * @var string xuz property description
      */
     public $xuz;
+
+    /**
+     * @var \Domain\AnotherComplexType another property description
+     */
+    public $another;
 }

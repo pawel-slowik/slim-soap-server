@@ -17,9 +17,9 @@ class DocumentedType
     /** @var DocumentedProperty[] */
     public $properties;
 
-    public function __construct(\ReflectionNamedType $type)
+    public function __construct(string $className)
     {
-        $reflection = new ClassReflection((string) $type);
+        $reflection = new ClassReflection($className);
         $this->name = $reflection->getName();
         $this->description = $this->getTypeDescription($reflection);
         foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {

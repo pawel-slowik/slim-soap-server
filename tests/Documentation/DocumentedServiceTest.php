@@ -22,11 +22,13 @@ class DocumentedServiceTest extends TestCase
     {
         $this->documentedService = new DocumentedService(
             "test",
-            new ClassReflection(Hello::class)
+            new ClassReflection(Hello::class),
+            []
         );
         $this->documentedEmptyService = new DocumentedService(
             "empty test",
-            new ClassReflection(\stdClass::class)
+            new ClassReflection(\stdClass::class),
+            []
         );
     }
 

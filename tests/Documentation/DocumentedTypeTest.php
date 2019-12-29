@@ -7,20 +7,13 @@ namespace Test\Documentation;
 use AutoSoapServer\Documentation\DocumentedType;
 use AutoSoapServer\Documentation\DocumentedProperty;
 
-use Test\Hello;
-
 class DocumentedTypeTest extends DocumentedTestBase
 {
     protected $documentedType;
 
     protected function setUp(): void
     {
-        $parameter = $this->getReflectedParameter(
-            Hello::class,
-            "methodWithComplexInputType",
-            "foo"
-        );
-        $this->documentedType = new DocumentedType($parameter->getType());
+        $this->documentedType = new DocumentedType("\\Test\\Type");
     }
 
     public function testName(): void
@@ -42,7 +35,7 @@ class DocumentedTypeTest extends DocumentedTestBase
     public function testNumberOfProperties(): void
     {
         $this->assertCount(
-            3,
+            5,
             $this->documentedType->properties
         );
     }

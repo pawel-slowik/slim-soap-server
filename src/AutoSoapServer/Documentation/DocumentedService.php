@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AutoSoapServer\Documentation;
 
 use Zend\Code\Reflection\ClassReflection;
-use Zend\Code\Reflection\MethodReflection;
 
 class DocumentedService
 {
@@ -24,7 +23,7 @@ class DocumentedService
     /** @var DocumentedType[] */
     public $types;
 
-    public function __construct(string $name, ClassReflection $class)
+    public function __construct(string $name, ClassReflection $class, array $complexTypeNames)
     {
         $this->name = $name;
         $docBlock = $class->getDocBlock();
@@ -46,36 +45,7 @@ class DocumentedService
             function ($t) {
                 return new DocumentedType($t);
             },
-            $this->listComplexTypes($reflectedMethods)
+            $complexTypeNames
         );
-    }
-
-    private static function listComplexTypes(iterable $methods): iterable
-    {
-        return array_filter(
-            iterator_to_array(self::listTypes($methods), false),
-            function ($type) {
-                return !$type->isBuiltin();
-            }
-        );
-    }
-
-    private static function listTypes(iterable $methods): iterable
-    {
-        foreach ($methods as $documentedMethod) {
-            yield from self::listMethodTypes($documentedMethod);
-        }
-    }
-
-    private static function listMethodTypes(MethodReflection $reflectedMethod): iterable
-    {
-        // TODO: make it recursive
-        yield from array_map(
-            function ($reflectedParameter) {
-                return $reflectedParameter->getType();
-            },
-            $reflectedMethod->getParameters()
-        );
-        yield $reflectedMethod->getReturnType();
     }
 }

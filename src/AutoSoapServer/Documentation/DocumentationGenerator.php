@@ -13,7 +13,8 @@ class DocumentationGenerator
     {
         return new DocumentedService(
             $service->getName(),
-            new ClassReflection($service->getImplementation())
+            new ClassReflection($service->getImplementation()),
+            $service->discoverComplexTypes()
         );
     }
 }

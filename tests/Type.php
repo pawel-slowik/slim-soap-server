@@ -22,4 +22,14 @@ class Type
     public $baz;
 
     public $xuz;
+
+    /**
+     * @var \Test\Type next property description
+     */
+    public $next;
+
+    /**
+     * @var \Test\AnotherType another property description
+     */
+    public $another;
 }

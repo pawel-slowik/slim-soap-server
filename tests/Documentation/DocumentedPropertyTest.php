@@ -6,16 +6,13 @@ namespace Test\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedType;
 
-use Test\Hello;
-
 class DocumentedPropertyTest extends DocumentedTestBase
 {
     protected $documentedType;
 
     protected function setUp(): void
     {
-        $parameter = $this->getReflectedParameter(Hello::class, "methodWithComplexInputType", "foo");
-        $this->documentedType = new DocumentedType($parameter->getType());
+        $this->documentedType = new DocumentedType("\\Test\\Type");
     }
 
     public function testName(): void

@@ -57,6 +57,16 @@ class SoapService
         return $wsdl->toDomDocument();
     }
 
+    public function discoverComplexTypes(): array
+    {
+        $spy = new ComplexTypeStrategySpy(new DefaultComplexType());
+        $autodiscover = new AutoDiscover($spy);
+        $autodiscover->setClass(get_class($this->implementation));
+        $autodiscover->setUri("dummy");
+        $autodiscover->generate();
+        return array_keys($spy->getTypeMap());
+    }
+
     private function autodiscover(string $endpointUri): array
     {
         $spy = new ComplexTypeStrategySpy(new DefaultComplexType());

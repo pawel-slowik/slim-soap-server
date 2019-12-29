@@ -10,6 +10,7 @@ use Zend\Code\Reflection\ClassReflection;
 
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedType;
+use AutoSoapServer\Models\SoapService;
 
 use Test\Hello;
 
@@ -17,18 +18,27 @@ class DocumentedServiceTypesTest extends TestCase
 {
     protected $documentedService;
 
+    protected $documentedTypeNames;
+
     protected function setUp(): void
     {
         $this->documentedService = new DocumentedService(
             "test",
-            new ClassReflection(Hello::class)
+            new ClassReflection(Hello::class),
+            (new SoapService(new Hello()))->discoverComplexTypes()
+        );
+        $this->documentedTypeNames = array_map(
+            function ($type) {
+                return $type->name;
+            },
+            $this->documentedService->types
         );
     }
 
     public function testNumberOfTypes(): void
     {
         $this->assertCount(
-            1,
+            2,
             $this->documentedService->types
         );
     }
@@ -38,6 +48,22 @@ class DocumentedServiceTypesTest extends TestCase
         $this->assertContainsOnlyInstancesOf(
             DocumentedType::class,
             $this->documentedService->types
+        );
+    }
+
+    public function testMethodParameterTypeIsDetected(): void
+    {
+        $this->assertContains(
+            "Test\\Type",
+            $this->documentedTypeNames
+        );
+    }
+
+    public function testComplexTypePropertyTypeIsDetected(): void
+    {
+        $this->assertContains(
+            "Test\\AnotherType",
+            $this->documentedTypeNames
         );
     }
 }

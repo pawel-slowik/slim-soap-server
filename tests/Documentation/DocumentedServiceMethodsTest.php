@@ -21,7 +21,8 @@ class DocumentedServiceMethodsTest extends TestCase
     {
         $this->documentedService = new DocumentedService(
             "test",
-            new ClassReflection(Hello::class)
+            new ClassReflection(Hello::class),
+            []
         );
     }
 
