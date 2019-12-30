@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 use AutoSoapServer\SoapService\SoapServiceRegistry;
-use Slim\Router;
+use Slim\Interfaces\RouteParserInterface;
 
 class WsdlController
 {
@@ -16,19 +16,21 @@ class WsdlController
 
     protected $soapServiceRegistry;
 
-    protected $router;
+    protected $routeParser;
 
-    public function __construct(SoapServiceRegistry $soapServiceRegistry, Router $router)
-    {
+    public function __construct(
+        SoapServiceRegistry $soapServiceRegistry,
+        RouteParserInterface $routeParser
+    ) {
         $this->soapServiceRegistry = $soapServiceRegistry;
-        $this->router = $router;
+        $this->routeParser = $routeParser;
     }
 
     public function __invoke(Request $request, Response $response, array $args)
     {
         $servicePath = $args['path'];
         $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        $endpointPath = $this->router->pathFor('endpoint', ['path' => $servicePath]);
+        $endpointPath = $this->routeParser->relativeUrlFor('endpoint', ['path' => $servicePath]);
         $endpointUri = $this->urlForPath($request->getUri(), $endpointPath);
         $wsdl = $service->createWsdlDocument($endpointUri);
         $encoding = $wsdl->encoding;

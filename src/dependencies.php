@@ -11,6 +11,7 @@ use AutoSoapServer\Controllers\EndpointController;
 use AutoSoapServer\Controllers\DocumentationController;
 
 use Slim\App;
+use Slim\Views\Twig;
 
 use ExampleServices\Hello;
 use ExampleServices\ExampleServiceWithComplexTypes;
@@ -20,57 +21,54 @@ return function (App $app): void {
 
     $container = $app->getContainer();
 
-    $container["view"] = function ($container) {
+    // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+    $container->set("view", function ($container) {
         $options = [
             "cache" => "/tmp/twig_cache",
             "auto_reload" => true,
         ];
-        $view = new \Slim\Views\Twig("templates", $options);
-        $router = $container->get("router");
-        $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
-        $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
-        return $view;
-    };
+        return Twig::create("templates", $options);
+    });
 
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
-    $container["documentationGenerator"] = function ($container) {
+    $container->set("documentationGenerator", function ($container) {
         return new DocumentationGenerator();
-    };
+    });
 
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
-    $container["soapServiceRegistry"] = function ($container) {
+    $container->set("soapServiceRegistry", function ($container) {
         $reg = new SoapServiceRegistry();
         $reg->addService("hello", new SoapService(new Hello()));
         $reg->addService("complex", new SoapService(new ExampleServiceWithComplexTypes()));
         return $reg;
-    };
+    });
 
-    $container[HomeController::class] = function ($container) {
+    $container->set(HomeController::class, function ($container) {
         return new HomeController(
             $container->get("soapServiceRegistry"),
             $container->get("view")
         );
-    };
+    });
 
-    $container[WsdlController::class] = function ($container) {
+    $container->set(WsdlController::class, function ($container) use ($app) {
         return new WsdlController(
             $container->get("soapServiceRegistry"),
-            $container->get("router")
+            $app->getRouteCollector()->getRouteParser()
         );
-    };
+    });
 
-    $container[EndpointController::class] = function ($container) {
+    $container->set(EndpointController::class, function ($container) use ($app) {
         return new EndpointController(
             $container->get("soapServiceRegistry"),
-            $container->get("router")
+            $app->getRouteCollector()->getRouteParser()
         );
-    };
+    });
 
-    $container[DocumentationController::class] = function ($container) {
+    $container->set(DocumentationController::class, function ($container) {
         return new DocumentationController(
             $container->get("soapServiceRegistry"),
             $container->get("documentationGenerator"),
             $container->get("view")
         );
-    };
+    });
 };

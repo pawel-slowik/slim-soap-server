@@ -5,35 +5,32 @@ declare(strict_types=1);
 namespace Test\Functional;
 
 use Psr\Http\Message\ResponseInterface;
-use Slim\App;
-use Slim\Http\Request;
-use Slim\Http\Response;
-use Slim\Http\Stream;
-use Slim\Http\Environment;
+use DI\Container;
+use Slim\Factory\AppFactory;
+use Nyholm\Psr7\ServerRequest;
+use Nyholm\Psr7\Uri;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
 {
     protected function runApp(string $requestMethod, string $requestUri, ?string $requestBody = null): ResponseInterface
     {
-        $environment = Environment::mock(
-            [
-                "REQUEST_METHOD" => $requestMethod,
-                "REQUEST_URI" => $requestUri,
-            ]
-        );
-        $request = Request::createFromEnvironment($environment);
+        $uri = (new Uri())->withScheme('http')->withHost('localhost')->withPath($requestUri);
+        $request = new ServerRequest($requestMethod, $uri);
         if (isset($requestBody)) {
-            $request = $request->withBody($this->stringToStream($requestBody));
+            $request->getBody()->write($requestBody);
         }
 
-        $response = new Response();
-        $app = new App();
+        $container = new Container();
+        AppFactory::setContainer($container);
+        $app = AppFactory::create();
         $dependencies = require __DIR__ . "/../../src/dependencies.php";
         $dependencies($app);
+        $middleware = require __DIR__ . "/../../src/middleware.php";
+        $middleware($app);
         $routes = require __DIR__ . "/../../src/routes.php";
         $routes($app);
-        $response = $app->process($request, $response);
+        $response = $app->handle($request);
 
         return $response;
     }
@@ -45,16 +42,5 @@ abstract class BaseTestCase extends TestCase
             throw new \LogicException();
         }
         return $contents;
-    }
-
-    protected function stringToStream(string $content): Stream
-    {
-        $fp = fopen("php://temp", "r+");
-        if ($fp === false) {
-            throw new \RuntimeException();
-        }
-        $stream = new Stream($fp);
-        $stream->write($content);
-        return $stream;
     }
 }

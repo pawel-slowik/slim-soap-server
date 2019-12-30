@@ -8,7 +8,7 @@
 
     <ul>
         <li>
-            <a href="{{ path_for('doc', {'path': service.path }) }}">documentation</a>
+            <a href="{{ url_for('doc', {'path': service.path }) }}">documentation</a>
         </li>
         <li>
             WSDL URL: <code>{{ full_url_for('wsdl', {'path': service.path }) }}</code>
