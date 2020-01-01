@@ -6,7 +6,6 @@ namespace Test\Functional;
 
 /**
  * @covers \AutoSoapServer\Controllers\HomeController
- * @covers \AutoSoapServer\ErrorHandlers\HttpMethodNotAllowedHandler
  */
 class HomeTest extends BaseTestCase
 {
