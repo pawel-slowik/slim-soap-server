@@ -12,8 +12,6 @@ use Slim\Interfaces\RouteParserInterface;
 
 class EndpointController
 {
-    use PathMixin;
-
     protected $soapServiceRegistry;
 
     protected $routeParser;
@@ -30,10 +28,8 @@ class EndpointController
     {
         $servicePath = $args['path'];
         $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        $wsdlPath = $this->routeParser->relativeUrlFor('wsdl', ['path' => $servicePath]);
-        $wsdlUri = $this->urlForPath($request->getUri(), $wsdlPath);
-        $endpointPath = $this->routeParser->relativeUrlFor('endpoint', ['path' => $servicePath]);
-        $endpointUri = $this->urlForPath($request->getUri(), $endpointPath);
+        $wsdlUri = $this->routeParser->fullUrlFor($request->getUri(), 'wsdl', ['path' => $servicePath]);
+        $endpointUri = $this->routeParser->fullUrlFor($request->getUri(), 'endpoint', ['path' => $servicePath]);
         // TODO: handle SoapFault here?
         $soapResponse = $service->handleSoapMessage($wsdlUri, $endpointUri, (string) $request->getBody());
         $response->getBody()->write($soapResponse);

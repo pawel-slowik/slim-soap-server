@@ -12,8 +12,6 @@ use Slim\Interfaces\RouteParserInterface;
 
 class WsdlController
 {
-    use PathMixin;
-
     protected $soapServiceRegistry;
 
     protected $routeParser;
@@ -30,8 +28,7 @@ class WsdlController
     {
         $servicePath = $args['path'];
         $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        $endpointPath = $this->routeParser->relativeUrlFor('endpoint', ['path' => $servicePath]);
-        $endpointUri = $this->urlForPath($request->getUri(), $endpointPath);
+        $endpointUri = $this->routeParser->fullUrlFor($request->getUri(), 'endpoint', ['path' => $servicePath]);
         $wsdl = $service->createWsdlDocument($endpointUri);
         $encoding = $wsdl->encoding;
         $response->getBody()->write($wsdl->saveXML());
