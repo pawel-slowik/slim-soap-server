@@ -33,10 +33,4 @@ class WsdlTest extends BaseTestCase
         $response = $this->runApp("POST", "/hello/wsdl");
         $this->assertSame(405, $response->getStatusCode());
     }
-
-    public function testInvalid(): void
-    {
-        $response = $this->runApp("GET", "/there-is-no-such-service/wsdl");
-        $this->assertSame(404, $response->getStatusCode());
-    }
 }

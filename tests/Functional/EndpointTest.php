@@ -58,10 +58,4 @@ class EndpointTest extends BaseTestCase
         $response = $this->runApp("GET", "/hello", $this->message);
         $this->assertSame(405, $response->getStatusCode());
     }
-
-    public function testInvalid(): void
-    {
-        $response = $this->runApp("POST", "/there-is-no-such-service");
-        $this->assertSame(404, $response->getStatusCode());
-    }
 }
