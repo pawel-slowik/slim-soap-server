@@ -6,6 +6,8 @@ namespace Test\Functional;
 
 /**
  * @covers \AutoSoapServer\Controllers\WsdlController
+ * @covers \AutoSoapServer\ErrorHandlers\HttpMethodNotAllowedHandler
+ * @covers \AutoSoapServer\ErrorHandlers\HttpNotFoundHandler
  */
 class WsdlTest extends BaseTestCase
 {

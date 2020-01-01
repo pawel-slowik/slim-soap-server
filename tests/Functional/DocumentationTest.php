@@ -6,6 +6,8 @@ namespace Test\Functional;
 
 /**
  * @covers \AutoSoapServer\Controllers\DocumentationController
+ * @covers \AutoSoapServer\ErrorHandlers\HttpMethodNotAllowedHandler
+ * @covers \AutoSoapServer\ErrorHandlers\HttpNotFoundHandler
  */
 class DocumentationTest extends BaseTestCase
 {

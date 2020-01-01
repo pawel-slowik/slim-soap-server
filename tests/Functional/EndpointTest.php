@@ -6,6 +6,8 @@ namespace Test\Functional;
 
 /**
  * @covers \AutoSoapServer\Controllers\EndpointController
+ * @covers \AutoSoapServer\ErrorHandlers\HttpMethodNotAllowedHandler
+ * @covers \AutoSoapServer\ErrorHandlers\HttpNotFoundHandler
  */
 class EndpointTest extends BaseTestCase
 {
