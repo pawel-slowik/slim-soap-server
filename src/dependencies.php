@@ -24,11 +24,13 @@ return function (App $app): void {
 
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
     $container->set(Twig::class, function ($container) {
-        $options = [
-            "cache" => "/tmp/twig_cache",
-            "auto_reload" => true,
-        ];
-        return Twig::create("templates", $options);
+        return Twig::create(
+            "templates",
+            [
+                "cache" => "/tmp/twig_cache",
+                "auto_reload" => true,
+            ]
+        );
     });
 
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
