@@ -5,10 +5,10 @@ declare(strict_types=1);
 require __DIR__ . "/../vendor/autoload.php";
 
 use DI\Container;
-use Slim\Factory\AppFactory;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Slim\App;
 
-AppFactory::setContainer(new Container());
-$app = AppFactory::create();
+$app = new App(new Psr17Factory(), new Container());
 
 $dependencies = require __DIR__ . "/../src/dependencies.php";
 $dependencies($app);

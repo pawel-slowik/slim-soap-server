@@ -6,9 +6,10 @@ namespace Test\Functional;
 
 use Psr\Http\Message\ResponseInterface;
 use DI\Container;
-use Slim\Factory\AppFactory;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\ServerRequest;
 use Nyholm\Psr7\Uri;
+use Slim\App;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
@@ -21,9 +22,7 @@ abstract class BaseTestCase extends TestCase
             $request->getBody()->write($requestBody);
         }
 
-        $container = new Container();
-        AppFactory::setContainer($container);
-        $app = AppFactory::create();
+        $app = new App(new Psr17Factory(), new Container());
         $dependencies = require __DIR__ . "/../../src/dependencies.php";
         $dependencies($app);
         $middleware = require __DIR__ . "/../../src/middleware.php";
