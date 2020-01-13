@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
-use Zend\Soap\Wsdl;
-use Zend\Soap\Wsdl\ComplexTypeStrategy\ComplexTypeStrategyInterface;
+use Laminas\Soap\Wsdl;
+use Laminas\Soap\Wsdl\ComplexTypeStrategy\ComplexTypeStrategyInterface;
 
 class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
 {

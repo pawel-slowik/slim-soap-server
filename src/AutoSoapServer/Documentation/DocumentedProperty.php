@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\Documentation;
 
-use Zend\Code\Reflection\PropertyReflection;
-use Zend\Code\Reflection\DocBlock\Tag\VarTag;
+use Laminas\Code\Reflection\PropertyReflection;
+use Laminas\Code\Reflection\DocBlock\Tag\VarTag;
 
 class DocumentedProperty
 {

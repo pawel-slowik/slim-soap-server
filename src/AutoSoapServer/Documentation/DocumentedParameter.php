@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\Documentation;
 
-use Zend\Code\Reflection\ParameterReflection;
-use Zend\Code\Reflection\DocBlockReflection;
-use Zend\Code\Reflection\DocBlock\Tag\ParamTag;
+use Laminas\Code\Reflection\ParameterReflection;
+use Laminas\Code\Reflection\DocBlockReflection;
+use Laminas\Code\Reflection\DocBlock\Tag\ParamTag;
 
 class DocumentedParameter
 {

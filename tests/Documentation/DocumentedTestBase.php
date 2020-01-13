@@ -6,9 +6,9 @@ namespace Test\Documentation;
 
 use PHPUnit\Framework\TestCase;
 
-use Zend\Code\Reflection\ClassReflection;
-use Zend\Code\Reflection\MethodReflection;
-use Zend\Code\Reflection\ParameterReflection;
+use Laminas\Code\Reflection\ClassReflection;
+use Laminas\Code\Reflection\MethodReflection;
+use Laminas\Code\Reflection\ParameterReflection;
 
 abstract class DocumentedTestBase extends TestCase
 {

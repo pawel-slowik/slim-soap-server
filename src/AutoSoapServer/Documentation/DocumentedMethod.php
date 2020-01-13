@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\Documentation;
 
-use Zend\Code\Reflection\MethodReflection;
-use Zend\Code\Reflection\DocBlockReflection;
-use Zend\Code\Reflection\DocBlock\Tag\ReturnTag;
+use Laminas\Code\Reflection\MethodReflection;
+use Laminas\Code\Reflection\DocBlockReflection;
+use Laminas\Code\Reflection\DocBlock\Tag\ReturnTag;
 
 class DocumentedMethod
 {

@@ -6,7 +6,7 @@ namespace Test\Documentation;
 
 use PHPUnit\Framework\TestCase;
 
-use Zend\Code\Reflection\ClassReflection;
+use Laminas\Code\Reflection\ClassReflection;
 
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedType;

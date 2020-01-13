@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
-use Zend\Code\Reflection\ClassReflection;
-use Zend\Soap\AutoDiscover;
-use Zend\Soap\Server as SoapServer;
-use Zend\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
+use Laminas\Code\Reflection\ClassReflection;
+use Laminas\Soap\AutoDiscover;
+use Laminas\Soap\Server as SoapServer;
+use Laminas\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
 
 class SoapService
 {
