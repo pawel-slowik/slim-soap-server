@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use AutoSoapServer\SoapService\SoapService;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 
 use Slim\App;
@@ -34,8 +33,8 @@ return function (App $app): void {
         // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
         SoapServiceRegistry::class => function ($container) {
             $reg = new SoapServiceRegistry();
-            $reg->addService("hello", new SoapService(new Hello()));
-            $reg->addService("complex", new SoapService(new ExampleServiceWithComplexTypes()));
+            $reg->addServiceImplementation("hello", new Hello());
+            $reg->addServiceImplementation("complex", new ExampleServiceWithComplexTypes());
             return $reg;
         },
     ];

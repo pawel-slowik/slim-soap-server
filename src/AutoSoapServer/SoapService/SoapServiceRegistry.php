@@ -8,12 +8,12 @@ class SoapServiceRegistry
 {
     protected $services = [];
 
-    public function addService(string $path, SoapService $service): void
+    public function addServiceImplementation(string $path, object $service): void
     {
         if ($this->pathIsRegistered($path)) {
             throw new SoapServiceRegistrationFailedException($path);
         }
-        $this->services[$path] = $service;
+        $this->services[$path] = new SoapService($service);
     }
 
     public function getServiceForPath(string $path): SoapService
