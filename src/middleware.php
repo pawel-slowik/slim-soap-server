@@ -15,8 +15,8 @@ return function (App $app): void {
 
     $errorMiddleware = $app->addErrorMiddleware(false, true, true);
     $errorHandlers = [
-        HttpNotFoundException::class => HttpNotFoundHandler::class,
-        HttpMethodNotAllowedException::class => HttpMethodNotAllowedHandler::class,
+        HttpNotFoundException::class => new HttpNotFoundHandler(),
+        HttpMethodNotAllowedException::class => new HttpMethodNotAllowedHandler(),
     ];
     foreach ($errorHandlers as $exception => $handler) {
         $errorMiddleware->setErrorHandler($exception, $handler);
