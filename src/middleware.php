@@ -14,11 +14,6 @@ return function (App $app): void {
     $app->add(TwigMiddleware::createFromContainer($app, Twig::class));
 
     $errorMiddleware = $app->addErrorMiddleware(false, true, true);
-    $errorHandlers = [
-        HttpNotFoundException::class => new HttpNotFoundHandler(),
-        HttpMethodNotAllowedException::class => new HttpMethodNotAllowedHandler(),
-    ];
-    foreach ($errorHandlers as $exception => $handler) {
-        $errorMiddleware->setErrorHandler($exception, $handler);
-    }
+    $errorMiddleware->setErrorHandler(HttpNotFoundException::class, new HttpNotFoundHandler());
+    $errorMiddleware->setErrorHandler(HttpMethodNotAllowedException::class, new HttpMethodNotAllowedHandler());
 };
