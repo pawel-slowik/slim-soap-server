@@ -7,6 +7,7 @@ require __DIR__ . "/../vendor/autoload.php";
 use DI\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Slim\App;
+use AutoSoapServer\RoutingConfiguration;
 
 $container = new Container();
 $app = new App(new Psr17Factory(), $container);
@@ -17,7 +18,7 @@ $dependencies($container, $app);
 $middleware = require __DIR__ . "/../src/middleware.php";
 $middleware($app);
 
-$routes = require __DIR__ . "/../src/routes.php";
-$routes($app);
+$routingConfiguration = $container->get(RoutingConfiguration::class);
+$app = $routingConfiguration->apply($app);
 
 $app->run();

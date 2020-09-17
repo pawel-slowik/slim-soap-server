@@ -10,6 +10,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\ServerRequest;
 use Nyholm\Psr7\Uri;
 use Slim\App;
+use AutoSoapServer\RoutingConfiguration;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
@@ -28,8 +29,8 @@ abstract class BaseTestCase extends TestCase
         $dependencies($container, $app);
         $middleware = require __DIR__ . "/../../src/middleware.php";
         $middleware($app);
-        $routes = require __DIR__ . "/../../src/routes.php";
-        $routes($app);
+        $routingConfiguration = $container->get(RoutingConfiguration::class);
+        $app = $routingConfiguration->apply($app);
         $response = $app->handle($request);
 
         return $response;
