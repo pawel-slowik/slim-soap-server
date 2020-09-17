@@ -8,10 +8,11 @@ use DI\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Slim\App;
 
-$app = new App(new Psr17Factory(), new Container());
+$container = new Container();
+$app = new App(new Psr17Factory(), $container);
 
 $dependencies = require __DIR__ . "/../src/dependencies.php";
-$dependencies($app);
+$dependencies($container, $app);
 
 $middleware = require __DIR__ . "/../src/middleware.php";
 $middleware($app);

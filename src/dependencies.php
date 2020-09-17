@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 
+use DI\Container;
 use Slim\App;
 use Slim\Views\Twig;
 use Slim\Interfaces\RouteParserInterface;
@@ -11,7 +12,7 @@ use Slim\Interfaces\RouteParserInterface;
 use ExampleServices\Hello;
 use ExampleServices\ExampleServiceWithComplexTypes;
 
-return function (App $app): void {
+return function (Container $container, App $app): void {
     $dependencies = [
 
         // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
@@ -40,6 +41,6 @@ return function (App $app): void {
     ];
 
     foreach ($dependencies as $dependency => $factory) {
-        $app->getContainer()->set($dependency, $factory);
+        $container->set($dependency, $factory);
     }
 };

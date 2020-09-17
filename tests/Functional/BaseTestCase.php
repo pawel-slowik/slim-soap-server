@@ -22,9 +22,10 @@ abstract class BaseTestCase extends TestCase
             $request->getBody()->write($requestBody);
         }
 
-        $app = new App(new Psr17Factory(), new Container());
+        $container = new Container();
+        $app = new App(new Psr17Factory(), $container);
         $dependencies = require __DIR__ . "/../../src/dependencies.php";
-        $dependencies($app);
+        $dependencies($container, $app);
         $middleware = require __DIR__ . "/../../src/middleware.php";
         $middleware($app);
         $routes = require __DIR__ . "/../../src/routes.php";
