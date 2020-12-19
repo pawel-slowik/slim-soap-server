@@ -1,0 +1,29 @@
+name: tests
+
+on: [push]
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['7.3', '7.4']
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up PHP ${{ matrix.php-version }}
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+        extensions: mbstring, intl
+        coverage: xdebug
+    - name: Install dependencies
+      run: composer install --prefer-dist
+    - name: Test
+      run: vendor/bin/phpunit --coverage-clover=coverage.xml
+    - name: Upload coverage data to Codecov
+      continue-on-error: true
+      run: bash <(curl -s https://codecov.io/bash)

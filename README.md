@@ -1,8 +1,7 @@
-[![Build Status][build-badge]][build-url]
+![Build Status][build-badge]
 [![Coverage][coverage-badge]][coverage-url]
 
-[build-badge]: https://travis-ci.org/pawel-slowik/slim-soap-server.svg?branch=master
-[build-url]: https://travis-ci.org/pawel-slowik/slim-soap-server
+[build-badge]: https://github.com/pawel-slowik/slim-soap-server/workflows/tests/badge.svg
 [coverage-badge]: https://codecov.io/gh/pawel-slowik/slim-soap-server/branch/master/graph/badge.svg
 [coverage-url]: https://codecov.io/gh/pawel-slowik/slim-soap-server
 
