@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+
+  nginx:
+    build: ./docker/nginx
+    image: slim-soap-server-nginx
+    depends_on:
+      - php-fpm
+    ports:
+      - "8080:80"
+
+  php-fpm:
+    build: ./docker/php-fpm
+    image: slim-soap-server-php-fpm
+    volumes:
+      - .:/var/www/html

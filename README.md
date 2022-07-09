@@ -11,10 +11,11 @@ generation and integrated service documentation.
 
 ## Installation
 
-	composer install
+	docker-compose build
+	docker-compose run php-fpm composer install
 
 ## Usage
 
 Start the application with:
 
-	php -S localhost:8080 -t public public/index.php
+	docker-compose up -d
