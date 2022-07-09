@@ -21,6 +21,9 @@
         "psr-4": {"Test\\": "./tests/"}
     },
     "scripts": {
+        "test": [
+            "vendor/bin/phpunit"
+        ],
         "cs": [
             "vendor/bin/php-cs-fixer fix -v --dry-run",
             "vendor/bin/phpcs --standard=phpcs.xml src tests"

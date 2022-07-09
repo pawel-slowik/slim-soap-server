@@ -19,3 +19,9 @@ generation and integrated service documentation.
 Start the application with:
 
 	docker-compose up -d
+
+## Tests
+
+Run tests with:
+
+	docker-compose run php-fpm composer test
