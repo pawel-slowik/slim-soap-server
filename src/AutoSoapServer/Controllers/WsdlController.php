@@ -24,7 +24,7 @@ class WsdlController
         $this->routeParser = $routeParser;
     }
 
-    public function __invoke(Request $request, Response $response, array $args)
+    public function __invoke(Request $request, Response $response, array $args): Response
     {
         $servicePath = $args['path'];
         $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
