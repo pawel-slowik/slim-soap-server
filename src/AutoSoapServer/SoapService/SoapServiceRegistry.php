@@ -6,7 +6,7 @@ namespace AutoSoapServer\SoapService;
 
 class SoapServiceRegistry
 {
-    protected $services = [];
+    protected array $services = [];
 
     public function addServiceImplementation(string $path, object $service): void
     {

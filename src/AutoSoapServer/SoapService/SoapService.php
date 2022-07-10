@@ -11,7 +11,7 @@ use Laminas\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
 
 class SoapService
 {
-    protected $implementation;
+    protected object $implementation;
 
     public function __construct(object $implementation)
     {

@@ -12,9 +12,9 @@ use Slim\Views\Twig as View;
 
 class HomeController
 {
-    protected $soapServiceRegistry;
+    protected SoapServiceRegistry $soapServiceRegistry;
 
-    protected $view;
+    protected View $view;
 
     public function __construct(
         SoapServiceRegistry $soapServiceRegistry,

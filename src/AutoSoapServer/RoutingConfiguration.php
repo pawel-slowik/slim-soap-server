@@ -13,7 +13,7 @@ use AutoSoapServer\Controllers\DocumentationController;
 
 class RoutingConfiguration
 {
-    private $soapServiceRegistry;
+    private SoapServiceRegistry $soapServiceRegistry;
 
     public function __construct(SoapServiceRegistry $soapServiceRegistry)
     {
