@@ -11,6 +11,9 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
 {
     private ComplexTypeStrategyInterface $spiedStrategy;
 
+    /**
+     * @var array<string, string>
+     */
     private array $spiedTypeMap;
 
     public function __construct(ComplexTypeStrategyInterface $strategy)
