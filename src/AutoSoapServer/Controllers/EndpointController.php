@@ -24,6 +24,9 @@ class EndpointController
         $this->routeParser = $routeParser;
     }
 
+    /**
+     * @param array<string, mixed> $args
+     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $servicePath = $args['path'];

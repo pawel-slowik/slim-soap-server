@@ -23,6 +23,9 @@ class DocumentedService
     /** @var DocumentedType[] */
     public $types;
 
+    /**
+     * @param string[] $complexTypeNames
+     */
     public function __construct(string $name, ClassReflection $class, array $complexTypeNames)
     {
         $this->name = $name;
