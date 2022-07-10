@@ -7,6 +7,7 @@ namespace AutoSoapServer\SoapService;
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Soap\AutoDiscover;
 use Laminas\Soap\Server as SoapServer;
+use Laminas\Soap\Wsdl;
 use Laminas\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
 
 class SoapService
@@ -57,6 +58,9 @@ class SoapService
         return $wsdl->toDomDocument();
     }
 
+    /**
+     * @return string[]
+     */
     public function discoverComplexTypes(): array
     {
         $spy = new ComplexTypeStrategySpy(new DefaultComplexType());
@@ -67,6 +71,9 @@ class SoapService
         return array_keys($spy->getTypeMap());
     }
 
+    /**
+     * @return array{0: Wsdl, 1: array<string, string>}
+     */
     private function autodiscover(string $endpointUri): array
     {
         $spy = new ComplexTypeStrategySpy(new DefaultComplexType());

@@ -31,6 +31,9 @@ class DocumentedProperty
         return ($tag) ? $tag->getDescription() : null;
     }
 
+    /**
+     * @return string[]
+     */
     private static function getTypes(PropertyReflection $property): ?array
     {
         $tag = self::getVarTag($property);

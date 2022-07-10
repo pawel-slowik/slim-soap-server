@@ -24,6 +24,9 @@ class SoapServiceRegistry
         return $this->services[$path];
     }
 
+    /**
+     * @return string[]
+     */
     public function listPaths(): array
     {
         return array_keys($this->services);

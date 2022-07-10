@@ -31,6 +31,9 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
         return $mapped;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getTypeMap(): array
     {
         return array_combine(
@@ -39,6 +42,9 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
         );
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getClassMap(): array
     {
         return array_flip($this->getTypeMap());
