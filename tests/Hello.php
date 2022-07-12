@@ -11,7 +11,7 @@ namespace Test;
  */
 class Hello
 {
-    const FOO = "foo";
+    public const FOO = "foo";
 
     /**
      * Short method description.
