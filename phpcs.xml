@@ -5,11 +5,4 @@
     <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
     <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
     <rule ref="PSR2"/>
-    <rule ref="PEAR.Commenting.FunctionComment">
-        <exclude name="PEAR.Commenting.FunctionComment.MissingReturn"/>
-        <exclude name="PEAR.Commenting.FunctionComment.MissingParamComment"/>
-        <exclude name="PEAR.Commenting.FunctionComment.SpacingBeforeTags"/>
-        <exclude name="PEAR.Commenting.FunctionComment.MissingParamTag"/>
-        <exclude name="PEAR.Commenting.FunctionComment.Missing"/>
-    </rule>
 </ruleset>
