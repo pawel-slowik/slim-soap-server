@@ -5,7 +5,7 @@
         "php-di/php-di": "^6.0",
         "slim/slim": "^4.3",
         "slim/twig-view": "^3.0",
-        "laminas/laminas-code": "^3.3",
+        "laminas/laminas-code": "^4.0",
         "laminas/laminas-soap": "^2.8",
         "php": "^7.4"
     },
