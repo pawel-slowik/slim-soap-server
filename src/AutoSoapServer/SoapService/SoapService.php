@@ -21,7 +21,7 @@ class SoapService
 
     public function getName(): string
     {
-        return get_class($this->implementation);
+        return $this->implementation::class;
     }
 
     public function getImplementation(): object
@@ -65,7 +65,7 @@ class SoapService
     {
         $spy = new ComplexTypeStrategySpy(new DefaultComplexType());
         $autodiscover = new AutoDiscover($spy);
-        $autodiscover->setClass(get_class($this->implementation));
+        $autodiscover->setClass($this->implementation::class);
         $autodiscover->setUri("dummy");
         $autodiscover->generate();
         return array_keys($spy->getTypeMap());
@@ -78,7 +78,7 @@ class SoapService
     {
         $spy = new ComplexTypeStrategySpy(new DefaultComplexType());
         $autodiscover = new AutoDiscover($spy);
-        $autodiscover->setClass(get_class($this->implementation));
+        $autodiscover->setClass($this->implementation::class);
         $autodiscover->setServiceName($this->getName());
         $autodiscover->setUri($endpointUri);
         $wsdl = $autodiscover->generate();
