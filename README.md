@@ -12,7 +12,7 @@ generation and integrated service documentation.
 ## Installation
 
 	docker-compose build
-	docker-compose run php-fpm composer install
+	docker-compose run --rm php-fpm composer install
 
 ## Usage
 
@@ -24,4 +24,4 @@ Start the application with:
 
 Run tests with:
 
-	docker-compose run php-fpm composer test
+	docker-compose run --rm php-fpm composer test
