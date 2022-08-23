@@ -7,26 +7,22 @@ namespace AutoSoapServer\Documentation;
 use Laminas\Code\Reflection\MethodReflection;
 use Laminas\Code\Reflection\DocBlockReflection;
 use Laminas\Code\Reflection\DocBlock\Tag\ReturnTag;
+use Laminas\Code\Reflection\ParameterReflection;
 
 class DocumentedMethod
 {
-    /** @var string */
-    public $name;
+    public readonly string $name;
 
-    /** @var string|null */
-    public $shortDescription;
+    public readonly ?string $shortDescription;
 
-    /** @var string|null */
-    public $longDescription;
+    public readonly ?string $longDescription;
 
     /** @var DocumentedParameter[] */
-    public $parameters;
+    public readonly array $parameters;
 
-    /** @var string|null */
-    public $returnType;
+    public readonly ?string $returnType;
 
-    /** @var string|null */
-    public $returnDescription;
+    public readonly ?string $returnDescription;
 
     public function __construct(MethodReflection $method)
     {
@@ -49,10 +45,10 @@ class DocumentedMethod
                 return $a->getPosition() - $b->getPosition();
             }
         );
-        $this->parameters = [];
-        foreach ($parameters as $parameter) {
-            $this->parameters[] = new DocumentedParameter($parameter);
-        }
+        $this->parameters = array_map(
+            fn (ParameterReflection $parameter): DocumentedParameter => new DocumentedParameter($parameter),
+            $parameters,
+        );
     }
 
     protected function getReturnDescription(MethodReflection $method): ?string

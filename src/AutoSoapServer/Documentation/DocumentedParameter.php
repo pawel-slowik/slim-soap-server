@@ -10,23 +10,17 @@ use Laminas\Code\Reflection\DocBlock\Tag\ParamTag;
 
 class DocumentedParameter
 {
-    /** @var string */
-    public $name;
+    public readonly string $name;
 
-    /** @var string|null */
-    public $type;
+    public readonly ?string $type;
 
-    /** @var string|null */
-    public $defaultValue;
+    public readonly ?string $defaultValue;
 
-    /** @var string|null */
-    public $description;
+    public readonly ?string $description;
 
-    /** @var bool */
-    public $isNullable;
+    public readonly bool $isNullable;
 
-    /** @var bool */
-    public $isOptional;
+    public readonly bool $isOptional;
 
     public function __construct(ParameterReflection $parameter)
     {

@@ -8,20 +8,17 @@ use Laminas\Code\Reflection\ClassReflection;
 
 class DocumentedService
 {
-    /** @var string */
-    public $name;
+    public readonly string $name;
 
-    /** @var string|null */
-    public $shortDescription;
+    public readonly ?string $shortDescription;
 
-    /** @var string|null */
-    public $longDescription;
+    public readonly ?string $longDescription;
 
     /** @var DocumentedMethod[] */
-    public $methods;
+    public readonly array $methods;
 
     /** @var DocumentedType[] */
-    public $types;
+    public readonly array $types;
 
     /**
      * @param string[] $complexTypeNames

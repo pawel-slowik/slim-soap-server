@@ -9,14 +9,12 @@ use Laminas\Code\Reflection\DocBlock\Tag\VarTag;
 
 class DocumentedProperty
 {
-    /** @var string */
-    public $name;
+    public readonly string $name;
 
-    /** @var string|null */
-    public $description;
+    public readonly ?string $description;
 
     /** @var string[]|null */
-    public $types;
+    public readonly ?array $types;
 
     public function __construct(PropertyReflection $property)
     {

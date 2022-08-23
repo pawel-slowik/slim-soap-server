@@ -5,26 +5,26 @@ declare(strict_types=1);
 namespace AutoSoapServer\Documentation;
 
 use Laminas\Code\Reflection\ClassReflection;
+use Laminas\Code\Reflection\PropertyReflection;
 
 class DocumentedType
 {
-    /** @var string */
-    public $name;
+    public readonly string $name;
 
-    /** @var string|null */
-    public $description;
+    public readonly ?string $description;
 
     /** @var DocumentedProperty[] */
-    public $properties;
+    public readonly array $properties;
 
     public function __construct(string $className)
     {
         $reflection = new ClassReflection($className);
         $this->name = $reflection->getName();
         $this->description = $this->getTypeDescription($reflection);
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-            $this->properties[] = new DocumentedProperty($property);
-        }
+        $this->properties = array_map(
+            fn (PropertyReflection $property): DocumentedProperty => new DocumentedProperty($property),
+            $reflection->getProperties(\ReflectionProperty::IS_PUBLIC),
+        );
     }
 
     private static function getTypeDescription(ClassReflection $reflection): ?string
