@@ -11,7 +11,7 @@ use Test\Hello;
 
 class DocumentedMethodParametersTest extends DocumentedTestBase
 {
-    protected $documentedMethodWithTwoParameters;
+    private DocumentedMethod $documentedMethodWithTwoParameters;
 
     protected function setUp(): void
     {

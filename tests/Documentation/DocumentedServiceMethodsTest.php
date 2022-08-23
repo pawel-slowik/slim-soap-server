@@ -15,7 +15,7 @@ use Test\Hello;
 
 class DocumentedServiceMethodsTest extends TestCase
 {
-    protected $documentedService;
+    private DocumentedService $documentedService;
 
     protected function setUp(): void
     {

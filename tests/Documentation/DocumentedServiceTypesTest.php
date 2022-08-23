@@ -16,9 +16,10 @@ use Test\Hello;
 
 class DocumentedServiceTypesTest extends TestCase
 {
-    protected $documentedService;
+    private DocumentedService $documentedService;
 
-    protected $documentedTypeNames;
+    /** @var array<string, string> */
+    private array $documentedTypeNames;
 
     protected function setUp(): void
     {

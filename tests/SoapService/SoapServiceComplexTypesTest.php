@@ -15,7 +15,7 @@ use Test\Hello;
  */
 class SoapServiceComplexTypesTest extends TestCase
 {
-    protected $service;
+    private SoapService $service;
 
     protected function setUp(): void
     {

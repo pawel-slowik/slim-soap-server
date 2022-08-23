@@ -10,7 +10,7 @@ use Test\Hello;
 
 class DocumentedMethodTest extends DocumentedTestBase
 {
-    protected $documentedMethod;
+    private DocumentedMethod $documentedMethod;
 
     protected function setUp(): void
     {

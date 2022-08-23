@@ -8,7 +8,7 @@ use AutoSoapServer\Documentation\DocumentedType;
 
 class DocumentedPropertyTest extends DocumentedTestBase
 {
-    protected $documentedType;
+    private DocumentedType $documentedType;
 
     protected function setUp(): void
     {

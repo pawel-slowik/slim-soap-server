@@ -10,9 +10,9 @@ use Test\Hello;
 
 class DocumentedParameterDefaultValuesTest extends DocumentedTestBase
 {
-    protected $documentedParameterWithDefaultValue;
+    private DocumentedParameter $documentedParameterWithDefaultValue;
 
-    protected $documentedParameterWithDefaultConstantValue;
+    private DocumentedParameter $documentedParameterWithDefaultConstantValue;
 
     protected function setUp(): void
     {

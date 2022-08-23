@@ -16,11 +16,11 @@ use Test\Hello;
  */
 class SoapServiceTest extends TestCase
 {
-    protected $emptyImplementation;
+    private object $emptyImplementation;
 
-    protected $helloImplementation;
+    private object $helloImplementation;
 
-    protected $validHelloMessage;
+    private string $validHelloMessage;
 
     protected function setUp(): void
     {

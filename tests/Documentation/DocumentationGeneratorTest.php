@@ -17,7 +17,7 @@ use Test\Hello;
  */
 class DocumentationGeneratorTest extends TestCase
 {
-    protected $soapService;
+    private SoapService $soapService;
 
     protected function setUp(): void
     {

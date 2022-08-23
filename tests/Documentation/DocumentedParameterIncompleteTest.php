@@ -10,9 +10,9 @@ use Test\Hello;
 
 class DocumentedParameterIncompleteTest extends DocumentedTestBase
 {
-    protected $documentedNoDocBlockParameter;
+    private DocumentedParameter $documentedNoDocBlockParameter;
 
-    protected $documentedIncompleteDocBlockParameter;
+    private DocumentedParameter $documentedIncompleteDocBlockParameter;
 
     protected function setUp(): void
     {

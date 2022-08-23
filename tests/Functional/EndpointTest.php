@@ -9,7 +9,7 @@ namespace Test\Functional;
  */
 class EndpointTest extends BaseTestCase
 {
-    protected $message;
+    private string $message;
 
     protected function setUp(): void
     {

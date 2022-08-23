@@ -10,7 +10,7 @@ use Test\Hello;
 
 class DocumentedParameterTest extends DocumentedTestBase
 {
-    protected $documentedParameter;
+    private DocumentedParameter $documentedParameter;
 
     protected function setUp(): void
     {

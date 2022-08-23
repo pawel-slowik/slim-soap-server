@@ -16,7 +16,7 @@ use AutoSoapServer\SoapService\SoapServiceNotFoundException;
  */
 class SoapServiceRegistryTest extends TestCase
 {
-    protected $soapService;
+    private SoapService $soapService;
 
     protected function setUp(): void
     {

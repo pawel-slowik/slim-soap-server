@@ -10,9 +10,9 @@ use Test\Hello;
 
 class DocumentedMethodIncompleteTest extends DocumentedTestBase
 {
-    protected $documentedNoDocBlockMethod;
+    private DocumentedMethod $documentedNoDocBlockMethod;
 
-    protected $documentedIncompleteDocBlockMethod;
+    private DocumentedMethod $documentedIncompleteDocBlockMethod;
 
     protected function setUp(): void
     {

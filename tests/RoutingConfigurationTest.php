@@ -19,20 +19,14 @@ use PHPUnit\Framework\TestCase;
  */
 class RoutingConfigurationTest extends TestCase
 {
-    /**
-     * @var App
-     */
-    private $app;
+    private App $app;
 
     /**
      * @var MockObject|SoapServiceRegistry
      */
-    private $soapServiceRegistry;
+    private SoapServiceRegistry $soapServiceRegistry;
 
-    /**
-     * @var RoutingConfiguration
-     */
-    private $routingConfiguration;
+    private RoutingConfiguration $routingConfiguration;
 
     protected function setUp(): void
     {
