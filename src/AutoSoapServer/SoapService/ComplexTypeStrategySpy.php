@@ -41,7 +41,7 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
     {
         return array_combine(
             array_keys($this->spiedTypeMap),
-            array_map([$this, "stripNamespace"], $this->spiedTypeMap)
+            array_map($this->stripNamespace(...), $this->spiedTypeMap)
         );
     }
 
