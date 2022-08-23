@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Test\SoapService;
 
-use PHPUnit\Framework\TestCase;
-
 use AutoSoapServer\SoapService\SoapService;
-use AutoSoapServer\SoapService\SoapServiceRegistry;
-use AutoSoapServer\SoapService\SoapServiceRegistrationFailedException;
 use AutoSoapServer\SoapService\SoapServiceNotFoundException;
+use AutoSoapServer\SoapService\SoapServiceRegistrationFailedException;
+use AutoSoapServer\SoapService\SoapServiceRegistry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \AutoSoapServer\SoapService\SoapServiceRegistry

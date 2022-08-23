@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 require __DIR__ . "/../vendor/autoload.php";
 
+use AutoSoapServer\RoutingConfiguration;
 use DI\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Slim\App;
-use AutoSoapServer\RoutingConfiguration;
 
 $container = new Container();
 $app = new App(new Psr17Factory(), $container);

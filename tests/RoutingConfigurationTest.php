@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Test;
 
-use DI\Container;
-use Slim\App;
-use Nyholm\Psr7\Factory\Psr17Factory;
-
 use AutoSoapServer\RoutingConfiguration;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
-
+use DI\Container;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Slim\App;
 
 /**
  * @covers \AutoSoapServer\RoutingConfiguration

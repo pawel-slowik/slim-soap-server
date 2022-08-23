@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Test\Documentation;
 
-use PHPUnit\Framework\TestCase;
-
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Code\Reflection\MethodReflection;
 use Laminas\Code\Reflection\ParameterReflection;
+use PHPUnit\Framework\TestCase;
 
 abstract class DocumentedTestBase extends TestCase
 {

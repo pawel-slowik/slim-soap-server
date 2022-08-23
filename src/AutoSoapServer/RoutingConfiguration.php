@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace AutoSoapServer;
 
-use Slim\App;
-use AutoSoapServer\SoapService\SoapServiceRegistry;
+use AutoSoapServer\Controllers\DocumentationController;
+use AutoSoapServer\Controllers\EndpointController;
 use AutoSoapServer\Controllers\HomeController;
 use AutoSoapServer\Controllers\WsdlController;
-use AutoSoapServer\Controllers\EndpointController;
-use AutoSoapServer\Controllers\DocumentationController;
+use AutoSoapServer\SoapService\SoapServiceRegistry;
+use Slim\App;
 
 class RoutingConfiguration
 {

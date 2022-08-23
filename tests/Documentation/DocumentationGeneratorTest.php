@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Test\Documentation;
 
-use PHPUnit\Framework\TestCase;
-
 use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\SoapService\SoapService;
-
+use PHPUnit\Framework\TestCase;
 use Test\Hello;
 
 /**

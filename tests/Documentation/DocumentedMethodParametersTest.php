@@ -6,7 +6,6 @@ namespace Test\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedMethod;
 use AutoSoapServer\Documentation\DocumentedParameter;
-
 use Test\Hello;
 
 class DocumentedMethodParametersTest extends DocumentedTestBase

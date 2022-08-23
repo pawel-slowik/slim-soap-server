@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\Documentation;
 
-use Laminas\Code\Reflection\ClassReflection;
 use AutoSoapServer\SoapService\SoapService;
+use Laminas\Code\Reflection\ClassReflection;
 
 class DocumentationGenerator
 {

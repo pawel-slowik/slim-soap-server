@@ -5,12 +5,11 @@ declare(strict_types=1);
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 
 use DI\Container;
-use Slim\App;
-use Slim\Views\Twig;
-use Slim\Interfaces\RouteParserInterface;
-
-use ExampleServices\Hello;
 use ExampleServices\ExampleServiceWithComplexTypes;
+use ExampleServices\Hello;
+use Slim\App;
+use Slim\Interfaces\RouteParserInterface;
+use Slim\Views\Twig;
 
 return function (Container $container, App $app): void {
     $dependencies = [

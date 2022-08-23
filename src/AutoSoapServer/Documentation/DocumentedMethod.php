@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\Documentation;
 
-use Laminas\Code\Reflection\MethodReflection;
-use Laminas\Code\Reflection\DocBlockReflection;
 use Laminas\Code\Reflection\DocBlock\Tag\ReturnTag;
+use Laminas\Code\Reflection\DocBlockReflection;
+use Laminas\Code\Reflection\MethodReflection;
 use Laminas\Code\Reflection\ParameterReflection;
 
 class DocumentedMethod

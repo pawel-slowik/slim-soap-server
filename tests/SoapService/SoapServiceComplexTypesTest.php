@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Test\SoapService;
 
-use PHPUnit\Framework\TestCase;
-
 use AutoSoapServer\SoapService\SoapService;
-
+use PHPUnit\Framework\TestCase;
 use Test\Hello;
 
 /**

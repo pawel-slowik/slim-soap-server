@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
-use Psr\Http\Message\ResponseInterface;
+use AutoSoapServer\RoutingConfiguration;
 use DI\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\ServerRequest;
 use Nyholm\Psr7\Uri;
-use Slim\App;
-use AutoSoapServer\RoutingConfiguration;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
+use Slim\App;
 
 abstract class BaseTestCase extends TestCase
 {

@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace Test\Documentation;
 
-use PHPUnit\Framework\TestCase;
-
-use Laminas\Code\Reflection\ClassReflection;
-
-use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedMethod;
-
+use AutoSoapServer\Documentation\DocumentedService;
+use Laminas\Code\Reflection\ClassReflection;
+use PHPUnit\Framework\TestCase;
 use Test\Hello;
 
 class DocumentedServiceMethodsTest extends TestCase

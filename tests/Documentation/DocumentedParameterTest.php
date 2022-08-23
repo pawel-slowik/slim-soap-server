@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Test\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedParameter;
-
 use Test\Hello;
 
 class DocumentedParameterTest extends DocumentedTestBase

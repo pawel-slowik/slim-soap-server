@@ -101,7 +101,7 @@ return (new Config())
         'not_operator_with_successor_space' => false,
         'object_operator_without_whitespace' => true, // @Symfony
         'ordered_class_elements' => true,
-        'ordered_imports' => false,
+        'ordered_imports' => true,
         'php_unit_construct' => true, // @Symfony:risky
         'php_unit_dedicate_assert' => true,
         'php_unit_expectation' => true,
