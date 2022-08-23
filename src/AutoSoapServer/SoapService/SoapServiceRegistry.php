@@ -9,7 +9,7 @@ class SoapServiceRegistry
     /**
      * @var array<string, SoapService>
      */
-    protected array $services = [];
+    private array $services = [];
 
     public function addServiceImplementation(string $path, object $service): void
     {
