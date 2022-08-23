@@ -12,9 +12,9 @@ use Slim\Interfaces\RouteParserInterface;
 
 class WsdlController
 {
-    protected SoapServiceRegistry $soapServiceRegistry;
+    private SoapServiceRegistry $soapServiceRegistry;
 
-    protected RouteParserInterface $routeParser;
+    private RouteParserInterface $routeParser;
 
     public function __construct(
         SoapServiceRegistry $soapServiceRegistry,
