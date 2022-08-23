@@ -35,7 +35,7 @@ class SoapServiceRegistry
         return array_keys($this->services);
     }
 
-    protected function pathIsRegistered(string $path): bool
+    private function pathIsRegistered(string $path): bool
     {
         return array_key_exists($path, $this->services);
     }
