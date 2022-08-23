@@ -11,16 +11,10 @@ use Slim\Views\Twig as View;
 
 class HomeController
 {
-    private SoapServiceRegistry $soapServiceRegistry;
-
-    private View $view;
-
     public function __construct(
-        SoapServiceRegistry $soapServiceRegistry,
-        View $view
+        private SoapServiceRegistry $soapServiceRegistry,
+        private View $view,
     ) {
-        $this->soapServiceRegistry = $soapServiceRegistry;
-        $this->view = $view;
     }
 
     /**

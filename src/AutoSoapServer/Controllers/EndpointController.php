@@ -11,16 +11,10 @@ use Slim\Interfaces\RouteParserInterface;
 
 class EndpointController
 {
-    private SoapServiceRegistry $soapServiceRegistry;
-
-    private RouteParserInterface $routeParser;
-
     public function __construct(
-        SoapServiceRegistry $soapServiceRegistry,
-        RouteParserInterface $routeParser
+        private SoapServiceRegistry $soapServiceRegistry,
+        private RouteParserInterface $routeParser,
     ) {
-        $this->soapServiceRegistry = $soapServiceRegistry;
-        $this->routeParser = $routeParser;
     }
 
     /**

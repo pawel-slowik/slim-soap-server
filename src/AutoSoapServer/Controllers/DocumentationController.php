@@ -12,20 +12,11 @@ use Slim\Views\Twig as View;
 
 class DocumentationController
 {
-    private SoapServiceRegistry $soapServiceRegistry;
-
-    private DocumentationGenerator $documentationGenerator;
-
-    private View $view;
-
     public function __construct(
-        SoapServiceRegistry $soapServiceRegistry,
-        DocumentationGenerator $documentationGenerator,
-        View $view
+        private SoapServiceRegistry $soapServiceRegistry,
+        private DocumentationGenerator $documentationGenerator,
+        private View $view,
     ) {
-        $this->soapServiceRegistry = $soapServiceRegistry;
-        $this->documentationGenerator = $documentationGenerator;
-        $this->view = $view;
     }
 
     /**
