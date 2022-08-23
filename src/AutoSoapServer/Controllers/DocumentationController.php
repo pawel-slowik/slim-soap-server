@@ -38,7 +38,8 @@ class DocumentationController
         $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
         $documentedService = $this->documentationGenerator->createDocumentation($service);
         $templateData = ["service" => $documentedService];
-        return $this->view->render($response, 'doc.html', $templateData)->
-            withHeader("Content-Type", "text/html; charset=UTF-8");
+        return $this->view
+            ->render($response, 'doc.html', $templateData)
+            ->withHeader("Content-Type", "text/html; charset=UTF-8");
     }
 }
