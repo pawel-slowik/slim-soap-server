@@ -21,10 +21,7 @@ class RoutingConfigurationTest extends TestCase
 {
     private App $app;
 
-    /**
-     * @var MockObject|SoapServiceRegistry
-     */
-    private SoapServiceRegistry $soapServiceRegistry;
+    private SoapServiceRegistry&MockObject $soapServiceRegistry;
 
     private RoutingConfiguration $routingConfiguration;
 
