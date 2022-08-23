@@ -26,9 +26,7 @@ class DocumentedServiceTypesTest extends TestCase
             (new SoapService(new Hello()))->discoverComplexTypes()
         );
         $this->documentedTypeNames = array_map(
-            function ($type) {
-                return $type->name;
-            },
+            fn (DocumentedType $type): string => $type->name,
             $this->documentedService->types
         );
     }

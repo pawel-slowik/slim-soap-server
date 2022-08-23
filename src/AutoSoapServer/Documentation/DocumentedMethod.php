@@ -41,9 +41,7 @@ class DocumentedMethod
         $parameters = $method->getParameters();
         usort(
             $parameters,
-            function ($a, $b) {
-                return $a->getPosition() - $b->getPosition();
-            }
+            fn (ParameterReflection $a, ParameterReflection $b): int => $a->getPosition() - $b->getPosition(),
         );
         $this->parameters = array_map(
             fn (ParameterReflection $parameter): DocumentedParameter => new DocumentedParameter($parameter),

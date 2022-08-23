@@ -18,9 +18,7 @@ abstract class DocumentedTestBase extends TestCase
         $classReflection = new ClassReflection($className);
         $matchingMethodReflections = array_values(array_filter(
             $classReflection->getMethods(),
-            function ($m) use ($methodName) {
-                return $m->getShortName() === $methodName;
-            }
+            fn (MethodReflection $m): bool => $m->getShortName() === $methodName,
         ));
         if (count($matchingMethodReflections) !== 1) {
             throw new \LogicException();
@@ -36,9 +34,7 @@ abstract class DocumentedTestBase extends TestCase
         $methodReflection = $this->getReflectedMethod($className, $methodName);
         $matchingParameterReflections = array_values(array_filter(
             $methodReflection->getParameters(),
-            function ($p) use ($parameterName) {
-                return $p->name === $parameterName;
-            }
+            fn (ParameterReflection $p): bool => $p->name === $parameterName,
         ));
         if (count($matchingParameterReflections) !== 1) {
             throw new \LogicException();

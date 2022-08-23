@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AutoSoapServer\Documentation;
 
 use Laminas\Code\Reflection\ClassReflection;
+use Laminas\Code\Reflection\MethodReflection;
 
 class DocumentedService
 {
@@ -36,15 +37,11 @@ class DocumentedService
             $this->longDescription = null;
         }
         $this->methods = array_map(
-            function ($m) {
-                return new DocumentedMethod($m);
-            },
+            fn (MethodReflection $m): DocumentedMethod => new DocumentedMethod($m),
             $reflectedMethods
         );
         $this->types = array_map(
-            function ($t) {
-                return new DocumentedType($t);
-            },
+            fn (string $t): DocumentedType => new DocumentedType($t),
             $complexTypeNames
         );
     }
