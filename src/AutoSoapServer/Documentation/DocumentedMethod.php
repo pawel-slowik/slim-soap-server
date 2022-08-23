@@ -51,7 +51,7 @@ class DocumentedMethod
         );
     }
 
-    protected function getReturnDescription(MethodReflection $method): ?string
+    private function getReturnDescription(MethodReflection $method): ?string
     {
         $methodDocBlock = $method->getDocBlock();
         if (!($methodDocBlock instanceof DocBlockReflection)) {

@@ -33,7 +33,7 @@ class DocumentedParameter
         $this->isOptional = $parameter->isOptional();
     }
 
-    protected function getDescription(ParameterReflection $parameter): ?string
+    private function getDescription(ParameterReflection $parameter): ?string
     {
         $methodDocBlock = $parameter->getDeclaringFunction()->getDocBlock();
         if (!($methodDocBlock instanceof DocBlockReflection)) {
@@ -48,7 +48,7 @@ class DocumentedParameter
         return $parameterTag->getDescription();
     }
 
-    protected function getDefaultValue(ParameterReflection $parameter): ?string
+    private function getDefaultValue(ParameterReflection $parameter): ?string
     {
         if (!$parameter->isDefaultValueAvailable()) {
             return null;
