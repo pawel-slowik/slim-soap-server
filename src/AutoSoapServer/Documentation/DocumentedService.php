@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AutoSoapServer\Documentation;
 
 use Laminas\Code\Reflection\ClassReflection;
-use Laminas\Code\Reflection\MethodReflection;
 use ReflectionMethod;
 
 class DocumentedService
@@ -40,11 +39,11 @@ class DocumentedService
             $shortDescription,
             $longDescription,
             array_map(
-                fn (MethodReflection $m): DocumentedMethod => DocumentedMethod::fromMethodReflection($m),
+                DocumentedMethod::fromMethodReflection(...),
                 $class->getMethods(ReflectionMethod::IS_PUBLIC),
             ),
             array_map(
-                fn (string $t): DocumentedType => DocumentedType::fromClassName($t),
+                DocumentedType::fromClassName(...),
                 $complexTypeNames
             ),
         );

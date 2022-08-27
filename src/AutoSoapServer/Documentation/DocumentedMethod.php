@@ -40,7 +40,7 @@ class DocumentedMethod
             fn (ParameterReflection $a, ParameterReflection $b): int => $a->getPosition() - $b->getPosition(),
         );
         $parameters = array_map(
-            fn (ParameterReflection $parameter): DocumentedParameter => DocumentedParameter::fromParameterReflection($parameter),
+            DocumentedParameter::fromParameterReflection(...),
             $parameters,
         );
 

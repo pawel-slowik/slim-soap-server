@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AutoSoapServer\Documentation;
 
 use Laminas\Code\Reflection\ClassReflection;
-use Laminas\Code\Reflection\PropertyReflection;
 use ReflectionProperty;
 
 class DocumentedType
@@ -26,7 +25,7 @@ class DocumentedType
             $reflection->getName(),
             self::getTypeDescription($reflection),
             array_map(
-                fn (PropertyReflection $property): DocumentedProperty => DocumentedProperty::fromPropertyReflection($property),
+                DocumentedProperty::fromPropertyReflection(...),
                 $reflection->getProperties(ReflectionProperty::IS_PUBLIC),
             ),
         );
