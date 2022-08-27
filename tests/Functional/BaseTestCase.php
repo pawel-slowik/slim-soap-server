@@ -6,6 +6,7 @@ namespace Test\Functional;
 
 use AutoSoapServer\RoutingConfiguration;
 use DI\Container;
+use LogicException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\ServerRequest;
 use Nyholm\Psr7\Uri;
@@ -40,7 +41,7 @@ abstract class BaseTestCase extends TestCase
     {
         $contents = file_get_contents(__DIR__ . "/../data/" . $filename);
         if ($contents === false) {
-            throw new \LogicException();
+            throw new LogicException();
         }
         return $contents;
     }

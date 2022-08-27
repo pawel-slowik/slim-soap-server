@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
+use DOMDocument;
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Soap\AutoDiscover;
 use Laminas\Soap\Server as SoapServer;
@@ -52,7 +53,7 @@ class SoapService
         return $server->handle($message);
     }
 
-    public function createWsdlDocument(string $endpointUri): \DOMDocument
+    public function createWsdlDocument(string $endpointUri): DOMDocument
     {
         [$wsdl, ] = $this->autodiscover($endpointUri);
         return $wsdl->toDomDocument();
@@ -85,7 +86,7 @@ class SoapService
         return [$wsdl, $spy->getClassMap()];
     }
 
-    private static function createDataUri(\DOMDocument $document): string
+    private static function createDataUri(DOMDocument $document): string
     {
         return "data://text/plain;base64," . base64_encode($document->saveXML());
     }

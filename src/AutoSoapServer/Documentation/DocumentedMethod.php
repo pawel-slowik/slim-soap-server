@@ -8,6 +8,7 @@ use Laminas\Code\Reflection\DocBlock\Tag\ReturnTag;
 use Laminas\Code\Reflection\DocBlockReflection;
 use Laminas\Code\Reflection\MethodReflection;
 use Laminas\Code\Reflection\ParameterReflection;
+use ReflectionNamedType;
 
 class DocumentedMethod
 {
@@ -36,7 +37,7 @@ class DocumentedMethod
             $this->longDescription = null;
         }
         $returnType = $method->getReturnType();
-        $this->returnType = ($returnType instanceof \ReflectionNamedType) ? $returnType->getName() : null;
+        $this->returnType = ($returnType instanceof ReflectionNamedType) ? $returnType->getName() : null;
         $this->returnDescription = $this->getReturnDescription($method);
         $parameters = $method->getParameters();
         usort(

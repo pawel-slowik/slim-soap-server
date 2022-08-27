@@ -6,6 +6,7 @@ namespace AutoSoapServer\Documentation;
 
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Code\Reflection\MethodReflection;
+use ReflectionMethod;
 
 class DocumentedService
 {
@@ -28,7 +29,7 @@ class DocumentedService
     {
         $this->name = $name;
         $docBlock = $class->getDocBlock();
-        $reflectedMethods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
+        $reflectedMethods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
         if ($docBlock) {
             $this->shortDescription = $docBlock->getShortDescription();
             $this->longDescription = $docBlock->getLongDescription();

@@ -7,6 +7,7 @@ namespace Test\Documentation;
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Code\Reflection\MethodReflection;
 use Laminas\Code\Reflection\ParameterReflection;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 
 abstract class DocumentedTestBase extends TestCase
@@ -21,7 +22,7 @@ abstract class DocumentedTestBase extends TestCase
             fn (MethodReflection $m): bool => $m->getShortName() === $methodName,
         ));
         if (count($matchingMethodReflections) !== 1) {
-            throw new \LogicException();
+            throw new LogicException();
         }
         return $matchingMethodReflections[0];
     }
@@ -37,7 +38,7 @@ abstract class DocumentedTestBase extends TestCase
             fn (ParameterReflection $p): bool => $p->name === $parameterName,
         ));
         if (count($matchingParameterReflections) !== 1) {
-            throw new \LogicException();
+            throw new LogicException();
         }
         return $matchingParameterReflections[0];
     }

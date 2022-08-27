@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
-class SoapServiceRegistrationFailedException extends \LogicException
+use LogicException;
+
+class SoapServiceRegistrationFailedException extends LogicException
 {
 }

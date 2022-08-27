@@ -7,6 +7,7 @@ namespace AutoSoapServer\Documentation;
 use Laminas\Code\Reflection\DocBlock\Tag\ParamTag;
 use Laminas\Code\Reflection\DocBlockReflection;
 use Laminas\Code\Reflection\ParameterReflection;
+use ReflectionNamedType;
 
 class DocumentedParameter
 {
@@ -26,7 +27,7 @@ class DocumentedParameter
     {
         $this->name = $parameter->name;
         $type = $parameter->getType();
-        $this->type = ($type instanceof \ReflectionNamedType) ? $type->getName() : null;
+        $this->type = ($type instanceof ReflectionNamedType) ? $type->getName() : null;
         $this->description = $this->getDescription($parameter);
         $this->defaultValue = $this->getDefaultValue($parameter);
         $this->isNullable = $parameter->allowsNull();
