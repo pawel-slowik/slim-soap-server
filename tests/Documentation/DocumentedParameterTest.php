@@ -13,7 +13,7 @@ class DocumentedParameterTest extends DocumentedTestBase
 
     protected function setUp(): void
     {
-        $this->documentedParameter = new DocumentedParameter(
+        $this->documentedParameter = DocumentedParameter::fromParameterReflection(
             $this->getReflectedParameter(Hello::class, "greet", "subject")
         );
     }

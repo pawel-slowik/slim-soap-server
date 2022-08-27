@@ -16,7 +16,7 @@ class DocumentedServiceMethodsTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->documentedService = new DocumentedService(
+        $this->documentedService = DocumentedService::fromClassReflection(
             "test",
             new ClassReflection(Hello::class),
             []

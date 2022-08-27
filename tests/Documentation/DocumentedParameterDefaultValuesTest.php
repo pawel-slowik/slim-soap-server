@@ -15,14 +15,14 @@ class DocumentedParameterDefaultValuesTest extends DocumentedTestBase
 
     protected function setUp(): void
     {
-        $this->documentedParameterWithDefaultValue = new DocumentedParameter(
+        $this->documentedParameterWithDefaultValue = DocumentedParameter::fromParameterReflection(
             $this->getReflectedParameter(
                 Hello::class,
                 "greetWithDefaultValue",
                 "subject"
             )
         );
-        $this->documentedParameterWithDefaultConstantValue = new DocumentedParameter(
+        $this->documentedParameterWithDefaultConstantValue = DocumentedParameter::fromParameterReflection(
             $this->getReflectedParameter(
                 Hello::class,
                 "greetWithDefaultConstantValue",

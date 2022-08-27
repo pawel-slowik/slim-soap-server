@@ -10,40 +10,43 @@ use ReflectionMethod;
 
 class DocumentedService
 {
-    public readonly string $name;
-
-    public readonly ?string $shortDescription;
-
-    public readonly ?string $longDescription;
-
-    /** @var DocumentedMethod[] */
-    public readonly array $methods;
-
-    /** @var DocumentedType[] */
-    public readonly array $types;
+    public function __construct(
+        public readonly string $name,
+        public readonly ?string $shortDescription,
+        public readonly ?string $longDescription,
+        /** @var DocumentedMethod[] */
+        public readonly array $methods,
+        /** @var DocumentedType[] */
+        public readonly array $types,
+    ) {
+    }
 
     /**
      * @param string[] $complexTypeNames
      */
-    public function __construct(string $name, ClassReflection $class, array $complexTypeNames)
+    public static function fromClassReflection(string $name, ClassReflection $class, array $complexTypeNames): self
     {
-        $this->name = $name;
         $docBlock = $class->getDocBlock();
-        $reflectedMethods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
         if ($docBlock) {
-            $this->shortDescription = $docBlock->getShortDescription();
-            $this->longDescription = $docBlock->getLongDescription();
+            $shortDescription = $docBlock->getShortDescription();
+            $longDescription = $docBlock->getLongDescription();
         } else {
-            $this->shortDescription = null;
-            $this->longDescription = null;
+            $shortDescription = null;
+            $longDescription = null;
         }
-        $this->methods = array_map(
-            fn (MethodReflection $m): DocumentedMethod => new DocumentedMethod($m),
-            $reflectedMethods
-        );
-        $this->types = array_map(
-            fn (string $t): DocumentedType => new DocumentedType($t),
-            $complexTypeNames
+
+        return new self(
+            $name,
+            $shortDescription,
+            $longDescription,
+            array_map(
+                fn (MethodReflection $m): DocumentedMethod => DocumentedMethod::fromMethodReflection($m),
+                $class->getMethods(ReflectionMethod::IS_PUBLIC),
+            ),
+            array_map(
+                fn (string $t): DocumentedType => DocumentedType::fromClassName($t),
+                $complexTypeNames
+            ),
         );
     }
 }

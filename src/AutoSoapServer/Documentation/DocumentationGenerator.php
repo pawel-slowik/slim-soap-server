@@ -11,7 +11,7 @@ class DocumentationGenerator
 {
     public function createDocumentation(SoapService $service): DocumentedService
     {
-        return new DocumentedService(
+        return DocumentedService::fromClassReflection(
             $service->getName(),
             new ClassReflection($service->getImplementation()),
             $service->discoverComplexTypes()

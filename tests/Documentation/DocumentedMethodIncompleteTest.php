@@ -15,13 +15,13 @@ class DocumentedMethodIncompleteTest extends DocumentedTestBase
 
     protected function setUp(): void
     {
-        $this->documentedNoDocBlockMethod = new DocumentedMethod(
+        $this->documentedNoDocBlockMethod = DocumentedMethod::fromMethodReflection(
             $this->getReflectedMethod(
                 Hello::class,
                 "greetNoDocBlock"
             )
         );
-        $this->documentedIncompleteDocBlockMethod = new DocumentedMethod(
+        $this->documentedIncompleteDocBlockMethod = DocumentedMethod::fromMethodReflection(
             $this->getReflectedMethod(
                 Hello::class,
                 "greetIncompleteDocBlock"

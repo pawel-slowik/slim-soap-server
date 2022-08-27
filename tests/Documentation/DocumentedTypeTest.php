@@ -13,7 +13,7 @@ class DocumentedTypeTest extends DocumentedTestBase
 
     protected function setUp(): void
     {
-        $this->documentedType = new DocumentedType("\\Test\\Type");
+        $this->documentedType = DocumentedType::fromClassName("\\Test\\Type");
     }
 
     public function testName(): void

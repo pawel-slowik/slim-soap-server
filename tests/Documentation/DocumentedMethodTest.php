@@ -13,7 +13,7 @@ class DocumentedMethodTest extends DocumentedTestBase
 
     protected function setUp(): void
     {
-        $this->documentedMethod = new DocumentedMethod(
+        $this->documentedMethod = DocumentedMethod::fromMethodReflection(
             $this->getReflectedMethod(Hello::class, "greet")
         );
     }

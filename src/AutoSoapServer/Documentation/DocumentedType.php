@@ -10,21 +10,25 @@ use ReflectionProperty;
 
 class DocumentedType
 {
-    public readonly string $name;
+    public function __construct(
+        public readonly string $name,
+        public readonly ?string $description,
+        /** @var DocumentedProperty[] */
+        public readonly array $properties,
+    ) {
+    }
 
-    public readonly ?string $description;
-
-    /** @var DocumentedProperty[] */
-    public readonly array $properties;
-
-    public function __construct(string $className)
+    public static function fromClassName(string $className): self
     {
         $reflection = new ClassReflection($className);
-        $this->name = $reflection->getName();
-        $this->description = $this->getTypeDescription($reflection);
-        $this->properties = array_map(
-            fn (PropertyReflection $property): DocumentedProperty => new DocumentedProperty($property),
-            $reflection->getProperties(ReflectionProperty::IS_PUBLIC),
+
+        return new self(
+            $reflection->getName(),
+            self::getTypeDescription($reflection),
+            array_map(
+                fn (PropertyReflection $property): DocumentedProperty => DocumentedProperty::fromPropertyReflection($property),
+                $reflection->getProperties(ReflectionProperty::IS_PUBLIC),
+            ),
         );
     }
 

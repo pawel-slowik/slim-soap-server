@@ -12,45 +12,52 @@ use ReflectionNamedType;
 
 class DocumentedMethod
 {
-    public readonly string $name;
+    public function __construct(
+        public readonly string $name,
+        public readonly ?string $shortDescription,
+        public readonly ?string $longDescription,
+        /** @var DocumentedParameter[] */
+        public readonly array $parameters,
+        public readonly ?string $returnType,
+        public readonly ?string $returnDescription,
+    ) {
+    }
 
-    public readonly ?string $shortDescription;
-
-    public readonly ?string $longDescription;
-
-    /** @var DocumentedParameter[] */
-    public readonly array $parameters;
-
-    public readonly ?string $returnType;
-
-    public readonly ?string $returnDescription;
-
-    public function __construct(MethodReflection $method)
+    public static function fromMethodReflection(MethodReflection $methodReflection): self
     {
-        $docBlock = $method->getDocBlock();
-        $this->name = $method->getShortName();
+        $docBlock = $methodReflection->getDocBlock();
         if ($docBlock) {
-            $this->shortDescription = $docBlock->getShortDescription();
-            $this->longDescription = $docBlock->getLongDescription();
+            $shortDescription = $docBlock->getShortDescription();
+            $longDescription = $docBlock->getLongDescription();
         } else {
-            $this->shortDescription = null;
-            $this->longDescription = null;
+            $shortDescription = null;
+            $longDescription = null;
         }
-        $returnType = $method->getReturnType();
-        $this->returnType = ($returnType instanceof ReflectionNamedType) ? $returnType->getName() : null;
-        $this->returnDescription = $this->getReturnDescription($method);
-        $parameters = $method->getParameters();
+
+        $parameters = $methodReflection->getParameters();
         usort(
             $parameters,
             fn (ParameterReflection $a, ParameterReflection $b): int => $a->getPosition() - $b->getPosition(),
         );
-        $this->parameters = array_map(
-            fn (ParameterReflection $parameter): DocumentedParameter => new DocumentedParameter($parameter),
+        $parameters = array_map(
+            fn (ParameterReflection $parameter): DocumentedParameter => DocumentedParameter::fromParameterReflection($parameter),
             $parameters,
+        );
+
+        $returnType = $methodReflection->getReturnType();
+        $returnTypeName = ($returnType instanceof ReflectionNamedType) ? $returnType->getName() : null;
+
+        return new self(
+            $methodReflection->getShortName(),
+            $shortDescription,
+            $longDescription,
+            $parameters,
+            $returnTypeName,
+            self::getReturnDescription($methodReflection),
         );
     }
 
-    private function getReturnDescription(MethodReflection $method): ?string
+    private static function getReturnDescription(MethodReflection $method): ?string
     {
         $methodDocBlock = $method->getDocBlock();
         if (!($methodDocBlock instanceof DocBlockReflection)) {

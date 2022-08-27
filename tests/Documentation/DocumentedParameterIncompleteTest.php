@@ -15,14 +15,14 @@ class DocumentedParameterIncompleteTest extends DocumentedTestBase
 
     protected function setUp(): void
     {
-        $this->documentedNoDocBlockParameter = new DocumentedParameter(
+        $this->documentedNoDocBlockParameter = DocumentedParameter::fromParameterReflection(
             $this->getReflectedParameter(
                 Hello::class,
                 "greetNoDocBlock",
                 "subject"
             )
         );
-        $this->documentedIncompleteDocBlockParameter = new DocumentedParameter(
+        $this->documentedIncompleteDocBlockParameter = DocumentedParameter::fromParameterReflection(
             $this->getReflectedParameter(
                 Hello::class,
                 "greetIncompleteDocBlock",

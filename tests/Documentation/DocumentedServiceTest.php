@@ -17,12 +17,12 @@ class DocumentedServiceTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->documentedService = new DocumentedService(
+        $this->documentedService = DocumentedService::fromClassReflection(
             "test",
             new ClassReflection(Hello::class),
             []
         );
-        $this->documentedEmptyService = new DocumentedService(
+        $this->documentedEmptyService = DocumentedService::fromClassReflection(
             "empty test",
             new ClassReflection(\stdClass::class),
             []

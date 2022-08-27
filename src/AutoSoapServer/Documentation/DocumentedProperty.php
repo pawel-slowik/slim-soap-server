@@ -9,18 +9,21 @@ use Laminas\Code\Reflection\PropertyReflection;
 
 class DocumentedProperty
 {
-    public readonly string $name;
+    public function __construct(
+        public readonly string $name,
+        public readonly ?string $description,
+        /** @var string[]|null */
+        public readonly ?array $types,
+    ) {
+    }
 
-    public readonly ?string $description;
-
-    /** @var string[]|null */
-    public readonly ?array $types;
-
-    public function __construct(PropertyReflection $property)
+    public static function fromPropertyReflection(PropertyReflection $property): self
     {
-        $this->name = $property->getName();
-        $this->description = $this->getDescription($property);
-        $this->types = $this->getTypes($property);
+        return new self(
+            $property->getName(),
+            self::getDescription($property),
+            self::getTypes($property),
+        );
     }
 
     private static function getDescription(PropertyReflection $property): ?string

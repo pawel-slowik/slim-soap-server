@@ -14,7 +14,7 @@ class DocumentedMethodParametersTest extends DocumentedTestBase
 
     protected function setUp(): void
     {
-        $this->documentedMethodWithTwoParameters = new DocumentedMethod(
+        $this->documentedMethodWithTwoParameters = DocumentedMethod::fromMethodReflection(
             $this->getReflectedMethod(
                 Hello::class,
                 "methodWithTwoParameters"
