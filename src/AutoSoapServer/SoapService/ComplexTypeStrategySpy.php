@@ -12,7 +12,7 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
     private ComplexTypeStrategyInterface $spiedStrategy;
 
     /**
-     * @var array<string, string>
+     * @var array<class-string, string>
      */
     private array $spiedTypeMap;
 
@@ -27,6 +27,9 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
         $this->spiedStrategy->setContext($context);
     }
 
+    /**
+     * @param class-string $type
+     */
     public function addComplexType($type)
     {
         $mapped = $this->spiedStrategy->addComplexType($type);
@@ -35,7 +38,7 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
     }
 
     /**
-     * @return array<string, string>
+     * @return array<class-string, string>
      */
     public function getTypeMap(): array
     {

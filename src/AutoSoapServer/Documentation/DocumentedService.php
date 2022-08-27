@@ -21,7 +21,7 @@ class DocumentedService
     }
 
     /**
-     * @param string[] $complexTypeNames
+     * @param class-string[] $complexTypeNames
      */
     public static function fromClassReflection(string $name, ClassReflection $class, array $complexTypeNames): self
     {

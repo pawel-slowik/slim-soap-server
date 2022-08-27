@@ -17,6 +17,9 @@ class DocumentedType
     ) {
     }
 
+    /**
+     * @param class-string $className
+     */
     public static function fromClassName(string $className): self
     {
         $reflection = new ClassReflection($className);

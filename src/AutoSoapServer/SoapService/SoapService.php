@@ -60,7 +60,7 @@ class SoapService
     }
 
     /**
-     * @return string[]
+     * @return class-string[]
      */
     public function discoverComplexTypes(): array
     {
