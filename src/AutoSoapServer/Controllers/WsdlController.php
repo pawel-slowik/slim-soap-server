@@ -17,14 +17,10 @@ class WsdlController
     ) {
     }
 
-    /**
-     * @param array<string, mixed> $args
-     */
-    public function __invoke(Request $request, Response $response, array $args): Response
+    public function __invoke(Request $request, Response $response, string $path): Response
     {
-        $servicePath = $args['path'];
-        $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        $endpointUri = $this->routeParser->fullUrlFor($request->getUri(), 'endpoint', ['path' => $servicePath]);
+        $service = $this->soapServiceRegistry->getServiceForPath($path);
+        $endpointUri = $this->routeParser->fullUrlFor($request->getUri(), 'endpoint', ['path' => $path]);
         $wsdl = $service->createWsdlDocument($endpointUri);
         $response->getBody()->write($wsdl->saveXML());
         return $response->withHeader('Content-Type', "text/xml; charset={$wsdl->encoding}");

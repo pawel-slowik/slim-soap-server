@@ -17,15 +17,11 @@ class EndpointController
     ) {
     }
 
-    /**
-     * @param array<string, mixed> $args
-     */
-    public function __invoke(Request $request, Response $response, array $args): Response
+    public function __invoke(Request $request, Response $response, string $path): Response
     {
-        $servicePath = $args['path'];
-        $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
-        $wsdlUri = $this->routeParser->fullUrlFor($request->getUri(), 'wsdl', ['path' => $servicePath]);
-        $endpointUri = $this->routeParser->fullUrlFor($request->getUri(), 'endpoint', ['path' => $servicePath]);
+        $service = $this->soapServiceRegistry->getServiceForPath($path);
+        $wsdlUri = $this->routeParser->fullUrlFor($request->getUri(), 'wsdl', ['path' => $path]);
+        $endpointUri = $this->routeParser->fullUrlFor($request->getUri(), 'endpoint', ['path' => $path]);
         // TODO: handle SoapFault here?
         $soapResponse = $service->handleSoapMessage($wsdlUri, $endpointUri, (string) $request->getBody());
         $response->getBody()->write($soapResponse);

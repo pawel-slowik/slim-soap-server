@@ -17,11 +17,8 @@ class HomeController
     ) {
     }
 
-    /**
-     * @param array<string, mixed> $args
-     */
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
-    public function __invoke(Request $request, Response $response, array $args): Response
+    public function __invoke(Request $request, Response $response): Response
     {
         $services = [];
         foreach ($this->soapServiceRegistry->listPaths() as $path) {

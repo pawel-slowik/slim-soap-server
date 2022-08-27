@@ -10,6 +10,7 @@ use AutoSoapServer\Controllers\HomeController;
 use AutoSoapServer\Controllers\WsdlController;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 use Slim\App;
+use Slim\Handlers\Strategies\RequestResponseArgs;
 
 class RoutingConfiguration
 {
@@ -22,11 +23,20 @@ class RoutingConfiguration
 
     public function apply(App $app): App
     {
-        $app->get("/", HomeController::class)->setName("home");
+        $strategy = new RequestResponseArgs();
+        $app->get("/", HomeController::class)
+            ->setName("home")
+            ->setInvocationStrategy($strategy);
         foreach ($this->soapServiceRegistry->listPaths() as $path) {
-            $app->post("/{path:{$path}}", EndpointController::class)->setName("endpoint");
-            $app->get("/{path:{$path}}/wsdl", WsdlController::class)->setName("wsdl");
-            $app->get("/{path:{$path}}/doc", DocumentationController::class)->setName("doc");
+            $app->post("/{path:{$path}}", EndpointController::class)
+                ->setName("endpoint")
+                ->setInvocationStrategy($strategy);
+            $app->get("/{path:{$path}}/wsdl", WsdlController::class)
+                ->setName("wsdl")
+                ->setInvocationStrategy($strategy);
+            $app->get("/{path:{$path}}/doc", DocumentationController::class)
+                ->setName("doc")
+                ->setInvocationStrategy($strategy);
         }
         return $app;
     }

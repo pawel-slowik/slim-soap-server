@@ -19,14 +19,10 @@ class DocumentationController
     ) {
     }
 
-    /**
-     * @param array<string, mixed> $args
-     */
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
-    public function __invoke(Request $request, Response $response, array $args): Response
+    public function __invoke(Request $request, Response $response, string $path): Response
     {
-        $servicePath = $args['path'];
-        $service = $this->soapServiceRegistry->getServiceForPath($servicePath);
+        $service = $this->soapServiceRegistry->getServiceForPath($path);
         $documentedService = $this->documentationGenerator->createDocumentation($service);
         $templateData = ["service" => $documentedService];
         return $this->view
