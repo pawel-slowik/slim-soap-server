@@ -37,7 +37,7 @@ class DocumentedType
             $descriptions[] = $docBlock->getShortDescription();
         }
         $descriptions[] = $reflection->getDocComment();
-        $descriptions = array_values(array_filter(array_map("trim", $descriptions)));
+        $descriptions = array_values(array_filter(array_map(trim(...), $descriptions)));
         return (!empty($descriptions)) ? $descriptions[0] : null;
     }
 }
