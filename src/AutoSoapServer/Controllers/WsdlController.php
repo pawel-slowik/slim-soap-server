@@ -22,7 +22,7 @@ class WsdlController
         $service = $this->soapServiceRegistry->getServiceForPath($path);
         $endpointUri = $this->routeParser->fullUrlFor($request->getUri(), 'endpoint', ['path' => $path]);
         $wsdl = $service->createWsdlDocument($endpointUri);
-        $response->getBody()->write($wsdl->saveXML());
+        $response->getBody()->write($wsdl->xml);
         return $response->withHeader('Content-Type', "text/xml; charset={$wsdl->encoding}");
     }
 }

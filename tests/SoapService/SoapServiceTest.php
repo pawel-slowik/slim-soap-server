@@ -51,26 +51,11 @@ class SoapServiceTest extends TestCase
         $this->assertSame($this->emptyImplementation, $service->getImplementation());
     }
 
-    public function testWsdlIsObject(): void
+    public function testWsdXmlIsValid(): void
     {
         $service = new SoapService($this->emptyImplementation);
         $wsdlDocument = $service->createWsdlDocument("http://foo/bar");
-        $this->assertIsObject($wsdlDocument);
-    }
-
-    public function testWsdlIsXmlable(): void
-    {
-        $service = new SoapService($this->emptyImplementation);
-        $wsdlDocument = $service->createWsdlDocument("http://foo/bar");
-        $this->assertTrue(method_exists($wsdlDocument, "saveXML"));
-    }
-
-    public function testWsdlIsValid(): void
-    {
-        $service = new SoapService($this->emptyImplementation);
-        $wsdlDocument = $service->createWsdlDocument("http://foo/bar");
-        $xml = $wsdlDocument->saveXML();
-        $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $xml);
+        $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $wsdlDocument->xml);
     }
 
     /**

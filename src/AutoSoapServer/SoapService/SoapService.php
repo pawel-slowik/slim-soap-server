@@ -53,10 +53,18 @@ class SoapService
         return $server->handle($message);
     }
 
-    public function createWsdlDocument(string $endpointUri): DOMDocument
+    public function createWsdlDocument(string $endpointUri): WsdlDocument
     {
         [$wsdl, ] = $this->autodiscover($endpointUri);
-        return $wsdl->toDomDocument();
+        $xmlDocument = $wsdl->toDomDocument();
+        $xmlContent = $xmlDocument->saveXML();
+        if ($xmlContent === false) {
+            throw new WsdlCreateFailedException();
+        }
+        return new WsdlDocument(
+            $xmlContent,
+            $xmlDocument->encoding,
+        );
     }
 
     /**
