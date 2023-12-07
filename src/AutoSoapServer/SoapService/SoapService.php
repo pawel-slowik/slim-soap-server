@@ -55,7 +55,7 @@ class SoapService
 
     public function createWsdlDocument(string $endpointUri): WsdlDocument
     {
-        [$wsdl, ] = $this->autodiscover($endpointUri);
+        [$wsdl] = $this->autodiscover($endpointUri);
         $xmlDocument = $wsdl->toDomDocument();
         $xmlContent = $xmlDocument->saveXML();
         if ($xmlContent === false) {
