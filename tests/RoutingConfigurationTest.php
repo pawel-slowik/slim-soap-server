@@ -68,7 +68,7 @@ class RoutingConfigurationTest extends TestCase
         $this->assertFalse($exceptionThrown);
     }
 
-    public function namedFromRegistryDataProvider(): array
+    public static function namedFromRegistryDataProvider(): array
     {
         return [
             ["endpoint"],
