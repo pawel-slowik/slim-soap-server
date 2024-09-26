@@ -10,16 +10,16 @@ use Laminas\Code\Reflection\MethodReflection;
 use Laminas\Code\Reflection\ParameterReflection;
 use ReflectionNamedType;
 
-class DocumentedMethod
+readonly class DocumentedMethod
 {
     public function __construct(
-        public readonly string $name,
-        public readonly ?string $shortDescription,
-        public readonly ?string $longDescription,
+        public string $name,
+        public ?string $shortDescription,
+        public ?string $longDescription,
         /** @var DocumentedParameter[] */
-        public readonly array $parameters,
-        public readonly ?string $returnType,
-        public readonly ?string $returnDescription,
+        public array $parameters,
+        public ?string $returnType,
+        public ?string $returnDescription,
     ) {
     }
 

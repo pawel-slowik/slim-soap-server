@@ -7,16 +7,16 @@ namespace AutoSoapServer\Documentation;
 use Laminas\Code\Reflection\ClassReflection;
 use ReflectionMethod;
 
-class DocumentedService
+readonly class DocumentedService
 {
     public function __construct(
-        public readonly string $name,
-        public readonly ?string $shortDescription,
-        public readonly ?string $longDescription,
+        public string $name,
+        public ?string $shortDescription,
+        public ?string $longDescription,
         /** @var DocumentedMethod[] */
-        public readonly array $methods,
+        public array $methods,
         /** @var DocumentedType[] */
-        public readonly array $types,
+        public array $types,
     ) {
     }
 

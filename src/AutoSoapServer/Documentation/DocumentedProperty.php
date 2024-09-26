@@ -7,13 +7,13 @@ namespace AutoSoapServer\Documentation;
 use Laminas\Code\Reflection\DocBlock\Tag\VarTag;
 use Laminas\Code\Reflection\PropertyReflection;
 
-class DocumentedProperty
+readonly class DocumentedProperty
 {
     public function __construct(
-        public readonly string $name,
-        public readonly ?string $description,
+        public string $name,
+        public ?string $description,
         /** @var string[]|null */
-        public readonly ?array $types,
+        public ?array $types,
     ) {
     }
 

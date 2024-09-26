@@ -7,13 +7,13 @@ namespace AutoSoapServer\Documentation;
 use Laminas\Code\Reflection\ClassReflection;
 use ReflectionProperty;
 
-class DocumentedType
+readonly class DocumentedType
 {
     public function __construct(
-        public readonly string $name,
-        public readonly ?string $description,
+        public string $name,
+        public ?string $description,
         /** @var DocumentedProperty[] */
-        public readonly array $properties,
+        public array $properties,
     ) {
     }
 

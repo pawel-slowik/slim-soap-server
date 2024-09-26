@@ -9,15 +9,15 @@ use Laminas\Code\Reflection\DocBlockReflection;
 use Laminas\Code\Reflection\ParameterReflection;
 use ReflectionNamedType;
 
-class DocumentedParameter
+readonly class DocumentedParameter
 {
     public function __construct(
-        public readonly string $name,
-        public readonly ?string $type,
-        public readonly ?string $defaultValue,
-        public readonly ?string $description,
-        public readonly bool $isNullable,
-        public readonly bool $isOptional,
+        public string $name,
+        public ?string $type,
+        public ?string $defaultValue,
+        public ?string $description,
+        public bool $isNullable,
+        public bool $isOptional,
     ) {
     }
 
