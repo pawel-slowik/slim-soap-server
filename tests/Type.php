@@ -21,6 +21,7 @@ class Type
      */
     public $baz;
 
+    // @phpstan-ignore missingType.property (purposefully untyped for DocumentedProperty tests)
     public $xuz;
 
     /**

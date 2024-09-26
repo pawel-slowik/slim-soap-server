@@ -21,6 +21,7 @@ readonly class DocumentedService
     }
 
     /**
+     * @param ClassReflection<object> $class
      * @param class-string[] $complexTypeNames
      */
     public static function fromClassReflection(string $name, ClassReflection $class, array $complexTypeNames): self

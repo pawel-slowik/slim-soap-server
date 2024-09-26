@@ -9,6 +9,7 @@ use AutoSoapServer\Controllers\EndpointController;
 use AutoSoapServer\Controllers\HomeController;
 use AutoSoapServer\Controllers\WsdlController;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
+use DI\Container;
 use Slim\App;
 use Slim\Handlers\Strategies\RequestResponseArgs;
 
@@ -21,6 +22,11 @@ class RoutingConfiguration
         $this->soapServiceRegistry = $soapServiceRegistry;
     }
 
+    /**
+     * @param App<Container> $app
+     *
+     * @return App<Container>
+     */
     public function apply(App $app): App
     {
         $strategy = new RequestResponseArgs();

@@ -112,7 +112,6 @@ return (new Config())
         'php_unit_no_expectation_annotation' => true,
         'php_unit_set_up_tear_down_visibility' => true,
         'php_unit_strict' => true,
-        'phpdoc_align' => true, // @Symfony]
         'phpdoc_annotation_without_dot' => true, // @Symfony]
         'phpdoc_indent' => true, // @Symfony]
         'phpdoc_inline_tag_normalizer' => true, // @Symfony]

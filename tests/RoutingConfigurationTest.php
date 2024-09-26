@@ -18,6 +18,9 @@ use Slim\App;
  */
 class RoutingConfigurationTest extends TestCase
 {
+    /**
+     * @var App<Container>
+     */
     private App $app;
 
     private SoapServiceRegistry&MockObject $soapServiceRegistry;
@@ -68,6 +71,9 @@ class RoutingConfigurationTest extends TestCase
         $this->assertFalse($exceptionThrown);
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     public static function namedFromRegistryDataProvider(): array
     {
         return [

@@ -34,6 +34,9 @@ readonly class DocumentedType
         );
     }
 
+    /**
+     * @param ClassReflection<object> $reflection
+     */
     private static function getTypeDescription(ClassReflection $reflection): ?string
     {
         $descriptions = [];
