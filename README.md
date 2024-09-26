@@ -20,6 +20,14 @@ Start the application with:
 
 	docker-compose up -d
 
+## Limitations
+
+The classes that are being exposed as SOAP services or types need to have
+complete PHPDoc docblocks (native PHP typehints are not enough). This is
+required for the WSDL generation to work correctly. For details, see
+[Class autodiscovery](https://docs.laminas.dev/laminas-soap/auto-discovery/#class-autodiscovery)
+and [Adding complex type information](https://docs.laminas.dev/laminas-soap/wsdl/#adding-complex-type-information).
+
 ## Tests
 
 Run tests with:
