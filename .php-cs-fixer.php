@@ -42,10 +42,13 @@ return (new Config())
         'echo_tag_syntax' => ['format' => 'long'],
         'ereg_to_preg' => true, // @Symfony:risky
         'error_suppression' => true, // @Symfony:risky
-        'escape_implicit_backslashes' => true,
+        'string_implicit_backslashes' => true,
         'explicit_indirect_variable' => true,
         'explicit_string_variable' => true,
-        'fully_qualified_strict_types' => true,
+        'fully_qualified_strict_types' => [
+            'import_symbols' => true,
+            'phpdoc_tags' => [], // client classes need PHPDoc annotations with FQCNs in order for the WSDL generation to work correctly
+        ],
         'function_to_constant' => true, // @Symfony:risky
         'type_declaration_spaces' => true, // @Symfony
         'general_phpdoc_annotation_remove' => ['annotations' => ['author', 'category', 'package', 'copyright', 'version']],
