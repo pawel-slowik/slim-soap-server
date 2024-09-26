@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Interfaces\RouteParserInterface;
 
-class WsdlController
+final readonly class WsdlController
 {
     public function __construct(
         private SoapServiceRegistry $soapServiceRegistry,

@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig as View;
 
-class DocumentationController
+final readonly class DocumentationController
 {
     public function __construct(
         private SoapServiceRegistry $soapServiceRegistry,

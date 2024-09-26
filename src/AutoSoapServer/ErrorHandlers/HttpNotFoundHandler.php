@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Throwable;
 
-class HttpNotFoundHandler
+final readonly class HttpNotFoundHandler
 {
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
     public function __invoke(Request $request, Throwable $exception, bool $displayErrorDetails): ResponseInterface
