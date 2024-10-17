@@ -12,6 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 abstract class DocumentedTestBase extends TestCase
 {
+    /**
+     * @param class-string $className
+     */
     protected function getReflectedMethod(
         string $className,
         string $methodName
@@ -27,6 +30,9 @@ abstract class DocumentedTestBase extends TestCase
         return $matchingMethodReflections[0];
     }
 
+    /**
+     * @param class-string $className
+     */
     protected function getReflectedParameter(
         string $className,
         string $methodName,
