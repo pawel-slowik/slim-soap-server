@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Test\SoapService;
 
 use AutoSoapServer\SoapService\SoapService;
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use Test\Hello;
 
@@ -24,7 +25,8 @@ class SoapServiceTest extends TestCase
     {
         $this->emptyImplementation = new \stdClass();
         $this->helloImplementation = new Hello();
-        $this->validHelloMessage = file_get_contents(__DIR__ . "/../data/hello_request.xml");
+        $validHelloMessage = file_get_contents(__DIR__ . "/../data/hello_request.xml") or throw new LogicException();
+        $this->validHelloMessage = $validHelloMessage;
     }
 
     public function testName(): void
