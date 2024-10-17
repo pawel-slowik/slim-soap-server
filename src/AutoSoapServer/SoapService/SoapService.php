@@ -57,12 +57,8 @@ class SoapService
     {
         [$wsdl] = $this->autodiscover($endpointUri);
         $xmlDocument = $wsdl->toDomDocument();
-        $xmlContent = $xmlDocument->saveXML();
-        if ($xmlContent === false) {
-            throw new WsdlCreateFailedException();
-        }
         return new WsdlDocument(
-            $xmlContent,
+            self::createWsdlXml($xmlDocument),
             $xmlDocument->encoding,
         );
     }
@@ -96,6 +92,15 @@ class SoapService
 
     private static function createDataUri(DOMDocument $document): string
     {
-        return "data://text/plain;base64," . base64_encode($document->saveXML());
+        return "data://text/plain;base64," . base64_encode(self::createWsdlXml($document));
+    }
+
+    private static function createWsdlXml(DOMDocument $wsdlDocument): string
+    {
+        $xmlContent = $wsdlDocument->saveXML();
+        if ($xmlContent === false) {
+            throw new WsdlCreateFailedException();
+        }
+        return $xmlContent;
     }
 }
