@@ -8,14 +8,14 @@ use AutoSoapServer\RoutingConfiguration;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 use DI\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Slim\App;
 
-/**
- * @covers \AutoSoapServer\RoutingConfiguration
- */
+#[CoversClass(RoutingConfiguration::class)]
 class RoutingConfigurationTest extends TestCase
 {
     /**
@@ -54,9 +54,7 @@ class RoutingConfigurationTest extends TestCase
         $this->assertFalse($exceptionThrown);
     }
 
-    /**
-     * @dataProvider namedFromRegistryDataProvider
-     */
+    #[DataProvider("namedFromRegistryDataProvider")]
     public function testNamedFromRegistry(string $routeName): void
     {
         $this->soapServiceRegistry->method("listPaths")->willReturn(["foo"]);

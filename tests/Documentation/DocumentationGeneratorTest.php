@@ -7,12 +7,11 @@ namespace Test\Documentation;
 use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\SoapService\SoapService;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Test\Hello;
 
-/**
- * @covers \AutoSoapServer\Documentation\DocumentationGenerator
- */
+#[CoversClass(DocumentationGenerator::class)]
 class DocumentationGeneratorTest extends TestCase
 {
     private SoapService $soapService;

@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Test\SoapService;
 
+use AutoSoapServer\SoapService\ComplexTypeStrategySpy;
 use AutoSoapServer\SoapService\SoapService;
 use LogicException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Test\Hello;
 
-/**
- * @covers \AutoSoapServer\SoapService\ComplexTypeStrategySpy
- * @covers \AutoSoapServer\SoapService\SoapService
- */
+#[CoversClass(ComplexTypeStrategySpy::class)]
+#[CoversClass(SoapService::class)]
 class SoapServiceTest extends TestCase
 {
     private object $emptyImplementation;
@@ -60,9 +61,7 @@ class SoapServiceTest extends TestCase
         $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $wsdlDocument->xml);
     }
 
-    /**
-     * @runInSeparateProcess - see Test\Functional\EndpointTest::testStatus
-     */
+    #[RunInSeparateProcess] // see Test\Functional\EndpointTest::testStatus
     public function testHandleReturnsString(): void
     {
         $service = new SoapService($this->helloImplementation);
@@ -74,9 +73,7 @@ class SoapServiceTest extends TestCase
         $this->assertIsString($output);
     }
 
-    /**
-     * @runInSeparateProcess - see Test\Functional\EndpointTest::testStatus
-     */
+    #[RunInSeparateProcess] // see Test\Functional\EndpointTest::testStatus
     public function testHandleReturnsValid(): void
     {
         $service = new SoapService($this->helloImplementation);

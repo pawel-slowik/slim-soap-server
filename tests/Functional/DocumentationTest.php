@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
-/**
- * @covers \AutoSoapServer\Controllers\DocumentationController
- */
+use AutoSoapServer\Controllers\DocumentationController;
+use PHPUnit\Framework\Attributes\CoversClass;
+
+#[CoversClass(DocumentationController::class)]
 class DocumentationTest extends BaseTestCase
 {
     public function testStatus(): void

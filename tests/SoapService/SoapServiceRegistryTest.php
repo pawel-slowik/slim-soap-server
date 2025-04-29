@@ -8,11 +8,10 @@ use AutoSoapServer\SoapService\SoapService;
 use AutoSoapServer\SoapService\SoapServiceNotFoundException;
 use AutoSoapServer\SoapService\SoapServiceRegistrationFailedException;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \AutoSoapServer\SoapService\SoapServiceRegistry
- */
+#[CoversClass(SoapServiceRegistry::class)]
 class SoapServiceRegistryTest extends TestCase
 {
     private SoapService $soapService;

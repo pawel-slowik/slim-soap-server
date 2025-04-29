@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Test\SoapService;
 
 use AutoSoapServer\SoapService\SoapService;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Test\Hello;
 
-/**
- * @covers \AutoSoapServer\SoapService\SoapService
- */
+#[CoversClass(SoapService::class)]
 class SoapServiceComplexTypesTest extends TestCase
 {
     private SoapService $service;

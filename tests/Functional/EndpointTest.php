@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
-/**
- * @covers \AutoSoapServer\Controllers\EndpointController
- */
+use AutoSoapServer\Controllers\EndpointController;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
+
+#[CoversClass(EndpointController::class)]
 class EndpointTest extends BaseTestCase
 {
     private string $message;
@@ -17,8 +19,6 @@ class EndpointTest extends BaseTestCase
     }
 
     /**
-     * @runInSeparateProcess
-     *
      * \SoapServer::handle(...) automatically sends HTTP headers. Since PHPUnit
      * output starts before the test, this causes "Cannot modify header
      * information - headers already sent" warnings.
@@ -28,24 +28,21 @@ class EndpointTest extends BaseTestCase
      *
      * Running the test in a separate process hides the warnings.
      */
+    #[RunInSeparateProcess]
     public function testStatus(): void
     {
         $response = $this->runApp("POST", "/hello", $this->message);
         $this->assertSame(200, $response->getStatusCode());
     }
 
-    /**
-     * @runInSeparateProcess - see testStatus
-     */
+    #[RunInSeparateProcess] // see testStatus
     public function testContentType(): void
     {
         $response = $this->runApp("POST", "/hello", $this->message);
         $this->assertStringStartsWith("application/soap+xml", $response->getHeader("content-type")[0]);
     }
 
-    /**
-     * @runInSeparateProcess - see testStatus
-     */
+    #[RunInSeparateProcess] // see testStatus
     public function testBody(): void
     {
         $expected = $this->loadTestFile("hello_response.xml");

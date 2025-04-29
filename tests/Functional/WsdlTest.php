@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
-/**
- * @covers \AutoSoapServer\Controllers\WsdlController
- */
+use AutoSoapServer\Controllers\WsdlController;
+use PHPUnit\Framework\Attributes\CoversClass;
+
+#[CoversClass(WsdlController::class)]
 class WsdlTest extends BaseTestCase
 {
     public function testStatus(): void
