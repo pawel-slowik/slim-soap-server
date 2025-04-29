@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Test\Functional;
 
-/**
- * @covers \AutoSoapServer\ErrorHandlers\HttpMethodNotAllowedHandler
- * @covers \AutoSoapServer\ErrorHandlers\HttpNotFoundHandler
- */
 class HttpErrorTest extends BaseTestCase
 {
     public function testMethodNotAllowed(): void
