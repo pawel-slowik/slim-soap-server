@@ -33,7 +33,7 @@ readonly class DocumentedProperty
     }
 
     /**
-     * @return string[]
+     * @return string[]|null
      */
     private static function getTypes(PropertyReflection $property): ?array
     {
