@@ -55,6 +55,6 @@ class SoapServiceRegistryTest extends TestCase
         $registry = new SoapServiceRegistry();
         $registry->addServiceImplementation("test", $this->soapService);
         $service = $registry->getServiceForPath("test");
-        $this->assertInstanceOf(SoapService::class, $service);
+        $this->assertSame($this->soapService, $service->getImplementation());
     }
 }
