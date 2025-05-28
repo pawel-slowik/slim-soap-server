@@ -2,8 +2,7 @@ name: tests
 
 on:
   push:
-  schedule:
-    - cron: '35 7 * * THU'
+  workflow_dispatch:
 
 jobs:
 
