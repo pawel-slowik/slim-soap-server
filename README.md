@@ -11,14 +11,14 @@ generation and integrated service documentation.
 
 ## Installation
 
-	docker-compose build
-	docker-compose run --rm php-fpm composer install
+	docker compose build
+	docker compose run --rm php-fpm composer install
 
 ## Usage
 
 Start the application with:
 
-	docker-compose up -d
+	docker compose up -d
 
 Open <http://127.0.0.1:8080> in your browser.
 
@@ -37,4 +37,4 @@ and [Adding complex type information](https://docs.laminas.dev/laminas-soap/wsdl
 
 Run tests with:
 
-	docker-compose run --rm php-fpm composer test
+	docker compose run --rm php-fpm composer test
