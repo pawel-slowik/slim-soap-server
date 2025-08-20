@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-dom": "*",
         "laminas/laminas-code": "^4.0",
         "laminas/laminas-soap": "^2.8",
