@@ -15,11 +15,8 @@ use Slim\Handlers\Strategies\RequestResponseArgs;
 
 class RoutingConfiguration
 {
-    private SoapServiceRegistry $soapServiceRegistry;
-
-    public function __construct(SoapServiceRegistry $soapServiceRegistry)
+    public function __construct(private readonly SoapServiceRegistry $soapServiceRegistry)
     {
-        $this->soapServiceRegistry = $soapServiceRegistry;
     }
 
     /**

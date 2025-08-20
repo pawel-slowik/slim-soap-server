@@ -9,16 +9,13 @@ use Laminas\Soap\Wsdl\ComplexTypeStrategy\ComplexTypeStrategyInterface;
 
 class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
 {
-    private ComplexTypeStrategyInterface $spiedStrategy;
-
     /**
      * @var array<class-string, string>
      */
     private array $spiedTypeMap;
 
-    public function __construct(ComplexTypeStrategyInterface $strategy)
+    public function __construct(private readonly ComplexTypeStrategyInterface $spiedStrategy)
     {
-        $this->spiedStrategy = $strategy;
         $this->spiedTypeMap = [];
     }
 

@@ -13,11 +13,8 @@ use Laminas\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
 
 class SoapService
 {
-    private object $implementation;
-
-    public function __construct(object $implementation)
+    public function __construct(private readonly object $implementation)
     {
-        $this->implementation = $implementation;
     }
 
     public function getName(): string
