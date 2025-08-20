@@ -17,6 +17,7 @@
         "friendsofphp/php-cs-fixer": "^3.86",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5",
+        "rector/rector": "^2.0",
         "squizlabs/php_codesniffer": "^3.13"
     },
     "autoload-dev": {
@@ -28,11 +29,13 @@
         ],
         "cs": [
             "vendor/bin/php-cs-fixer fix -v --diff --dry-run",
-            "vendor/bin/phpcs --standard=phpcs.xml -s src tests"
+            "vendor/bin/phpcs --standard=phpcs.xml -s src tests",
+            "vendor/bin/rector process --dry-run"
         ],
         "cs-fix": [
             "vendor/bin/php-cs-fixer fix -v",
-            "vendor/bin/phpcbf src tests"
+            "vendor/bin/phpcbf src tests",
+            "vendor/bin/rector process"
         ]
     },
     "config": {
