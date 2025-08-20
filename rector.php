@@ -13,8 +13,8 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    ->withPhpVersion(PhpVersion::PHP_83)
-    ->withPhpSets(php83: true)
+    ->withPhpVersion(PhpVersion::PHP_84)
+    ->withPhpSets(php84: true)
     ->withSkip([
         // We are expecting fully qualified class names with a leading
         // backslash. Contrary to the official PHP documentation, names provided

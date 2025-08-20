@@ -18,7 +18,7 @@ abstract class BaseTestCase extends TestCase
 {
     protected function runApp(string $requestMethod, string $requestUri, ?string $requestBody = null): ResponseInterface
     {
-        $uri = (new Uri())->withScheme('http')->withHost('localhost')->withPath($requestUri);
+        $uri = new Uri()->withScheme('http')->withHost('localhost')->withPath($requestUri);
         $request = new ServerRequest($requestMethod, $uri);
         if (isset($requestBody)) {
             $request->getBody()->write($requestBody);
