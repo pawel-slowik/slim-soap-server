@@ -30,6 +30,7 @@ class HomeTest extends BaseTestCase
 
     public function testPostNotAllowed(): void
     {
+        $this->expectErrorLog();
         $response = $this->runApp("POST", "/");
         $this->assertSame(405, $response->getStatusCode());
     }

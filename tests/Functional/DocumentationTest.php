@@ -30,6 +30,7 @@ class DocumentationTest extends BaseTestCase
 
     public function testPostNotAllowed(): void
     {
+        $this->expectErrorLog();
         $response = $this->runApp("POST", "/hello/doc");
         $this->assertSame(405, $response->getStatusCode());
     }

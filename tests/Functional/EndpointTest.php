@@ -52,6 +52,7 @@ class EndpointTest extends BaseTestCase
 
     public function testGetNotAllowed(): void
     {
+        $this->expectErrorLog();
         $response = $this->runApp("GET", "/hello", $this->message);
         $this->assertSame(405, $response->getStatusCode());
     }

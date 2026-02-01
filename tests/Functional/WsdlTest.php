@@ -30,6 +30,7 @@ class WsdlTest extends BaseTestCase
 
     public function testPostNotAllowed(): void
     {
+        $this->expectErrorLog();
         $response = $this->runApp("POST", "/hello/wsdl");
         $this->assertSame(405, $response->getStatusCode());
     }

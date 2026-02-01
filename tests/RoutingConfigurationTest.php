@@ -10,7 +10,7 @@ use DI\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Slim\App;
@@ -23,14 +23,14 @@ class RoutingConfigurationTest extends TestCase
      */
     private App $app;
 
-    private SoapServiceRegistry&MockObject $soapServiceRegistry;
+    private SoapServiceRegistry&Stub $soapServiceRegistry;
 
     private RoutingConfiguration $routingConfiguration;
 
     protected function setUp(): void
     {
         $this->app = new App(new Psr17Factory(), new Container());
-        $this->soapServiceRegistry = $this->createMock(SoapServiceRegistry::class);
+        $this->soapServiceRegistry = $this->createStub(SoapServiceRegistry::class);
         $this->routingConfiguration = new RoutingConfiguration($this->soapServiceRegistry);
     }
 

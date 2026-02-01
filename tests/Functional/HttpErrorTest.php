@@ -8,6 +8,7 @@ class HttpErrorTest extends BaseTestCase
 {
     public function testMethodNotAllowed(): void
     {
+        $this->expectErrorLog();
         $response = $this->runApp("PUT", "/");
         $this->assertSame(405, $response->getStatusCode());
         $this->assertStringContainsString("405", (string) $response->getBody());
@@ -15,6 +16,7 @@ class HttpErrorTest extends BaseTestCase
 
     public function testNotFound(): void
     {
+        $this->expectErrorLog();
         $response = $this->runApp("GET", "/there-is-no-such-path");
         $this->assertSame(404, $response->getStatusCode());
         $this->assertStringContainsString("404", (string) $response->getBody());
