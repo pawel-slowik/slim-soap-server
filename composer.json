@@ -27,6 +27,10 @@
         "test": [
             "vendor/bin/phpunit"
         ],
+        "test-cover-ci": [
+            "@putenv XDEBUG_MODE=coverage",
+            "vendor/bin/phpunit --coverage-clover=coverage.xml"
+        ],
         "cs": [
             "vendor/bin/php-cs-fixer fix -v --diff --dry-run",
             "vendor/bin/phpcs --standard=phpcs.xml -s src tests",
