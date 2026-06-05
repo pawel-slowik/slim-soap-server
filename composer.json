@@ -29,7 +29,7 @@
         ],
         "test-cover-ci": [
             "@putenv XDEBUG_MODE=coverage",
-            "vendor/bin/phpunit --coverage-clover=coverage.xml"
+            "vendor/bin/phpunit --coverage-html coverage_html --coverage-clover coverage_clover.xml"
         ],
         "cs": [
             "vendor/bin/php-cs-fixer fix -v --diff --dry-run",

@@ -4,9 +4,18 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
 
   test:
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
 
@@ -16,9 +25,17 @@ jobs:
     - name: Build containers
       run: docker compose build
     - name: Install dependencies
-      run: docker compose run -T --rm php-fpm composer install
+      run: docker compose run --user $UID -T --rm php-fpm composer install
     - name: Test
-      run: docker compose run -T --rm php-fpm composer test-cover-ci
-    - name: Upload coverage data to Codecov
-      continue-on-error: true
-      run: bash <(curl -s https://codecov.io/bash)
+      run: docker compose run --user $UID -T --rm php-fpm composer test-cover-ci
+    - name: Install coverage badge dependencies
+      run: sudo apt-get install -y xsltproc
+    - name: Generate coverage badge
+      run: xsltproc -o coverage_html/badge.svg tests/coverage/clover2svg.xslt coverage_clover.xml
+    - name: Upload code coverage artifact
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: './coverage_html'
+    - name: Deploy code coverage site
+      id: deployment
+      uses: actions/deploy-pages@v5
