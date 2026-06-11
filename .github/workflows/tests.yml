@@ -31,7 +31,7 @@ jobs:
     - name: Install coverage badge dependencies
       run: sudo apt-get install -y xsltproc
     - name: Generate coverage badge
-      run: xsltproc -o coverage_html/badge.svg tests/coverage/clover2svg.xslt coverage_clover.xml
+      run: xsltproc --novalid --nonet -o coverage_html/badge.svg tests/coverage/cobertura2svg.xslt coverage_cobertura.xml
     - name: Upload code coverage artifact
       uses: actions/upload-pages-artifact@v5
       with:

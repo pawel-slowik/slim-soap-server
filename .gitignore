@@ -2,4 +2,4 @@
 /.php-cs-fixer.cache
 /.phpunit.cache
 /coverage_html
-/coverage_clover.xml
+/coverage_cobertura.xml

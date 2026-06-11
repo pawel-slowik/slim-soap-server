@@ -1,7 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:variable name="covered" select="/coverage/project/metrics/@coveredstatements" />
-	<xsl:variable name="all" select="/coverage/project/metrics/@statements" />
+	<xsl:variable name="covered" select="/coverage/@lines-covered" />
+	<xsl:variable name="all" select="/coverage/@lines-valid" />
 	<xsl:variable name="percentage" select="round($covered div $all * 100)" />
 	<xsl:variable name="score">
 		<xsl:choose>
