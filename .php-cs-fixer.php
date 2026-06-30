@@ -21,23 +21,19 @@ $finder = Finder::create()
 return (new Config())
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR2' => true,
+        '@PSR12' => true,
         '@PHP7x0Migration:risky' => true,
         '@PHP7x1Migration:risky' => true,
         'align_multiline_comment' => true,
         'array_indentation' => true,
         'array_syntax' => ['syntax' => 'short'],
         'backtick_to_shell_exec' => true,
-        'binary_operator_spaces' => true, // @Symfony
-        'blank_line_after_opening_tag' => true, // @Symfony
         'blank_line_before_statement' => ['statements' => ['break', 'continue', 'declare', 'throw']], // @Symfony
         'cast_spaces' => true, // @Symfony
         'class_attributes_separation' => true,
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
-        'compact_nullable_type_declaration' => true,
         'concat_space' => ['spacing' => 'one'], // @Symfony
-        'declare_equal_normalize' => true, // @Symfony
         'dir_constant' => true, // @Symfony:risky
         'echo_tag_syntax' => ['format' => 'long'],
         'ereg_to_preg' => true, // @Symfony:risky
@@ -56,24 +52,18 @@ return (new Config())
         'include' => true, // @Symfony
         'indentation_type' => true,
         'linebreak_after_opening_tag' => true,
-        'lowercase_cast' => true, // @Symfony
-        'lowercase_static_reference' => true, // @Symfony
         'magic_constant_casing' => true,
         'method_chaining_indentation' => true,
         'multiline_comment_opening_closing' => true,
         'multiline_whitespace_before_semicolons' => true,
         'native_function_casing' => true, // @Symfony
-        'new_with_parentheses' => true, // @Symfony
         'no_alternative_syntax' => true,
         'no_binary_string' => true,
-        'no_blank_lines_after_class_opening' => true, // @Symfony
         'no_blank_lines_after_phpdoc' => true, // @Symfony
         'no_empty_comment' => true, // @Symfony
         'no_empty_phpdoc' => true, // @Symfony
         'no_empty_statement' => true, // @Symfony
-        'no_extra_blank_lines' => true,
         'no_homoglyph_names' => true, // @Symfony:risky
-        'no_leading_import_slash' => true, // @Symfony
         'no_leading_namespace_whitespace' => true, // @Symfony
         'no_mixed_echo_print' => true, // @Symfony
         'no_multiline_whitespace_around_double_arrow' => true, // @Symfony
@@ -96,14 +86,11 @@ return (new Config())
         'no_useless_else' => true,
         'no_useless_return' => true,
         'no_whitespace_before_comma_in_array' => true, // @Symfony
-        'no_whitespace_in_blank_line' => true, // @Symfony
         'non_printable_character' => true, // @Symfony
         'normalize_index_brace' => true, // @Symfony
         'not_operator_with_space' => false,
         'not_operator_with_successor_space' => false,
         'object_operator_without_whitespace' => true, // @Symfony
-        'ordered_class_elements' => true,
-        'ordered_imports' => true,
         'php_unit_construct' => true, // @Symfony:risky
         'php_unit_dedicate_assert' => true,
         'php_unit_expectation' => true,
@@ -133,13 +120,10 @@ return (new Config())
         'protected_to_private' => true,
         'psr_autoloading' => true,
         'return_assignment' => false,
-        'return_type_declaration' =>  ['space_before' => 'none'],
         'self_accessor' => true, // @Symfony:risky
         'semicolon_after_instruction' => true, // @Symfony
         'set_type_to_cast' => true, // @Symfony:risky
-        'short_scalar_cast' => true, // @Symfony:risky
         'simplified_null_return' => true,
-        'blank_lines_before_namespace' => true, // @Symfony
         'single_line_after_imports' => true,
         'space_after_semicolon' => true, // @Symfony
         'standardize_increment' => true, // @Symfony
@@ -148,11 +132,8 @@ return (new Config())
         'strict_param' => true,
         'switch_case_semicolon_to_colon' => true,
         'switch_case_space' => true,
-        'ternary_operator_spaces' => true,
         'trailing_comma_in_multiline' => true, // @Symfony
         'trim_array_spaces' => true, // @Symfony
-        'unary_operator_spaces' => true, // @Symfony
-        'visibility_required' => true,
         'void_return' => true, // @PHP7x1Migration:risky
         'whitespace_after_comma_in_array' => true, // @Symfony
     ])

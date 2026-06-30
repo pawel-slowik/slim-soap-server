@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use AutoSoapServer\SoapService\SoapServiceRegistry;
-
 use DI\Container;
 use ExampleServices\ExampleServiceWithComplexTypes;
 use ExampleServices\Hello;
