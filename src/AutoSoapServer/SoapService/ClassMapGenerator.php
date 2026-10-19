@@ -13,18 +13,15 @@ class ClassMapGenerator
      */
     public function generate(array $mappedComplexTypes): array
     {
-        $spiedTypeMap = [];
+        $map = [];
 
         foreach ($mappedComplexTypes as $mappedComplexType) {
-            $spiedTypeMap[$mappedComplexType->type] = $mappedComplexType->xsdType;
+            $key = $this->stripNamespace($mappedComplexType->xsdType);
+            $value = $mappedComplexType->type;
+            $map[$key] = $value;
         }
 
-        $typeMap = array_combine(
-            array_keys($spiedTypeMap),
-            array_map($this->stripNamespace(...), $spiedTypeMap)
-        );
-
-        return array_flip($typeMap);
+        return $map;
     }
 
     private static function stripNamespace(string $type): string
