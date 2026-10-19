@@ -6,6 +6,8 @@ namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedType;
+use AutoSoapServer\SoapService\ClassMapGenerator;
+use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapService;
 use Laminas\Code\Reflection\ClassReflection;
 use PHPUnit\Framework\TestCase;
@@ -23,7 +25,11 @@ class DocumentedServiceTypesTest extends TestCase
         $this->documentedService = DocumentedService::fromClassReflection(
             "test",
             new ClassReflection(Hello::class),
-            new SoapService(new Hello())->discoverComplexTypes()
+            new SoapService(
+                new ClassMapGenerator(),
+                new ComplexTypesGenerator(),
+                new Hello(),
+            )->discoverComplexTypes(),
         );
         $this->documentedTypeNames = array_map(
             fn (DocumentedType $type): string => $type->name,

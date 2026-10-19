@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Test\Integration\SoapService;
 
+use AutoSoapServer\SoapService\ClassMapGenerator;
+use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +18,7 @@ class SoapServiceComplexTypesTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->service = new SoapService(new Hello());
+        $this->service = new SoapService(new ClassMapGenerator(), new ComplexTypesGenerator(), new Hello());
     }
 
     public function testNumberOfDetectedComplexTypes(): void

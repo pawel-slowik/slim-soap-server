@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Integration\SoapService;
 
+use AutoSoapServer\SoapService\ClassMapGenerator;
 use AutoSoapServer\SoapService\ComplexTypeStrategySpy;
+use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapService;
 use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -18,6 +20,10 @@ class SoapServiceTest extends TestCase
 {
     private const string FIXTURE_DIR = __DIR__ . "/../../Fixture";
 
+    private ClassMapGenerator $classMapGenerator;
+
+    private ComplexTypesGenerator $complexTypesGenerator;
+
     private object $emptyImplementation;
 
     private object $helloImplementation;
@@ -26,6 +32,8 @@ class SoapServiceTest extends TestCase
 
     protected function setUp(): void
     {
+        $this->classMapGenerator = new ClassMapGenerator();
+        $this->complexTypesGenerator = new ComplexTypesGenerator();
         $this->emptyImplementation = new \stdClass();
         $this->helloImplementation = new Hello();
         $validHelloMessage = file_get_contents(self::FIXTURE_DIR . "/hello_request.xml") or throw new LogicException();
@@ -34,31 +42,31 @@ class SoapServiceTest extends TestCase
 
     public function testName(): void
     {
-        $service = new SoapService($this->emptyImplementation);
+        $service = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $this->emptyImplementation);
         $this->assertIsString($service->getName());
     }
 
     public function testNoDescription(): void
     {
-        $service = new SoapService($this->emptyImplementation);
+        $service = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $this->emptyImplementation);
         $this->assertNull($service->getDescription());
     }
 
     public function testDescription(): void
     {
-        $service = new SoapService($this->helloImplementation);
+        $service = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $this->helloImplementation);
         $this->assertIsString($service->getDescription());
     }
 
     public function testImplementation(): void
     {
-        $service = new SoapService($this->emptyImplementation);
+        $service = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $this->emptyImplementation);
         $this->assertSame($this->emptyImplementation, $service->getImplementation());
     }
 
     public function testWsdXmlIsValid(): void
     {
-        $service = new SoapService($this->emptyImplementation);
+        $service = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $this->emptyImplementation);
         $wsdlDocument = $service->createWsdlDocument("http://foo/bar");
         $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $wsdlDocument->xml);
     }
@@ -66,7 +74,7 @@ class SoapServiceTest extends TestCase
     #[RunInSeparateProcess] // see Test\Functional\EndpointTest::testStatus
     public function testHandleReturnsString(): void
     {
-        $service = new SoapService($this->helloImplementation);
+        $service = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $this->helloImplementation);
         $output = $service->handleSoapMessage(
             "http://foo/bar.wsdl",
             "http://foo/bar",
@@ -78,7 +86,7 @@ class SoapServiceTest extends TestCase
     #[RunInSeparateProcess] // see Test\Functional\EndpointTest::testStatus
     public function testHandleReturnsValid(): void
     {
-        $service = new SoapService($this->helloImplementation);
+        $service = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $this->helloImplementation);
         $output = $service->handleSoapMessage(
             "http://foo/bar.wsdl",
             "http://foo/bar",

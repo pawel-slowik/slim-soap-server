@@ -10,13 +10,13 @@ use Laminas\Soap\Wsdl\ComplexTypeStrategy\ComplexTypeStrategyInterface;
 class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
 {
     /**
-     * @var array<class-string, string>
+     * @var MappedComplexType[]
      */
-    private array $spiedTypeMap;
+    private array $spiedTypes;
 
     public function __construct(private readonly ComplexTypeStrategyInterface $spiedStrategy)
     {
-        $this->spiedTypeMap = [];
+        $this->spiedTypes = [];
     }
 
     public function setContext(Wsdl $context): void
@@ -30,31 +30,15 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
     public function addComplexType($type)
     {
         $mapped = $this->spiedStrategy->addComplexType($type);
-        $this->spiedTypeMap[$type] = $mapped;
+        $this->spiedTypes[] = new MappedComplexType($type, $mapped);
         return $mapped;
     }
 
     /**
-     * @return array<class-string, string>
+     * @return MappedComplexType[]
      */
-    public function getTypeMap(): array
+    public function getSpiedTypes(): array
     {
-        return array_combine(
-            array_keys($this->spiedTypeMap),
-            array_map($this->stripNamespace(...), $this->spiedTypeMap)
-        );
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    public function getClassMap(): array
-    {
-        return array_flip($this->getTypeMap());
-    }
-
-    private static function stripNamespace(string $type): string
-    {
-        return explode(":", $type, 2)[1];
+        return $this->spiedTypes;
     }
 }

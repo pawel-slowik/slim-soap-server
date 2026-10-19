@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use AutoSoapServer\SoapService\ClassMapGenerator;
+use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 use DI\Container;
 use ExampleServices\ExampleServiceWithComplexTypes;
@@ -27,7 +29,10 @@ return function (Container $container, App $app): void {
 
         // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
         SoapServiceRegistry::class => function ($container) {
-            $reg = new SoapServiceRegistry();
+            $reg = new SoapServiceRegistry(
+                new ClassMapGenerator(),
+                new ComplexTypesGenerator(),
+            );
             $reg->addServiceImplementation("hello", new Hello());
             $reg->addServiceImplementation("complex", new ExampleServiceWithComplexTypes());
             return $reg;

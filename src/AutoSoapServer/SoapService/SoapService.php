@@ -13,8 +13,11 @@ use Laminas\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
 
 class SoapService
 {
-    public function __construct(private readonly object $implementation)
-    {
+    public function __construct(
+        private readonly ClassMapGenerator $classMapGenerator,
+        private readonly ComplexTypesGenerator $complexTypesGenerator,
+        private readonly object $implementation,
+    ) {
     }
 
     public function getName(): string
@@ -70,7 +73,7 @@ class SoapService
         $autodiscover->setClass($this->implementation::class);
         $autodiscover->setUri("dummy");
         $autodiscover->generate();
-        return array_keys($spy->getTypeMap());
+        return $this->complexTypesGenerator->generate($spy->getSpiedTypes());
     }
 
     /**
@@ -84,7 +87,7 @@ class SoapService
         $autodiscover->setServiceName($this->getName());
         $autodiscover->setUri($endpointUri);
         $wsdl = $autodiscover->generate();
-        return [$wsdl, $spy->getClassMap()];
+        return [$wsdl, $this->classMapGenerator->generate($spy->getSpiedTypes())];
     }
 
     private static function createDataUri(DOMDocument $document): string

@@ -6,6 +6,12 @@ namespace AutoSoapServer\SoapService;
 
 class SoapServiceRegistry
 {
+    public function __construct(
+        private readonly ClassMapGenerator $classMapGenerator,
+        private readonly ComplexTypesGenerator $complexTypesGenerator,
+    ) {
+    }
+
     /**
      * @var array<string, SoapService>
      */
@@ -16,7 +22,7 @@ class SoapServiceRegistry
         if ($this->pathIsRegistered($path)) {
             throw new SoapServiceRegistrationFailedException($path);
         }
-        $this->services[$path] = new SoapService($service);
+        $this->services[$path] = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $service);
     }
 
     public function getServiceForPath(string $path): SoapService
