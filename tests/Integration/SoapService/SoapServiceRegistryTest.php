@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Test\Integration\SoapService;
 
-use AutoSoapServer\SoapService\SoapService;
 use AutoSoapServer\SoapService\SoapServiceNotFoundException;
 use AutoSoapServer\SoapService\SoapServiceRegistrationFailedException;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
@@ -14,11 +13,11 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(SoapServiceRegistry::class)]
 class SoapServiceRegistryTest extends TestCase
 {
-    private SoapService $soapService;
+    private object $service;
 
     protected function setUp(): void
     {
-        $this->soapService = new SoapService(new \stdClass());
+        $this->service = new \stdClass();
     }
 
     public function testListEmpty(): void
@@ -30,22 +29,22 @@ class SoapServiceRegistryTest extends TestCase
     public function testListAfterAdding(): void
     {
         $registry = new SoapServiceRegistry();
-        $registry->addServiceImplementation("test", $this->soapService);
+        $registry->addServiceImplementation("test", $this->service);
         $this->assertCount(1, $registry->listPaths());
     }
 
     public function testDuplicatePath(): void
     {
         $registry = new SoapServiceRegistry();
-        $registry->addServiceImplementation("test", $this->soapService);
+        $registry->addServiceImplementation("test", $this->service);
         $this->expectException(SoapServiceRegistrationFailedException::class);
-        $registry->addServiceImplementation("test", $this->soapService);
+        $registry->addServiceImplementation("test", $this->service);
     }
 
     public function testInvalidPath(): void
     {
         $registry = new SoapServiceRegistry();
-        $registry->addServiceImplementation("test", $this->soapService);
+        $registry->addServiceImplementation("test", $this->service);
         $this->expectException(SoapServiceNotFoundException::class);
         $registry->getServiceForPath("test1");
     }
@@ -53,8 +52,8 @@ class SoapServiceRegistryTest extends TestCase
     public function testGet(): void
     {
         $registry = new SoapServiceRegistry();
-        $registry->addServiceImplementation("test", $this->soapService);
+        $registry->addServiceImplementation("test", $this->service);
         $service = $registry->getServiceForPath("test");
-        $this->assertSame($this->soapService, $service->getImplementation());
+        $this->assertSame($this->service, $service->getImplementation());
     }
 }
