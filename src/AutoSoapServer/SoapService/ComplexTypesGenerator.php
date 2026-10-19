@@ -13,22 +13,12 @@ class ComplexTypesGenerator
      */
     public function generate(array $mappedComplexTypes): array
     {
-        $spiedTypeMap = [];
+        $types = [];
 
         foreach ($mappedComplexTypes as $mappedComplexType) {
-            $spiedTypeMap[$mappedComplexType->type] = $mappedComplexType->xsdType;
+            $types[] = $mappedComplexType->type;
         }
 
-        $typeMap = array_combine(
-            array_keys($spiedTypeMap),
-            array_map($this->stripNamespace(...), $spiedTypeMap)
-        );
-
-        return array_keys($typeMap);
-    }
-
-    private static function stripNamespace(string $type): string
-    {
-        return explode(":", $type, 2)[1];
+        return array_values(array_unique($types));
     }
 }
