@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\SoapService\SoapService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
-use Test\Hello;
+use Test\Fixture\Hello;
 
 #[CoversClass(DocumentationGenerator::class)]
 class DocumentationGeneratorTest extends TestCase
@@ -23,7 +23,7 @@ class DocumentationGeneratorTest extends TestCase
         $this->soapService = $this->createStub(SoapService::class);
         $this->soapService->method("getName")->willReturn("service name");
         $this->soapService->method("getImplementation")->willReturn(new Hello());
-        $this->soapService->method("discoverComplexTypes")->willReturn(["\\Test\\Type"]);
+        $this->soapService->method("discoverComplexTypes")->willReturn(["\\Test\\Fixture\\Type"]);
 
         $this->generator = new DocumentationGenerator();
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test\SoapService;
+namespace Test\Integration\SoapService;
 
 use AutoSoapServer\SoapService\SoapService;
 use AutoSoapServer\SoapService\SoapServiceNotFoundException;

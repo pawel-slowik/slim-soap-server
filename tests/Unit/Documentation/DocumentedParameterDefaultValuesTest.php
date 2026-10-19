@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Unit\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedParameter;
-use Test\Hello;
+use PHPUnit\Framework\TestCase;
+use Test\Fixture\Hello;
+use Test\ReflectionHelper;
 
-class DocumentedParameterDefaultValuesTest extends DocumentedTestBase
+class DocumentedParameterDefaultValuesTest extends TestCase
 {
     private DocumentedParameter $documentedParameterWithDefaultValue;
 
@@ -16,14 +18,14 @@ class DocumentedParameterDefaultValuesTest extends DocumentedTestBase
     protected function setUp(): void
     {
         $this->documentedParameterWithDefaultValue = DocumentedParameter::fromParameterReflection(
-            $this->getReflectedParameter(
+            ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetWithDefaultValue",
                 "subject"
             )
         );
         $this->documentedParameterWithDefaultConstantValue = DocumentedParameter::fromParameterReflection(
-            $this->getReflectedParameter(
+            ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetWithDefaultConstantValue",
                 "subject"

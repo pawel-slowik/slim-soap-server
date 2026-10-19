@@ -15,7 +15,7 @@ class EndpointTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $this->message = $this->loadTestFile("hello_request.xml");
+        $this->message = $this->loadTestFile("../Fixture/hello_request.xml");
     }
 
     /**
@@ -45,7 +45,7 @@ class EndpointTest extends BaseTestCase
     #[RunInSeparateProcess] // see testStatus
     public function testBody(): void
     {
-        $expected = $this->loadTestFile("hello_response.xml");
+        $expected = $this->loadTestFile("../Fixture/hello_response.xml");
         $response = $this->runApp("POST", "/hello", $this->message);
         $this->assertXmlStringEqualsXmlString((string) $response->getBody(), $expected);
     }

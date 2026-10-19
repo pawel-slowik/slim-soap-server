@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedType;
+use PHPUnit\Framework\TestCase;
 
-class DocumentedPropertyTest extends DocumentedTestBase
+class DocumentedPropertyTest extends TestCase
 {
     private DocumentedType $documentedType;
 
     protected function setUp(): void
     {
-        $this->documentedType = DocumentedType::fromClassName("\\Test\\Type");
+        $this->documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
     }
 
     public function testName(): void

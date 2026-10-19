@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedType;
 use AutoSoapServer\SoapService\SoapService;
 use Laminas\Code\Reflection\ClassReflection;
 use PHPUnit\Framework\TestCase;
-use Test\Hello;
+use Test\Fixture\Hello;
 
 class DocumentedServiceTypesTest extends TestCase
 {
@@ -50,7 +50,7 @@ class DocumentedServiceTypesTest extends TestCase
     public function testMethodParameterTypeIsDetected(): void
     {
         $this->assertContains(
-            "Test\\Type",
+            "Test\\Fixture\\Type",
             $this->documentedTypeNames
         );
     }
@@ -58,7 +58,7 @@ class DocumentedServiceTypesTest extends TestCase
     public function testComplexTypePropertyTypeIsDetected(): void
     {
         $this->assertContains(
-            "Test\\AnotherType",
+            "Test\\Fixture\\AnotherType",
             $this->documentedTypeNames
         );
     }

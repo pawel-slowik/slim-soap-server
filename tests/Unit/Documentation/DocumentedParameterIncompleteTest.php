@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Unit\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedParameter;
-use Test\Hello;
+use PHPUnit\Framework\TestCase;
+use Test\Fixture\Hello;
+use Test\ReflectionHelper;
 
-class DocumentedParameterIncompleteTest extends DocumentedTestBase
+class DocumentedParameterIncompleteTest extends TestCase
 {
     private DocumentedParameter $documentedNoDocBlockParameter;
 
@@ -16,14 +18,14 @@ class DocumentedParameterIncompleteTest extends DocumentedTestBase
     protected function setUp(): void
     {
         $this->documentedNoDocBlockParameter = DocumentedParameter::fromParameterReflection(
-            $this->getReflectedParameter(
+            ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetNoDocBlock",
                 "subject"
             )
         );
         $this->documentedIncompleteDocBlockParameter = DocumentedParameter::fromParameterReflection(
-            $this->getReflectedParameter(
+            ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetIncompleteDocBlock",
                 "subject"

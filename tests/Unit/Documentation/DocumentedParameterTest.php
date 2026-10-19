@@ -2,19 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Unit\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedParameter;
-use Test\Hello;
+use PHPUnit\Framework\TestCase;
+use Test\Fixture\Hello;
+use Test\ReflectionHelper;
 
-class DocumentedParameterTest extends DocumentedTestBase
+class DocumentedParameterTest extends TestCase
 {
     private DocumentedParameter $documentedParameter;
 
     protected function setUp(): void
     {
         $this->documentedParameter = DocumentedParameter::fromParameterReflection(
-            $this->getReflectedParameter(Hello::class, "greet", "subject")
+            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
         );
     }
 

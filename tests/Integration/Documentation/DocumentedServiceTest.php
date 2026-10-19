@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedService;
 use Laminas\Code\Reflection\ClassReflection;
 use PHPUnit\Framework\TestCase;
-use Test\Hello;
+use Test\Fixture\Hello;
 
 class DocumentedServiceTest extends TestCase
 {

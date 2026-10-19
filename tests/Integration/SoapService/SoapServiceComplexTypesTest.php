@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Test\SoapService;
+namespace Test\Integration\SoapService;
 
 use AutoSoapServer\SoapService\SoapService;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use Test\Hello;
+use Test\Fixture\Hello;
 
 #[CoversClass(SoapService::class)]
 class SoapServiceComplexTypesTest extends TestCase
@@ -30,7 +30,7 @@ class SoapServiceComplexTypesTest extends TestCase
     public function testMethodParameterTypeIsDetected(): void
     {
         $this->assertContains(
-            "\\Test\\Type",
+            "\\Test\\Fixture\\Type",
             $this->service->discoverComplexTypes(),
         );
     }
@@ -38,7 +38,7 @@ class SoapServiceComplexTypesTest extends TestCase
     public function testComplexTypePropertyTypeIsDetected(): void
     {
         $this->assertContains(
-            "\\Test\\AnotherType",
+            "\\Test\\Fixture\\AnotherType",
             $this->service->discoverComplexTypes(),
         );
     }

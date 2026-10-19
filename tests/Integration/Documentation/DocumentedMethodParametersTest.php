@@ -2,20 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\DocumentedMethod;
 use AutoSoapServer\Documentation\DocumentedParameter;
-use Test\Hello;
+use PHPUnit\Framework\TestCase;
+use Test\Fixture\Hello;
+use Test\ReflectionHelper;
 
-class DocumentedMethodParametersTest extends DocumentedTestBase
+class DocumentedMethodParametersTest extends TestCase
 {
     private DocumentedMethod $documentedMethodWithTwoParameters;
 
     protected function setUp(): void
     {
         $this->documentedMethodWithTwoParameters = DocumentedMethod::fromMethodReflection(
-            $this->getReflectedMethod(
+            ReflectionHelper::getReflectedMethod(
                 Hello::class,
                 "methodWithTwoParameters"
             )

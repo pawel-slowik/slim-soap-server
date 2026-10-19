@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test\SoapService;
+namespace Test\Integration\SoapService;
 
 use AutoSoapServer\SoapService\ComplexTypeStrategySpy;
 use AutoSoapServer\SoapService\SoapService;
@@ -10,12 +10,14 @@ use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
-use Test\Hello;
+use Test\Fixture\Hello;
 
 #[CoversClass(ComplexTypeStrategySpy::class)]
 #[CoversClass(SoapService::class)]
 class SoapServiceTest extends TestCase
 {
+    private const string FIXTURE_DIR = __DIR__ . "/../../Fixture";
+
     private object $emptyImplementation;
 
     private object $helloImplementation;
@@ -26,7 +28,7 @@ class SoapServiceTest extends TestCase
     {
         $this->emptyImplementation = new \stdClass();
         $this->helloImplementation = new Hello();
-        $validHelloMessage = file_get_contents(__DIR__ . "/../data/hello_request.xml") or throw new LogicException();
+        $validHelloMessage = file_get_contents(self::FIXTURE_DIR . "/hello_request.xml") or throw new LogicException();
         $this->validHelloMessage = $validHelloMessage;
     }
 

@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Test\Documentation;
+namespace Test;
 
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Code\Reflection\MethodReflection;
 use Laminas\Code\Reflection\ParameterReflection;
 use LogicException;
-use PHPUnit\Framework\TestCase;
 
-abstract class DocumentedTestBase extends TestCase
+final readonly class ReflectionHelper
 {
     /**
      * @param class-string $className
      */
-    protected function getReflectedMethod(
+    public static function getReflectedMethod(
         string $className,
         string $methodName
     ): MethodReflection {
@@ -33,12 +32,12 @@ abstract class DocumentedTestBase extends TestCase
     /**
      * @param class-string $className
      */
-    protected function getReflectedParameter(
+    public static function getReflectedParameter(
         string $className,
         string $methodName,
         string $parameterName
     ): ParameterReflection {
-        $methodReflection = $this->getReflectedMethod($className, $methodName);
+        $methodReflection = self::getReflectedMethod($className, $methodName);
         $matchingParameterReflections = array_values(array_filter(
             $methodReflection->getParameters(),
             fn (ParameterReflection $p): bool => $p->name === $parameterName,

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test;
+namespace Test\Integration;
 
 use AutoSoapServer\RoutingConfiguration;
 use AutoSoapServer\SoapService\SoapServiceRegistry;

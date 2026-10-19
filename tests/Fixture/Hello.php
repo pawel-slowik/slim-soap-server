@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test;
+namespace Test\Fixture;
 
 /**
  * Example service.
@@ -90,7 +90,7 @@ class Hello
      *
      * Long method description.
      *
-     * @param \Test\Type $foo object parameter description
+     * @param \Test\Fixture\Type $foo object parameter description
      *
      * @return string return value description
      */
