@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\ClassMapGenerator;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 use DI\Container;
@@ -31,7 +30,6 @@ return function (Container $container, App $app): void {
         SoapServiceRegistry::class => function ($container) {
             $reg = new SoapServiceRegistry(
                 new ClassMapGenerator(),
-                new ComplexTypesGenerator(),
             );
             $reg->addServiceImplementation("hello", new Hello());
             $reg->addServiceImplementation("complex", new ExampleServiceWithComplexTypes());

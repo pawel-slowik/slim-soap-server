@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
-use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use DOMDocument;
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Soap\AutoDiscover;
@@ -16,7 +15,6 @@ class SoapService
 {
     public function __construct(
         private readonly ClassMapGenerator $classMapGenerator,
-        private readonly ComplexTypesGenerator $complexTypesGenerator,
         private readonly object $implementation,
     ) {
     }
@@ -62,19 +60,6 @@ class SoapService
             self::createWsdlXml($xmlDocument),
             $xmlDocument->encoding,
         );
-    }
-
-    /**
-     * @return class-string[]
-     */
-    public function discoverComplexTypes(): array
-    {
-        $spy = new ComplexTypeStrategySpy(new DefaultComplexType());
-        $autodiscover = new AutoDiscover($spy);
-        $autodiscover->setClass($this->implementation::class);
-        $autodiscover->setUri("dummy");
-        $autodiscover->generate();
-        return $this->complexTypesGenerator->generate($spy->getSpiedTypes());
     }
 
     /**

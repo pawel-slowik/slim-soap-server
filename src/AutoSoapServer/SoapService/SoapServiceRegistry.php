@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
-use AutoSoapServer\Documentation\ComplexTypesGenerator;
-
 class SoapServiceRegistry
 {
     public function __construct(
         private readonly ClassMapGenerator $classMapGenerator,
-        private readonly ComplexTypesGenerator $complexTypesGenerator,
     ) {
     }
 
@@ -24,7 +21,7 @@ class SoapServiceRegistry
         if ($this->pathIsRegistered($path)) {
             throw new SoapServiceRegistrationFailedException($path);
         }
-        $this->services[$path] = new SoapService($this->classMapGenerator, $this->complexTypesGenerator, $service);
+        $this->services[$path] = new SoapService($this->classMapGenerator, $service);
     }
 
     public function getServiceForPath(string $path): SoapService

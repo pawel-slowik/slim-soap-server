@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\ComplexTypesGenerator;
+use AutoSoapServer\Documentation\DocumentationGenerator;
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedType;
-use AutoSoapServer\SoapService\ClassMapGenerator;
-use AutoSoapServer\SoapService\SoapService;
 use Laminas\Code\Reflection\ClassReflection;
 use PHPUnit\Framework\TestCase;
 use Test\Fixture\Hello;
@@ -21,9 +20,9 @@ class DocumentedServiceTypesTest extends TestCase
 
     protected function setUp(): void
     {
-        $soapService = new SoapService(new ClassMapGenerator(), new ComplexTypesGenerator(), new Hello());
+        $documentationGenerator = new DocumentationGenerator(new ComplexTypesGenerator());
         $this->clientClassReflection = new ClassReflection(Hello::class);
-        $this->discoveredComplexTypes = $soapService->discoverComplexTypes();
+        $this->discoveredComplexTypes = $documentationGenerator->discoverComplexTypes(new Hello());
     }
 
     public function testNumberOfTypes(): void
