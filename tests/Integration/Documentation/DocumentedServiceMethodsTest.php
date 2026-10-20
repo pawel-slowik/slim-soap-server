@@ -12,30 +12,29 @@ use Test\Fixture\Hello;
 
 class DocumentedServiceMethodsTest extends TestCase
 {
-    private DocumentedService $documentedService;
-
-    protected function setUp(): void
+    public function testNumberOfMethods(): void
     {
-        $this->documentedService = DocumentedService::fromClassReflection(
+        $documentedService = DocumentedService::fromClassReflection(
             "test",
             new ClassReflection(Hello::class),
             []
         );
-    }
-
-    public function testNumberOfMethods(): void
-    {
         $this->assertCount(
             7,
-            $this->documentedService->methods
+            $documentedService->methods
         );
     }
 
     public function testTypeOfMethods(): void
     {
+        $documentedService = DocumentedService::fromClassReflection(
+            "test",
+            new ClassReflection(Hello::class),
+            []
+        );
         $this->assertContainsOnlyInstancesOf(
             DocumentedMethod::class,
-            $this->documentedService->methods
+            $documentedService->methods
         );
     }
 }

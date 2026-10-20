@@ -11,52 +11,58 @@ use Test\ReflectionHelper;
 
 class DocumentedMethodTest extends TestCase
 {
-    private DocumentedMethod $documentedMethod;
-
-    protected function setUp(): void
-    {
-        $this->documentedMethod = DocumentedMethod::fromMethodReflection(
-            ReflectionHelper::getReflectedMethod(Hello::class, "greet")
-        );
-    }
-
     public function testName(): void
     {
+        $documentedMethod = DocumentedMethod::fromMethodReflection(
+            ReflectionHelper::getReflectedMethod(Hello::class, "greet")
+        );
         $this->assertSame(
             "greet",
-            $this->documentedMethod->name
+            $documentedMethod->name
         );
     }
 
     public function testShortDescription(): void
     {
+        $documentedMethod = DocumentedMethod::fromMethodReflection(
+            ReflectionHelper::getReflectedMethod(Hello::class, "greet")
+        );
         $this->assertSame(
             "Short method description.",
-            $this->documentedMethod->shortDescription
+            $documentedMethod->shortDescription
         );
     }
 
     public function testLongDescription(): void
     {
+        $documentedMethod = DocumentedMethod::fromMethodReflection(
+            ReflectionHelper::getReflectedMethod(Hello::class, "greet")
+        );
         $this->assertSame(
             "Long method description.",
-            $this->documentedMethod->longDescription
+            $documentedMethod->longDescription
         );
     }
 
     public function testReturnType(): void
     {
+        $documentedMethod = DocumentedMethod::fromMethodReflection(
+            ReflectionHelper::getReflectedMethod(Hello::class, "greet")
+        );
         $this->assertSame(
             "string",
-            (string) $this->documentedMethod->returnType
+            (string) $documentedMethod->returnType
         );
     }
 
     public function testReturnDescription(): void
     {
+        $documentedMethod = DocumentedMethod::fromMethodReflection(
+            ReflectionHelper::getReflectedMethod(Hello::class, "greet")
+        );
         $this->assertSame(
             "return value description",
-            $this->documentedMethod->returnDescription
+            $documentedMethod->returnDescription
         );
     }
 }

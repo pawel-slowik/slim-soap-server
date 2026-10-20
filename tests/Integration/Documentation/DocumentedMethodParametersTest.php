@@ -12,43 +12,49 @@ use Test\ReflectionHelper;
 
 class DocumentedMethodParametersTest extends TestCase
 {
-    private DocumentedMethod $documentedMethodWithTwoParameters;
-
-    protected function setUp(): void
+    public function testNumberOfParameters(): void
     {
-        $this->documentedMethodWithTwoParameters = DocumentedMethod::fromMethodReflection(
+        $documentedMethodWithTwoParameters = DocumentedMethod::fromMethodReflection(
             ReflectionHelper::getReflectedMethod(
                 Hello::class,
                 "methodWithTwoParameters"
             )
         );
-    }
-
-    public function testNumberOfParameters(): void
-    {
         $this->assertCount(
             2,
-            $this->documentedMethodWithTwoParameters->parameters
+            $documentedMethodWithTwoParameters->parameters
         );
     }
 
     public function testTypeOfParameters(): void
     {
+        $documentedMethodWithTwoParameters = DocumentedMethod::fromMethodReflection(
+            ReflectionHelper::getReflectedMethod(
+                Hello::class,
+                "methodWithTwoParameters"
+            )
+        );
         $this->assertContainsOnlyInstancesOf(
             DocumentedParameter::class,
-            $this->documentedMethodWithTwoParameters->parameters
+            $documentedMethodWithTwoParameters->parameters
         );
     }
 
     public function testOrderOfParameters(): void
     {
+        $documentedMethodWithTwoParameters = DocumentedMethod::fromMethodReflection(
+            ReflectionHelper::getReflectedMethod(
+                Hello::class,
+                "methodWithTwoParameters"
+            )
+        );
         $this->assertSame(
             "foo",
-            $this->documentedMethodWithTwoParameters->parameters[0]->name
+            $documentedMethodWithTwoParameters->parameters[0]->name
         );
         $this->assertSame(
             "bar",
-            $this->documentedMethodWithTwoParameters->parameters[1]->name
+            $documentedMethodWithTwoParameters->parameters[1]->name
         );
     }
 }

@@ -15,57 +15,74 @@ use Test\Fixture\Hello;
 
 class DocumentedServiceTypesTest extends TestCase
 {
-    private DocumentedService $documentedService;
+    private ClassReflection $clientClassReflection;
 
-    /** @var array<string, string> */
-    private array $documentedTypeNames;
+    private array $discoveredComplexTypes;
 
     protected function setUp(): void
     {
-        $this->documentedService = DocumentedService::fromClassReflection(
-            "test",
-            new ClassReflection(Hello::class),
-            new SoapService(
-                new ClassMapGenerator(),
-                new ComplexTypesGenerator(),
-                new Hello(),
-            )->discoverComplexTypes(),
-        );
-        $this->documentedTypeNames = array_map(
-            fn (DocumentedType $type): string => $type->name,
-            $this->documentedService->types
-        );
+        $soapService = new SoapService(new ClassMapGenerator(), new ComplexTypesGenerator(), new Hello());
+        $this->clientClassReflection = new ClassReflection(Hello::class);
+        $this->discoveredComplexTypes = $soapService->discoverComplexTypes();
     }
 
     public function testNumberOfTypes(): void
     {
+        $documentedService = DocumentedService::fromClassReflection(
+            "test",
+            $this->clientClassReflection,
+            $this->discoveredComplexTypes,
+        );
         $this->assertCount(
             2,
-            $this->documentedService->types
+            $documentedService->types
         );
     }
 
     public function testTypeOfTypes(): void
     {
+        $documentedService = DocumentedService::fromClassReflection(
+            "test",
+            $this->clientClassReflection,
+            $this->discoveredComplexTypes,
+        );
         $this->assertContainsOnlyInstancesOf(
             DocumentedType::class,
-            $this->documentedService->types
+            $documentedService->types
         );
     }
 
     public function testMethodParameterTypeIsDetected(): void
     {
+        $documentedService = DocumentedService::fromClassReflection(
+            "test",
+            $this->clientClassReflection,
+            $this->discoveredComplexTypes,
+        );
+        $documentedTypeNames = array_map(
+            fn (DocumentedType $type): string => $type->name,
+            $documentedService->types
+        );
         $this->assertContains(
             "Test\\Fixture\\Type",
-            $this->documentedTypeNames
+            $documentedTypeNames
         );
     }
 
     public function testComplexTypePropertyTypeIsDetected(): void
     {
+        $documentedService = DocumentedService::fromClassReflection(
+            "test",
+            $this->clientClassReflection,
+            $this->discoveredComplexTypes,
+        );
+        $documentedTypeNames = array_map(
+            fn (DocumentedType $type): string => $type->name,
+            $documentedService->types
+        );
         $this->assertContains(
             "Test\\Fixture\\AnotherType",
-            $this->documentedTypeNames
+            $documentedTypeNames
         );
     }
 }

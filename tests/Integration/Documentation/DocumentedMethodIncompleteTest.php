@@ -11,33 +11,25 @@ use Test\ReflectionHelper;
 
 class DocumentedMethodIncompleteTest extends TestCase
 {
-    private DocumentedMethod $documentedNoDocBlockMethod;
-
-    private DocumentedMethod $documentedIncompleteDocBlockMethod;
-
-    protected function setUp(): void
+    public function testReturnDescriptionNoDocBlock(): void
     {
-        $this->documentedNoDocBlockMethod = DocumentedMethod::fromMethodReflection(
+        $documentedNoDocBlockMethod = DocumentedMethod::fromMethodReflection(
             ReflectionHelper::getReflectedMethod(
                 Hello::class,
                 "greetNoDocBlock"
             )
         );
-        $this->documentedIncompleteDocBlockMethod = DocumentedMethod::fromMethodReflection(
+        $this->assertNull($documentedNoDocBlockMethod->returnDescription);
+    }
+
+    public function testReturnDescriptionIncompleteDocBlock(): void
+    {
+        $documentedIncompleteDocBlockMethod = DocumentedMethod::fromMethodReflection(
             ReflectionHelper::getReflectedMethod(
                 Hello::class,
                 "greetIncompleteDocBlock"
             )
         );
-    }
-
-    public function testReturnDescriptionNoDocBlock(): void
-    {
-        $this->assertNull($this->documentedNoDocBlockMethod->returnDescription);
-    }
-
-    public function testReturnDescriptionIncompleteDocBlock(): void
-    {
-        $this->assertNull($this->documentedIncompleteDocBlockMethod->returnDescription);
+        $this->assertNull($documentedIncompleteDocBlockMethod->returnDescription);
     }
 }

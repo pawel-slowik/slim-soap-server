@@ -10,42 +10,39 @@ use PHPUnit\Framework\TestCase;
 
 class DocumentedTypeTest extends TestCase
 {
-    private DocumentedType $documentedType;
-
-    protected function setUp(): void
-    {
-        $this->documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
-    }
-
     public function testName(): void
     {
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
         $this->assertSame(
             "Test\\Fixture\\Type",
-            $this->documentedType->name
+            $documentedType->name
         );
     }
 
     public function testDescription(): void
     {
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
         $this->assertSame(
             "This class is used for type reflection testing.",
-            $this->documentedType->description
+            $documentedType->description
         );
     }
 
     public function testNumberOfProperties(): void
     {
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
         $this->assertCount(
             5,
-            $this->documentedType->properties
+            $documentedType->properties
         );
     }
 
     public function testTypeOfProperties(): void
     {
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
         $this->assertContainsOnlyInstancesOf(
             DocumentedProperty::class,
-            $this->documentedType->properties
+            $documentedType->properties
         );
     }
 }

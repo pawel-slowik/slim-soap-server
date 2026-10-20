@@ -9,44 +9,42 @@ use PHPUnit\Framework\TestCase;
 
 class DocumentedPropertyTest extends TestCase
 {
-    private DocumentedType $documentedType;
-
-    protected function setUp(): void
-    {
-        $this->documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
-    }
-
     public function testName(): void
     {
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
         $this->assertSame(
             "bar",
-            $this->documentedType->properties[0]->name
+            $documentedType->properties[0]->name
         );
     }
 
     public function testDescription(): void
     {
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
         $this->assertSame(
             "bar property description",
-            $this->documentedType->properties[0]->description
+            $documentedType->properties[0]->description
         );
     }
 
     public function testTypes(): void
     {
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
         $this->assertSame(
             ["string"],
-            $this->documentedType->properties[0]->types
+            $documentedType->properties[0]->types
         );
     }
 
     public function testMissingDescription(): void
     {
-        $this->assertNull($this->documentedType->properties[1]->description);
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
+        $this->assertNull($documentedType->properties[1]->description);
     }
 
     public function testMissingType(): void
     {
-        $this->assertNull($this->documentedType->properties[2]->types);
+        $documentedType = DocumentedType::fromClassName("\\Test\\Fixture\\Type");
+        $this->assertNull($documentedType->properties[2]->types);
     }
 }

@@ -11,55 +11,62 @@ use Test\Fixture\Hello;
 
 class DocumentedServiceTest extends TestCase
 {
-    private DocumentedService $documentedService;
-
-    private DocumentedService $documentedEmptyService;
-
-    protected function setUp(): void
+    public function testName(): void
     {
-        $this->documentedService = DocumentedService::fromClassReflection(
+        $documentedService = DocumentedService::fromClassReflection(
             "test",
             new ClassReflection(Hello::class),
             []
         );
-        $this->documentedEmptyService = DocumentedService::fromClassReflection(
-            "empty test",
-            new ClassReflection(\stdClass::class),
-            []
-        );
-    }
-
-    public function testName(): void
-    {
         $this->assertSame(
             "test",
-            $this->documentedService->name
+            $documentedService->name
         );
     }
 
     public function testShortDescription(): void
     {
+        $documentedService = DocumentedService::fromClassReflection(
+            "test",
+            new ClassReflection(Hello::class),
+            []
+        );
         $this->assertSame(
             "Example service.",
-            $this->documentedService->shortDescription
+            $documentedService->shortDescription
         );
     }
 
     public function testLongDescription(): void
     {
+        $documentedService = DocumentedService::fromClassReflection(
+            "test",
+            new ClassReflection(Hello::class),
+            []
+        );
         $this->assertSame(
             "This class is used for reflection testing.",
-            $this->documentedService->longDescription
+            $documentedService->longDescription
         );
     }
 
     public function testMissingShortDescription(): void
     {
-        $this->assertNull($this->documentedEmptyService->shortDescription);
+        $documentedEmptyService = DocumentedService::fromClassReflection(
+            "empty test",
+            new ClassReflection(\stdClass::class),
+            []
+        );
+        $this->assertNull($documentedEmptyService->shortDescription);
     }
 
     public function testMissingLongDescription(): void
     {
-        $this->assertNull($this->documentedEmptyService->longDescription);
+        $documentedEmptyService = DocumentedService::fromClassReflection(
+            "empty test",
+            new ClassReflection(\stdClass::class),
+            []
+        );
+        $this->assertNull($documentedEmptyService->longDescription);
     }
 }
