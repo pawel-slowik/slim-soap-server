@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Test\Unit\SoapService;
+namespace Test\Unit\Documentation;
 
-use AutoSoapServer\SoapService\ComplexTypesGenerator;
+use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\MappedComplexType;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;

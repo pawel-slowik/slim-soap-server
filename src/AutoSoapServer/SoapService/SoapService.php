@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
+use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use DOMDocument;
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Soap\AutoDiscover;

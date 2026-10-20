@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\ClassMapGenerator;
-use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapServiceRegistry;
 use DI\Container;
 use ExampleServices\ExampleServiceWithComplexTypes;

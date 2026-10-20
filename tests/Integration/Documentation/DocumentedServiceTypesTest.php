@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Test\Integration\Documentation;
 
+use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use AutoSoapServer\Documentation\DocumentedService;
 use AutoSoapServer\Documentation\DocumentedType;
 use AutoSoapServer\SoapService\ClassMapGenerator;
-use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapService;
 use Laminas\Code\Reflection\ClassReflection;
 use PHPUnit\Framework\TestCase;

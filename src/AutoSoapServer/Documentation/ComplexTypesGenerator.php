@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AutoSoapServer\SoapService;
+namespace AutoSoapServer\Documentation;
+
+use AutoSoapServer\SoapService\MappedComplexType;
 
 class ComplexTypesGenerator
 {

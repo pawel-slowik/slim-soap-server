@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Test\Integration\SoapService;
 
+use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\ClassMapGenerator;
-use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapServiceNotFoundException;
 use AutoSoapServer\SoapService\SoapServiceRegistrationFailedException;
 use AutoSoapServer\SoapService\SoapServiceRegistry;

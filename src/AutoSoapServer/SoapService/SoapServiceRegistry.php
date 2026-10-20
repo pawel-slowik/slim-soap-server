@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AutoSoapServer\SoapService;
 
+use AutoSoapServer\Documentation\ComplexTypesGenerator;
+
 class SoapServiceRegistry
 {
     public function __construct(

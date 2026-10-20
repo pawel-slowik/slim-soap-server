@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Test\Integration\SoapService;
 
+use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\ClassMapGenerator;
 use AutoSoapServer\SoapService\ComplexTypeStrategySpy;
-use AutoSoapServer\SoapService\ComplexTypesGenerator;
 use AutoSoapServer\SoapService\SoapService;
 use LogicException;
 use PHPUnit\Framework\Attributes\CoversClass;
