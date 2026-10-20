@@ -6,27 +6,19 @@ namespace Test\Integration\Documentation;
 
 use AutoSoapServer\Documentation\ComplexTypesGenerator;
 use AutoSoapServer\Documentation\DocumentationGenerator;
-use AutoSoapServer\SoapService\SoapService;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Test\Fixture\Hello;
 
 #[CoversClass(DocumentationGenerator::class)]
 class DocumentationGeneratorTest extends TestCase
 {
-    private SoapService&Stub $soapService;
-
     private object $clientService;
 
     private DocumentationGenerator $generator;
 
     protected function setUp(): void
     {
-        $this->soapService = $this->createStub(SoapService::class);
-        $this->soapService->method("getName")->willReturn("service name");
-        $this->soapService->method("getImplementation")->willReturn(new Hello());
-
         $this->clientService = new Hello();
 
         $this->generator = new DocumentationGenerator(new ComplexTypesGenerator());
@@ -34,7 +26,7 @@ class DocumentationGeneratorTest extends TestCase
 
     public function testReturnedType(): void
     {
-        $documentedService = $this->generator->createDocumentation($this->soapService);
+        $documentedService = $this->generator->createDocumentation("hello", $this->clientService);
 
         $this->assertNotEmpty($documentedService->name);
         $this->assertNotEmpty($documentedService->shortDescription);

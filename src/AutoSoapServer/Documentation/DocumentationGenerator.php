@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AutoSoapServer\Documentation;
 
 use AutoSoapServer\SoapService\ComplexTypeStrategySpy;
-use AutoSoapServer\SoapService\SoapService;
 use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Soap\AutoDiscover;
 use Laminas\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType;
@@ -17,12 +16,12 @@ class DocumentationGenerator
     ) {
     }
 
-    public function createDocumentation(SoapService $service): DocumentedService
+    public function createDocumentation(string $name, object $service): DocumentedService
     {
         return DocumentedService::fromClassReflection(
-            $service->getName(),
-            new ClassReflection($service->getImplementation()),
-            $this->discoverComplexTypes($service->getImplementation()),
+            $name,
+            new ClassReflection($service),
+            $this->discoverComplexTypes($service),
         );
     }
 

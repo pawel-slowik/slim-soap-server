@@ -23,7 +23,10 @@ final readonly class DocumentationController
     public function __invoke(Request $request, Response $response, string $path): Response
     {
         $service = $this->soapServiceRegistry->getServiceForPath($path);
-        $documentedService = $this->documentationGenerator->createDocumentation($service);
+        $documentedService = $this->documentationGenerator->createDocumentation(
+            $service->getName(),
+            $service->getImplementation(),
+        );
         $templateData = ["service" => $documentedService];
         return $this->view
             ->render($response, 'doc.html', $templateData)
