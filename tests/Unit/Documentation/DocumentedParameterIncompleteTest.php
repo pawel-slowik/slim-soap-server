@@ -9,42 +9,42 @@ use PHPUnit\Framework\TestCase;
 use Test\Fixture\Hello;
 use Test\ReflectionHelper;
 
+#[CoversClass(DocumentedParameter::class)]
 class DocumentedParameterIncompleteTest extends TestCase
 {
-    private DocumentedParameter $documentedNoDocBlockParameter;
-
-    private DocumentedParameter $documentedIncompleteDocBlockParameter;
-
-    protected function setUp(): void
+    public function testNoDocBlockNoDescription(): void
     {
-        $this->documentedNoDocBlockParameter = DocumentedParameter::fromParameterReflection(
+        $documentedNoDocBlockParameter = DocumentedParameter::fromParameterReflection(
             ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetNoDocBlock",
                 "subject"
             )
         );
-        $this->documentedIncompleteDocBlockParameter = DocumentedParameter::fromParameterReflection(
+        $this->assertNull($documentedNoDocBlockParameter->description);
+    }
+
+    public function testNoDocBlockNoDefaultValue(): void
+    {
+        $documentedNoDocBlockParameter = DocumentedParameter::fromParameterReflection(
+            ReflectionHelper::getReflectedParameter(
+                Hello::class,
+                "greetNoDocBlock",
+                "subject"
+            )
+        );
+        $this->assertNull($documentedNoDocBlockParameter->defaultValue);
+    }
+
+    public function testIncompleteDocBlockNoDescription(): void
+    {
+        $documentedIncompleteDocBlockParameter = DocumentedParameter::fromParameterReflection(
             ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetIncompleteDocBlock",
                 "subject"
             )
         );
-    }
-
-    public function testNoDocBlockNoDescription(): void
-    {
-        $this->assertNull($this->documentedNoDocBlockParameter->description);
-    }
-
-    public function testNoDocBlockNoDefaultValue(): void
-    {
-        $this->assertNull($this->documentedNoDocBlockParameter->defaultValue);
-    }
-
-    public function testIncompleteDocBlockNoDescription(): void
-    {
-        $this->assertNull($this->documentedIncompleteDocBlockParameter->description);
+        $this->assertNull($documentedIncompleteDocBlockParameter->description);
     }
 }

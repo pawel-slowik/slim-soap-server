@@ -9,43 +9,36 @@ use PHPUnit\Framework\TestCase;
 use Test\Fixture\Hello;
 use Test\ReflectionHelper;
 
+#[CoversClass(DocumentedParameter::class)]
 class DocumentedParameterDefaultValuesTest extends TestCase
 {
-    private DocumentedParameter $documentedParameterWithDefaultValue;
-
-    private DocumentedParameter $documentedParameterWithDefaultConstantValue;
-
-    protected function setUp(): void
+    public function testWithDefaultValue(): void
     {
-        $this->documentedParameterWithDefaultValue = DocumentedParameter::fromParameterReflection(
+        $documentedParameterWithDefaultValue = DocumentedParameter::fromParameterReflection(
             ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetWithDefaultValue",
                 "subject"
             )
         );
-        $this->documentedParameterWithDefaultConstantValue = DocumentedParameter::fromParameterReflection(
+        $this->assertSame(
+            "'world'",
+            $documentedParameterWithDefaultValue->defaultValue
+        );
+    }
+
+    public function testWithDefaultConstantValue(): void
+    {
+        $documentedParameterWithDefaultConstantValue = DocumentedParameter::fromParameterReflection(
             ReflectionHelper::getReflectedParameter(
                 Hello::class,
                 "greetWithDefaultConstantValue",
                 "subject"
             )
         );
-    }
-
-    public function testWithDefaultValue(): void
-    {
-        $this->assertSame(
-            "'world'",
-            $this->documentedParameterWithDefaultValue->defaultValue
-        );
-    }
-
-    public function testWithDefaultConstantValue(): void
-    {
         $this->assertSame(
             "self::FOO",
-            $this->documentedParameterWithDefaultConstantValue->defaultValue
+            $documentedParameterWithDefaultConstantValue->defaultValue
         );
     }
 }

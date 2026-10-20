@@ -9,53 +9,63 @@ use PHPUnit\Framework\TestCase;
 use Test\Fixture\Hello;
 use Test\ReflectionHelper;
 
+#[CoversClass(DocumentedParameter::class)]
 class DocumentedParameterTest extends TestCase
 {
-    private DocumentedParameter $documentedParameter;
-
-    protected function setUp(): void
-    {
-        $this->documentedParameter = DocumentedParameter::fromParameterReflection(
-            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
-        );
-    }
-
     public function testName(): void
     {
+        $documentedParameter = DocumentedParameter::fromParameterReflection(
+            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
+        );
         $this->assertSame(
             "subject",
-            $this->documentedParameter->name
+            $documentedParameter->name
         );
     }
 
     public function testType(): void
     {
+        $documentedParameter = DocumentedParameter::fromParameterReflection(
+            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
+        );
         $this->assertSame(
             "string",
-            (string) $this->documentedParameter->type
+            (string) $documentedParameter->type
         );
     }
 
     public function testDefaultValue(): void
     {
-        $this->assertNull($this->documentedParameter->defaultValue);
+        $documentedParameter = DocumentedParameter::fromParameterReflection(
+            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
+        );
+        $this->assertNull($documentedParameter->defaultValue);
     }
 
     public function testDescription(): void
     {
+        $documentedParameter = DocumentedParameter::fromParameterReflection(
+            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
+        );
         $this->assertSame(
             "parameter description",
-            $this->documentedParameter->description
+            $documentedParameter->description
         );
     }
 
     public function testIsNullable(): void
     {
-        $this->assertFalse($this->documentedParameter->isNullable);
+        $documentedParameter = DocumentedParameter::fromParameterReflection(
+            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
+        );
+        $this->assertFalse($documentedParameter->isNullable);
     }
 
     public function testIsOptional(): void
     {
-        $this->assertFalse($this->documentedParameter->isOptional);
+        $documentedParameter = DocumentedParameter::fromParameterReflection(
+            ReflectionHelper::getReflectedParameter(Hello::class, "greet", "subject")
+        );
+        $this->assertFalse($documentedParameter->isOptional);
     }
 }
