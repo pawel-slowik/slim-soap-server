@@ -39,6 +39,6 @@ class ComplexTypeStrategySpy implements ComplexTypeStrategyInterface
      */
     public function getSpiedTypes(): array
     {
-        return $this->spiedTypes;
+        return array_values(array_unique($this->spiedTypes, SORT_REGULAR));
     }
 }

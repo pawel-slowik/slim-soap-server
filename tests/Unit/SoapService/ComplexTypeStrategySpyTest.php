@@ -35,6 +35,7 @@ class ComplexTypeStrategySpyTest extends TestCase
 
         $this->complexTypeStrategySpy->addComplexType("foo");
         $this->complexTypeStrategySpy->addComplexType("bar");
+        $this->complexTypeStrategySpy->addComplexType("foo");
         $types = $this->complexTypeStrategySpy->getSpiedTypes();
 
         $this->assertCount(2, $types);
